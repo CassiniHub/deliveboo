@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+
 use Illuminate\Http\Request;
+
+Use App\Library\Helpers\Validation;
 
 class CategoryController extends Controller
 {
