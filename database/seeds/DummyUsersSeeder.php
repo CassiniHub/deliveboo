@@ -1,5 +1,7 @@
 <?php
 
+use App\User;
+
 use Illuminate\Database\Seeder;
 
 class DummyUsersSeeder extends Seeder
@@ -11,6 +13,14 @@ class DummyUsersSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $dummyUser = [
+            'company_name' => 'company', 
+            'email' => 'company@mail.com',
+            'password' => 'password',
+            'address' => 'via di qua, 1',
+            'vat_number' => '99999999999',
+        ];
+
+        User::create($dummyUser);
     }
 }
