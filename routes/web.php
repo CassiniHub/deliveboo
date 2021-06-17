@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resources([
+    'users'       => 'UserController',
+    'restaurants' => 'RestaurantController',
+    'categories'  => 'CategoryController',
+    'dishes'      => 'DishController',
+    'orders'      => 'OrderController',
+]);
+
 Route::get('/', function () {
     return view('welcome');
 });
