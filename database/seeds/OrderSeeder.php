@@ -13,13 +13,24 @@ class OrderSeeder extends Seeder
      */
     public function run()
     {
-        factory(Order::class, 5) -> create()
+        factory(Order::class, 5) -> make()
             -> each(function($order) {
-                $dishes = Dish::inRandomOrder()
-                          -> limit(5)
-                          -> get();
-                $order -> dishes() -> attach($dishes);
-                $order -> save();
+                $totPrice = 0;
+                $dishes = null;
+
+                for ($x=0; $x<10; $x++){
+                    $dish = Dish::inRandomOrder() -> first();
+                    $totPrice += $dish ->price;  
+                    $dishes[$x] = $dish;                  
+                }
+
+                $order ->tot_price = $totPrice;
+                $order ->save();
+
+                foreach($dishes as $dish){
+                    
+                    $order ->dishes() ->attach($dish ->id);    
+                }
             });
     }
 }
