@@ -14,8 +14,23 @@ class CreateRestaurantsTable extends Migration
     public function up()
     {
         Schema::create('restaurants', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table -> id();
+
+            $table -> string('name');
+            $table -> string('address');
+            $table -> string('email', 128);
+            $table -> string('telephone', 32);
+            $table -> text('description') -> nullable();
+            $table -> string('img_cover') -> nullable(); // Add default
+            $table -> string('logo') -> nullable();      // Add default
+            $table -> boolean('allow_cash');
+            $table -> decimal('delivery_cost');
+            $table -> boolean('is_visible') -> default(false);
+
+            $table -> softDeletes();
+            $table -> bigInteger('user_id') -> unsigned() -> index();
+
+            $table -> timestamps();
         });
     }
 

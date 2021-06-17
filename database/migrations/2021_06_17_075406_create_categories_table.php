@@ -14,8 +14,15 @@ class CreateCategoriesTable extends Migration
     public function up()
     {
         Schema::create('categories', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table -> id();
+
+            $table -> string('name', 64);
+            $table -> text('description') -> nullable();
+            $table -> string('img_cover') -> nullable(); // Add default
+
+            $table -> softDeletes();
+
+            $table -> timestamps();
         });
     }
 

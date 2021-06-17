@@ -13,7 +13,37 @@ class AddForeignKeys extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('restaurants', function (Blueprint $table) {
+            $table -> foreign('user_id', 'userrestaurant')
+                   -> references('id')
+                   -> on('users');
+        });
+
+        Schema::table('dishes', function (Blueprint $table) {
+            $table -> foreign('restaurant_id', 'restaurantdish')
+                   -> references('id')
+                   -> on('restaurants');
+        });
+
+        Schema::table('category_restaurant', function (Blueprint $table) {
+            $table -> foreign('category_id', 'categoryrestaurant')
+                   -> references('id')
+                   -> on('categories');
+
+            $table -> foreign('restaurant_id', 'restaurantcategory')
+                   -> references('id')
+                   -> on('restaurants');
+        });
+
+        Schema::table('dish_order', function (Blueprint $table) {
+            $table -> foreign('dish_id', 'dishorder')
+                   -> references('id')
+                   -> on('dishes');
+
+            $table -> foreign('order_id', 'orderdish')
+                   -> references('id')
+                   -> on('orders');
+        });
     }
 
     /**
@@ -23,6 +53,22 @@ class AddForeignKeys extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('restaurants', function (Blueprint $table) {
+            $table -> dropForeign('userrestaurant');
+        });
+
+        Schema::table('dishes', function (Blueprint $table) {
+            $table -> dropForeign('restaurantdish');
+        });
+
+        Schema::table('category_restaurant', function (Blueprint $table) {
+            $table -> dropForeign('categoryrestaurant');
+            $table -> dropForeign('restaurantcategory');
+        });
+
+        Schema::table('dish_order', function (Blueprint $table) {
+            $table -> dropForeign('dishorder');
+            $table -> dropForeign('orderdish');
+        });
     }
 }

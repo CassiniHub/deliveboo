@@ -14,8 +14,12 @@ class CreateCategoryRestaurantTable extends Migration
     public function up()
     {
         Schema::create('category_restaurant', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table -> id();
+
+            $table -> bigInteger('category_id') -> unsigned() -> index();
+            $table -> bigInteger('restaurant_id') -> unsigned() -> index();
+
+            $table -> timestamps();
         });
     }
 

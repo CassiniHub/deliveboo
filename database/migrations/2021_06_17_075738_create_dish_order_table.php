@@ -15,6 +15,10 @@ class CreateDishOrderTable extends Migration
     {
         Schema::create('dish_order', function (Blueprint $table) {
             $table->id();
+
+            $table -> bigInteger('dish_id') -> unsigned() -> index();
+            $table -> bigInteger('order_id') -> unsigned() -> index();
+
             $table->timestamps();
         });
     }
