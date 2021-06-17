@@ -17,7 +17,7 @@ class CreateDishesTable extends Migration
             $table -> id();
 
             $table -> string('name');
-            $table -> json('ingredients');
+            $table -> string('ingredients');
             $table -> decimal('price');
             $table -> integer('discount') -> nullable();
             $table -> string('img') -> nullable(); // Add default
