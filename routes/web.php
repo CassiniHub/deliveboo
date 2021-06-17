@@ -14,13 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resources([
-    'owners'      => 'OwnerController',
+    'users'       => 'UserController',
     'restaurants' => 'RestaurantController',
-    'categories'  => 'CategoryController',
     'categories'  => 'CategoryController',
     'dishes'      => 'DishController',
     'orders'      => 'OrderController',
-    'customers'   => 'CustomerController',
 ]);
 
 Route::get('/', function () {
