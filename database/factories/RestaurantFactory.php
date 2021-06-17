@@ -10,11 +10,11 @@ $factory->define(Restaurant::class, function (Faker $faker) {
         'name'          => $faker -> word(),
         'address'       => $faker -> address(),
         'email'         => $faker -> email(),
-        'telephone'     => $faker -> companyNumber,
+        'telephone'     => $faker -> word(),
         'description'   => $faker -> text($maxNbChars = 300),
         'img_cover'     => $faker -> imageUrl($width = 640, $height = 480),
         'logo'          => $faker -> imageUrl($width = 300, $height = 300),
         'allow_cash'    => $faker -> boolean($chanceOfGettingTrue = 50),
-        'delivery_cost' => $faker -> randomFloat(0, 20),
+        'delivery_cost' => $faker -> numberBetween(5, 10),
     ];
 });

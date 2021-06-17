@@ -1,5 +1,8 @@
 <?php
 
+
+use App\Dish;
+use App\Restaurant;
 use Illuminate\Database\Seeder;
 
 class DishSeeder extends Seeder
@@ -11,6 +14,11 @@ class DishSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(Dish::class, 30) -> make()
+            -> each(function($dish) {
+                $restaurant = Restaurant::inRandomOrder() -> first();
+                $dish -> restaurant() -> associate($restaurant);
+                $dish -> save();
+            });
     }
 }
