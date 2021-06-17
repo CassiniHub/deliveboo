@@ -7,6 +7,9 @@ use Faker\Generator as Faker;
 
 $factory->define(Order::class, function (Faker $faker) {
     return [
-        //
+        'tot_price'        => $faker -> randomFloat($nbMaxDecimals = 2, $min = 2, $max = 200),
+        'status'           => $faker -> numberBetween(0, 2),
+        'notes'            => $faker -> text($maxNbChars = 300),
+        'delivery_address' => $faker -> address(),
     ];
 });
