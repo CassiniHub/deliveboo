@@ -124,9 +124,16 @@
 
                         <li>
                             <a href="">
-                                <img src="{{asset('/storage/images/Googleplay.png')}}" alt="">
+                                <img src="{{asset('storage/images/footer-images/googleplay.png')}}">
                             </a>
                         </li>
+
+                        <li>
+                            <a href="">
+                                <img src="{{asset('storage/images/footer-images/appstore.png')}}">
+                            </a>
+                        </li>
+
 
                     </ul>
 
