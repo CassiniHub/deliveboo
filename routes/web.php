@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 // first view on opening
 Route::get('/', function() {
     return view('pages.home');
-});
+}) ->name('homepage');
 
 Route::resources([
     'users'       => 'UserController',
