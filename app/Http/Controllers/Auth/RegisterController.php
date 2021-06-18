@@ -33,6 +33,7 @@ class RegisterController extends Controller
 
     // TEST -> reindirizzamento post login
     // !! -> nella versione funzionante aggiungere middleware
+    // ** Middleware aggiunto | Modifica il redirect quando la view sarà pronta
     public function redirectPath() {
         return route('dashboard');
     }
