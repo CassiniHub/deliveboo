@@ -10958,6 +10958,153 @@ a.text-dark:focus {
   background-color: lightcoral;
 }
 
+/* stile footer */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.footer-bg {
+  background-color: #2E3333;
+  min-height: 300px;
+  width: 100%;
+}
+
+.footer-bg .footer-card-container {
+  width: 60%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 0;
+}
+
+.footer-bg .footer-card-container .footer-card1 {
+  background-color: #434848;
+  padding: 15px;
+  width: calc(100%/4.2);
+  height: 430px;
+  color: white;
+  border-radius: 5px;
+}
+
+.footer-bg .footer-card-container .footer-card1 li {
+  list-style: none;
+  padding: 5px 0;
+}
+
+.footer-bg .footer-card-container .footer-card1 li a {
+  text-decoration: none;
+  color: white;
+}
+
+.footer-bg .footer-card-container .footer-card1 .footer-bolder {
+  font-weight: bolder;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.footer-bg .footer-card-container .footer-card2 {
+  background-color: #434848;
+  padding: 15px;
+  width: calc(100%/4.2);
+  color: white;
+  border-radius: 5px;
+  height: 430px;
+}
+
+.footer-bg .footer-card-container .footer-card2 li {
+  list-style: none;
+  padding: 5px 0;
+}
+
+.footer-bg .footer-card-container .footer-card2 li a {
+  text-decoration: none;
+  color: white;
+}
+
+.footer-bg .footer-card-container .footer-card2 .footer-bolder {
+  font-weight: bolder;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.footer-bg .footer-card-container .footer-card3 {
+  background-color: #434848;
+  padding: 15px;
+  width: calc(100%/4.2);
+  color: white;
+  border-radius: 5px;
+  height: 430px;
+}
+
+.footer-bg .footer-card-container .footer-card3 li {
+  list-style: none;
+  padding: 5px 0;
+}
+
+.footer-bg .footer-card-container .footer-card3 li a {
+  text-decoration: none;
+  color: white;
+}
+
+.footer-bg .footer-card-container .footer-card3 .footer-bolder {
+  font-weight: bolder;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.footer-bg .footer-card-container .footer-card4 {
+  background-color: #434848;
+  padding: 15px;
+  width: calc(100%/4.2);
+  color: white;
+  border-radius: 5px;
+  height: 430px;
+}
+
+.footer-bg .footer-card-container .footer-card4 li {
+  list-style: none;
+  padding: 5px 0;
+}
+
+.footer-bg .footer-card-container .footer-card4 li a {
+  text-decoration: none;
+  color: white;
+}
+
+.footer-bg .footer-card-container .footer-card4 li a img {
+  width: 60%;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+.footer-bg .footer-card-container .footer-card4 .footer-bolder {
+  font-weight: bolder;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.footer-bg .icons-footer {
+  width: 60%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 15px;
+}
+
+.footer-bg .icons-footer i {
+  color: white;
+  padding: 0 5px;
+  font-size: 22px;
+}
+
+.footer-bg .icons-footer .copyright-footer {
+  color: gray;
+}
+
 #home-title {
   text-align: center;
 }
