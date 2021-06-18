@@ -8,6 +8,7 @@
         </h1>
     </div>
 
+    
     <form action="{{route('users.destroy', Auth::user()->id)}}" method="POST">
         @method('DELETE')
         @csrf

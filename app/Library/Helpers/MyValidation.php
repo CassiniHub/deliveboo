@@ -2,8 +2,8 @@
 
 namespace App\Library\Helpers;
 
-class Validation {    
-    public function validateRestaurant() {
+class MyValidation {    
+    static function validateRestaurant() {
         return [
             'name' => 'required|string|max:255', 
             'address' => 'required|string|max:255',
@@ -18,20 +18,17 @@ class Validation {
         ];
     }
 
-    public function validateDish() {
+    // WARNING -> check with migrations
+    static function validateDish() {
         return [
             'name' => 'required|string|max:255',
             'ingredients' => 'required|JSON',
             'price' => 'required|numeric',
             'discount' => 'nullable|numeric',
-            'img' => 'nullable|string|',
-            'type' => 'required|string|max:64',
-            'is_visible' => 'nullable|boolean',
         ];
     }
 
-
-    public function validateCategory() {
+    static function validateCategory() {
         return [
             'name' => 'required|string|max:64',
             'description' => 'nullable|string',
@@ -39,7 +36,7 @@ class Validation {
         ];
     }
 
-    public function validateOrder() {
+    static function validateOrder() {
         return [
             'tot_price' => 'required|numeric',
             'status' => 'required|numeric',
