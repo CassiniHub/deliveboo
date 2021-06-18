@@ -4,7 +4,7 @@
 
             <div class="footer-card-container">
 
-                <div class="footer-card">
+                <div class="footer-card1">
 
                     <ul>
 
@@ -57,7 +57,7 @@
 
 
                 </div>
-                <div class="footer-card second-card-footer">
+                <div class="footer-card2 second-card-footer">
                     <ul>
 
                         <li class="footer-bolder">
@@ -81,7 +81,7 @@
 
 
                 </div>
-                <div class="footer-card second-card-footer">
+                <div class="footer-card3 second-card-footer">
                     <ul>
 
                         <li class="footer-bolder">
@@ -109,17 +109,11 @@
 
 
                 </div>
-                <div class="footer-card second-card-footer">
+                <div class="footer-card4 second-card-footer">
                     <ul>
 
                         <li class="footer-bolder">
                             <a href="">Porta Deliveroo con te</a>
-                        </li>
-
-                        <li>
-                            <a href="">
-                                <img src="images/AppStore.png" alt="">
-                            </a>
                         </li>
 
                         <li>

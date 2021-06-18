@@ -14,67 +14,167 @@
 
     .footer-card-container{
 
-    width: 60%;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    padding: 25px 0;
-    }
+        width: 60%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        padding: 25px 0;
 
-    .footer-card{
+       .footer-card1{
 
-    background-color: #434848;
-    padding: 15px;
-    width: calc(100%/4.2);
-    height: 95%;
-    color: white;
-    border-radius: 5px;
-
-    li{
-
-        list-style: none;
-        padding: 5px 0;
-
-        .footer-bolder{
-
-            font-weight: bolder;
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-        }
-
-        a{
-
-            text-decoration: none;
+            background-color: #434848;
+            padding: 15px;
+            width: calc(100%/4.2);
+            height: 430px;
             color: white;
-        }
-    }
-    }
-    .second-card-footer{
+            border-radius: 5px;
 
-        height: 353px;
+            li{
+
+                list-style: none;
+                padding: 5px 0;
+
+                a{
+
+                    text-decoration: none;
+                    color: white;
+                }
+
+            }
+
+            .footer-bolder{
+
+                font-weight: bolder;
+                font-size: 1.3rem;
+                margin-bottom: 10px;
+            }
+
+        }
+        .footer-card2{
+
+            background-color: #434848;
+            padding: 15px;
+            width: calc(100%/4.2);
+
+            color: white;
+            border-radius: 5px;
+            height: 430px;
+
+            li{
+
+                list-style: none;
+                padding: 5px 0;
+
+                a{
+
+                    text-decoration: none;
+                    color: white;
+                }
+
+            }
+
+            .footer-bolder{
+
+                font-weight: bolder;
+                font-size: 1.3rem;
+                margin-bottom: 10px;
+            }
+
+        }
+          .footer-card3{
+
+            background-color: #434848;
+            padding: 15px;
+            width: calc(100%/4.2);
+
+            color: white;
+            border-radius: 5px;
+            height: 430px;
+
+            li{
+
+                list-style: none;
+                padding: 5px 0;
+
+                a{
+
+                    text-decoration: none;
+                    color: white;
+                }
+
+            }
+
+            .footer-bolder{
+
+                font-weight: bolder;
+                font-size: 1.3rem;
+                margin-bottom: 10px;
+            }
+
+        }
+            .footer-card4{
+
+            background-color: #434848;
+            padding: 15px;
+            width: calc(100%/4.2);
+
+            color: white;
+            border-radius: 5px;
+            height: 430px;
+
+            li{
+
+                list-style: none;
+                padding: 5px 0;
+
+                a{
+
+                    text-decoration: none;
+                    color: white;
+
+                    img{
+
+                        width: 60%;
+                        border: 1px solid white;
+                        border-radius: 5px;
+                    }
+                }
+
+            }
+
+            .footer-bolder{
+
+                font-weight: bolder;
+                font-size: 1.3rem;
+                margin-bottom: 10px;
+            }
+
+        }
+
+
     }
 
     .icons-footer{
 
-    width: 60%;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-bottom: 15px;
+
+        width: 60%;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 15px;
 
         i{
 
-            color: white;
-            padding: 0 5px;
-            font-size: 22px;
+        color: white;
+        padding: 0 5px;
+        font-size: 22px;
+        }
+        .copyright-footer{
+
+        color: gray;
         }
     }
-
-    .copyright-footer{
-
-    color: gray;
-}
 
 
 }
