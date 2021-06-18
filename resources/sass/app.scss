@@ -6,3 +6,9 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+
+// layouts
+@import 'layouts/dashboard-layout.scss';
+@import 'layouts/home-layout.scss';
+@import 'layouts/main-layout.scss';
