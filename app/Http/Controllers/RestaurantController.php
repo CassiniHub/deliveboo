@@ -7,6 +7,9 @@ use App\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 Use App\Library\Helpers\MyValidation;
+Use App\Library\Helpers\Images;
+use Illuminate\Support\Facades\Storage;
+
 
 class RestaurantController extends Controller
 {
@@ -42,9 +45,27 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
-
+        
         $validateData = $request ->validate(MyValidation::validateRestaurant());
         $restaurant = Restaurant::make($validateData);
+        
+        if ($request ->file('img_cover')) {
+            $image = new Images;
+            $coverImgNewName = $image->getImgName($request, 'img_cover');
+            $folderPath = '/images/restaurants/cover';
+            $storedImg = ($request ->file('img_cover')) 
+                ->storeAs($folderPath, $coverImgNewName, 'public');
+            $restaurant ->img_cover = $coverImgNewName;
+        }
+        if ($request ->file('logo')) {
+            $image = new Images;
+            $logoimgNewName = $image->getImgName($request, 'logo');
+            $folderPath = '/images/restaurants/logo';
+            $storedImg = ($request ->file('logo')) 
+                ->storeAs($folderPath, $logoimgNewName, 'public');
+            $restaurant ->logo = $logoimgNewName;
+        }
+            
         $restaurant ->user() ->associate(Auth::user() ->id);
         $restaurant ->save();
         return redirect() ->route('dashboard');

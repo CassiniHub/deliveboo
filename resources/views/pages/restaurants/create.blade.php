@@ -49,7 +49,7 @@
                             <label for="img_cover" class="col-md-4 col-form-label text-md-right">Cover image</label>
 
                             <div class="col-md-6">
-                                <input id="img_cover" type="file" class="form-control"  name="img_cover" >
+                                <input id="img_cover" type="file" class="form-control-file"  name="img_cover" >
                             </div>
                         </div>
 
@@ -57,7 +57,7 @@
                             <label for="logo" class="col-md-4 col-form-label text-md-right">Restaurant logo</label>
 
                             <div class="col-md-6">
-                                <input id="logo" type="file" class="form-control"  name="logo">
+                                <input id="logo" type="file" class="form-control-file"  name="logo">
                             </div>
                         </div>
 
