@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 Use App\Library\Helpers\MyValidation;
 Use App\Library\Helpers\Images;
 use Illuminate\Support\Facades\Storage;
+use File;
+
 
 
 class RestaurantController extends Controller
@@ -111,8 +113,23 @@ class RestaurantController extends Controller
      * @param  \App\Restaurant  $restaurant
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Restaurant $restaurant)
+    public function destroy($id)
     {
-        //
+        $restaurant = Restaurant::findOrFail($id);
+
+        if ($restaurant ->img_cover) {
+            $delete = new Images;
+            $toDelete = $restaurant ->img_cover;
+            $delete ->deleteRestaurantCover($toDelete);
+        }
+
+        if ($restaurant ->logo) {
+            $delete = new Images;
+            $toDelete = $restaurant ->logo;
+            $delete ->deleteRestaurantLogo($toDelete);
+        }
+
+        $restaurant ->delete();
+        return back();
     }
 }

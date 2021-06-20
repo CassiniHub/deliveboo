@@ -2,6 +2,10 @@
 
 namespace App\Library\Helpers;
 
+use Illuminate\Support\Facades\Storage;
+use File;
+
+
 class Images {    
     public function getImgName($input, $requestName) {
         $img = $input ->file($requestName);
@@ -10,15 +14,17 @@ class Images {
         return $imgNewName;
     }
 
-    public function deleteRestaurantImgs($logo, $cover) {  
-        $src1 = Storage::path("images/restaurants/logo". $logo);
+    public function deleteRestaurantLogo($logo) {  
+        $src = Storage::path("images/restaurants/logo/". $logo);
         if (File::exists($src)) {
             File::delete($src);
         }
-
-        $src2 = Storage::path("images/restaurants/cover". $cover);
-        if (File::exists($src2)) {
-            File::delete($src2);
+    }
+    
+    public function deleteRestaurantCover($cover) {
+        $src = Storage::path("images/restaurants/cover/". $cover);
+        if (File::exists($src)) {
+            File::delete($src);
         }
     }
 }
