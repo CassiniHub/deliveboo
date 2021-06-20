@@ -11342,3 +11342,10 @@ a.text-dark:focus {
   background-color: lightskyblue;
 }
 
+.form-page-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

@@ -35,11 +35,12 @@
                     Le tue attività
                 </h4>
 
-                <a href="">
+                <a href="{{ route('restaurants.create') }}">
                     Aggiungi un'attività
                 </a>
-
-                @yield('content')
+                <div class="restaurants-list">   
+                    @yield('content')
+                </div>
             </div>
 
             <div class="nav-links">
@@ -63,7 +64,6 @@
         
 
         <section id="dashboard-main">
-
         </section>
 
     </div>

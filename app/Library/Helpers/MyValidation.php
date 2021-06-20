@@ -10,8 +10,6 @@ class MyValidation {
             'email' => 'required|string|max:128',
             'telephone' => 'required|string|max:32',
             'description' => 'nullable|string',
-            'img_cover' => 'nullable|string|',
-            'logo' => 'nullable|string|',
             'allow_cash' => 'required|boolean',
             'delivery_cost' => 'required|numeric',
             'is_visible' => 'nullable|boolean',
@@ -32,7 +30,6 @@ class MyValidation {
         return [
             'name' => 'required|string|max:64',
             'description' => 'nullable|string',
-            'img_cover' => 'nullable|string',
         ];
     }
 
