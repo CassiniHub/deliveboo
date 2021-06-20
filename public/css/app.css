@@ -10942,16 +10942,38 @@ a.text-dark:focus {
   }
 }
 
-#dashboard-header {
-  background-color: lightgreen;
+#dashboard {
+  display: flex;
+  height: 100vh;
+  overflow-y: hidden;
 }
 
-#dashboard-title {
-  text-align: center;
+#dashboard-nav {
+  width: 15%;
+  height: 100%;
+  padding: 0 30px;
+  border-right: 1px solid black;
+  display: flex;
+  flex-direction: column;
 }
 
-#dashboard-title h1 {
-  color: green;
+#dashboard-nav > div {
+  margin-top: 20px;
+}
+
+#dashboard-nav > div:not(.restaurants) {
+  flex: 0 0 auto;
+}
+
+#dashboard-nav .restaurants {
+  flex: 1 1 auto;
+  min-height: 100px;
+  overflow-y: auto;
+}
+
+#dashboard-main {
+  width: 85%;
+  height: 100%;
 }
 
 #home-header {
