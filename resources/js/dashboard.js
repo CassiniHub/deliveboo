@@ -28,6 +28,6 @@
   */
  
  const app = new Vue({
-     el: '#dashboard',
+    el: '#dashboard',
  });
  

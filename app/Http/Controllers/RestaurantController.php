@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Restaurant;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 Use App\Library\Helpers\MyValidation;
 
 class RestaurantController extends Controller
@@ -31,7 +31,7 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.restaurants.create');
     }
 
     /**
@@ -42,7 +42,12 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $validateData = $request ->validate(MyValidation::validateRestaurant());
+        $restaurant = Restaurant::make($validateData);
+        $restaurant ->user() ->associate(Auth::user() ->id);
+        $restaurant ->save();
+        return redirect() ->route('dashboard');
     }
 
     /**
