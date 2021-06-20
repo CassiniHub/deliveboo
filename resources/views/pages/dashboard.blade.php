@@ -2,17 +2,25 @@
 
 @section('content')
 
-    <div id="dashboard-title">
-        <h1>
-            Questa è la dashboard del nostro sito.
-        </h1>
-    </div>
+    <ul>
+        @foreach (Auth::user() ->restaurants as $restaurant)
+            <li>
+                <span>
+                    <restaurant-component
+                        :restaurant = "{{$restaurant}}"
+                    ></restaurant-component>
+                </span>
+                <span>
+                    <form action="{{ route('restaurants.destroy', $restaurant ->id) }}" method="POST">
 
-    
-    <form action="{{route('users.destroy', Auth::user()->id)}}" method="POST">
-        @method('DELETE')
-        @csrf
-        <input type="submit" class="btn btn-danger" value="Delete your account"/>
-     </form>
+                        @method('DELETE')
+                        @csrf
+
+                        <button class="btn btn-danger" type="submit">Cancella</button>
+                    </form>
+                </span>
+            </li>
+        @endforeach
+    </ul>
 
 @endsection

@@ -5,8 +5,13 @@ namespace App\Http\Controllers;
 use App\Restaurant;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 Use App\Library\Helpers\MyValidation;
+Use App\Library\Helpers\Images;
+use Illuminate\Support\Facades\Storage;
+use File;
+
+
 
 class RestaurantController extends Controller
 {
@@ -31,7 +36,7 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.restaurants.create');
     }
 
     /**
@@ -42,7 +47,30 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $validateData = $request ->validate(MyValidation::validateRestaurant());
+        $restaurant = Restaurant::make($validateData);
+        
+        if ($request ->file('img_cover')) {
+            $image = new Images;
+            $coverImgNewName = $image->getImgName($request, 'img_cover');
+            $folderPath = '/images/restaurants/cover';
+            $storedImg = ($request ->file('img_cover')) 
+                ->storeAs($folderPath, $coverImgNewName, 'public');
+            $restaurant ->img_cover = $coverImgNewName;
+        }
+        if ($request ->file('logo')) {
+            $image = new Images;
+            $logoimgNewName = $image->getImgName($request, 'logo');
+            $folderPath = '/images/restaurants/logo';
+            $storedImg = ($request ->file('logo')) 
+                ->storeAs($folderPath, $logoimgNewName, 'public');
+            $restaurant ->logo = $logoimgNewName;
+        }
+            
+        $restaurant ->user() ->associate(Auth::user() ->id);
+        $restaurant ->save();
+        return redirect() ->route('dashboard');
     }
 
     /**
@@ -85,8 +113,23 @@ class RestaurantController extends Controller
      * @param  \App\Restaurant  $restaurant
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Restaurant $restaurant)
+    public function destroy($id)
     {
-        //
+        $restaurant = Restaurant::findOrFail($id);
+
+        if ($restaurant ->img_cover) {
+            $delete = new Images;
+            $toDelete = $restaurant ->img_cover;
+            $delete ->deleteRestaurantCover($toDelete);
+        }
+
+        if ($restaurant ->logo) {
+            $delete = new Images;
+            $toDelete = $restaurant ->logo;
+            $delete ->deleteRestaurantLogo($toDelete);
+        }
+
+        $restaurant ->delete();
+        return back();
     }
 }

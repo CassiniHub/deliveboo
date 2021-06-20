@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/dashboard.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -20,14 +20,52 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
+    <div id="dashboard">
 
-        @include('components.dashboard-header')
+        <section id="dashboard-nav">
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+            <div class="title">
+                <h1 class="company-name">
+                    {{ Auth::user()->company_name }}
+                </h1>
+            </div>
+
+            <div class="restaurants">
+                <h4>
+                    Le tue attività
+                </h4>
+
+                <a href="{{ route('restaurants.create') }}">
+                    Aggiungi un'attività
+                </a>
+                <div class="restaurants-list">   
+                    @yield('content')
+                </div>
+            </div>
+
+            <div class="nav-links">
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    Home
+                </a>
+               <div>
+                    <a class="navbar-brand" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+               </div>
+            </div>
+
+        </section>
         
+        
+
+        <section id="dashboard-main">
+        </section>
+
     </div>
 </body>
 </html>
