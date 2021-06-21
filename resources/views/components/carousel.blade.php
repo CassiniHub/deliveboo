@@ -9,52 +9,52 @@
 
             <div class="carousel-images">
 
-                <img src="{{asset('storage/images/carousel-images/barca-sushi.jpg')}}" alt="">
+                <img src="{{asset('storage/images/categories/barca-sushi.jpg')}}" alt="">
 
             </div>
             <div class="carousel-images">
 
-                <img src="{{asset('storage/images/carousel-images/burgerking.jpg')}}" alt="">
+                <img src="{{asset('storage/images/categories/burgerking.jpg')}}" alt="">
 
             </div>
             <div class="carousel-images">
 
-                <img src="{{asset('storage/images/carousel-images/dunkindonuts.jpg')}}" alt="">
+                <img src="{{asset('storage/images/categories/dunkindonuts.jpg')}}" alt="">
 
             </div>
             <div class="carousel-images">
 
-                <img src="{{asset('storage/images/carousel-images/grom.png')}}" alt="">
+                <img src="{{asset('storage/images/categories/grom.png')}}" alt="">
 
             </div>
             <div class="carousel-images">
 
-                <img src="{{asset('storage/images/carousel-images/gyoza.jpg')}}" alt="">
+                <img src="{{asset('storage/images/categories/gyoza.jpg')}}" alt="">
 
             </div>
             <div class="carousel-images">
 
-                <img src="{{asset('storage/images/carousel-images/hamburger-patate.jpg')}}" alt="">
+                <img src="{{asset('storage/images/categories/hamburger-patate.jpg')}}" alt="">
 
             </div>
             <div class="carousel-images">
 
-                <img src="{{asset('storage/images/carousel-images/hamburger.jpg')}}" alt="">
+                <img src="{{asset('storage/images/categories/hamburger.jpg')}}" alt="">
 
             </div>
             <div class="carousel-images">
 
-                <img src="{{asset('storage/images/carousel-images/kfc.jpg')}}" alt="">
+                <img src="{{asset('storage/images/categories/kfc.jpg')}}" alt="">
 
             </div>
             <div class="carousel-images">
 
-                <img src="{{asset('storage/images/carousel-images/pizza.jpg')}}" alt="">
+                <img src="{{asset('storage/images/categories/roadhouse.jpg')}}" alt="">
 
             </div>
             <div class="carousel-images">
 
-                <img src="{{asset('storage/images/carousel-images/poke.jpg')}}" alt="">
+                <img src="{{asset('storage/images/categories/poke.jpg')}}" alt="">
 
             </div>
 

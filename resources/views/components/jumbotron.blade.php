@@ -10,5 +10,5 @@
             <input id="submit" type="submit" value="CERCA">
         </form>
       
-        <img class="scooter" src="{{asset('storage/images/jumbotron-images/scooter.png')}}">
+        <img class="scooter" src="{{asset('storage/images/jumbotron/scooter.png')}}">
 </div>
