@@ -5,8 +5,8 @@
         </div>
 
         <form class="modulo-ricerca">
-            <p>Inserisci il tuo indirizzo per trovare ristoranti nei dintorni</p>
-            <input id="search" type="text" placeholder="Di cosa hai FAME?" required>
+            <p>Dicci di cosa hai voglia</p>
+            <input id="search" type="text" placeholder="" required>
             <input id="submit" type="submit" value="CERCA">
         </form>
       

@@ -1,8 +1,6 @@
-@extends('layouts.main-layout')
+@extends('layouts.form-layout')
 
 @section('content')
-
-<h1 class="text-center">Sistemare il form per la registrazione aggiungendo i nuovi dati richiesti dalla tabella users</h1>
 
 <div class="container">
     <div class="row justify-content-center">
