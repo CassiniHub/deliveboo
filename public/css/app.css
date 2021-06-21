@@ -11158,7 +11158,7 @@ a.text-dark:focus {
   overflow-x: auto;
 }
 
-.main-carousel .section-carousel .carousel-images {
+.main-carousel .section-carousel .categories {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11174,7 +11174,7 @@ a.text-dark:focus {
   border-radius: 5px;
 }
 
-.main-carousel .section-carousel .carousel-images img {
+.main-carousel .section-carousel .categories img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
