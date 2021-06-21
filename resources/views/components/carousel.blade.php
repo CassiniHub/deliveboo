@@ -9,7 +9,7 @@
             <div class="section-carousel">
                 <div class="carousel-images">
                     
-                    <img src="{{asset('storage/images/categories/' . $category ->img_cover)}}" alt="{{ $category ->name }}">
+                    <img src="{{asset($category ->img_cover)}}" alt="{{ $category ->name }}">
                     
                 </div>
             </div>

@@ -42,7 +42,7 @@
                                 @csrf
                             </form>
 
-                            <a class="dropdown-item" href="{{ route('users.show', $user -> id ?? 'default' ) }}">
+                            <a class="dropdown-item" href="{{ route('users.show', Auth::user() -> id ?? 'default' ) }}">
                                 Dashboard
                             </a>
                         </div>

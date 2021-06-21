@@ -40,7 +40,7 @@ class CategorySeeder extends Seeder
                 'img_cover' => 'storage/images/categories/healty.jpeg'
             ],
             [
-                'name' => 'gelato',
+                'name' => 'Gelato',
                 'description' => 'Il miglior gelato consegnato direttamente a casa tua',
                 'img_cover' => 'storage/images/categories/grom.png'
             ],
