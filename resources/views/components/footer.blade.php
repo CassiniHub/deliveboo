@@ -4,12 +4,12 @@
 
             <div class="footer-card-container">
 
-                <div class="footer-card1">
+                <div class="footer-card">
 
                     <ul>
 
                         <li class="footer-bolder">
-                            <a href="">Scopri Deliveroo</a>
+                            <span>Scopri Deliveroo</span>
                         </li>
 
                         <li>
@@ -57,11 +57,11 @@
 
 
                 </div>
-                <div class="footer-card2 second-card-footer">
+                <div class="footer-card second-card-footer">
                     <ul>
 
                         <li class="footer-bolder">
-                            <a href="">Note legali</a>
+                            <span>Note legali</span>
                         </li>
 
                         <li>
@@ -81,11 +81,11 @@
 
 
                 </div>
-                <div class="footer-card3 second-card-footer">
+                <div class="footer-card second-card-footer">
                     <ul>
 
                         <li class="footer-bolder">
-                            <a href="">Aiuto</a>
+                            <span>Aiuto</span>
                         </li>
 
                         <li>
@@ -109,11 +109,11 @@
 
 
                 </div>
-                <div class="footer-card4 second-card-footer">
+                <div class="footer-card nth4 second-card-footer">
                     <ul>
 
                         <li class="footer-bolder">
-                            <a href="">Porta Deliveroo con te</a>
+                            <span>Porta Deliveroo con te</span> 
                         </li>
 
                         <li>
