@@ -1,7 +1,5 @@
 <div class="main-carousel">
 
-
-
         <span class="carousel-span">&#139;</span>
         <span class="carousel-span right-arrow">&#155;</span>
 
@@ -14,7 +12,5 @@
                 </div>
             </div>
         @endforeach
-
-
 
     </div>
