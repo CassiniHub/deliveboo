@@ -7,7 +7,7 @@
 
         @foreach ($categories as $category)
             <div class="section-carousel">
-                <div class="carousel-images">
+                <div class="categories">
                     
                     <img src="{{asset('storage/images/categories/' . $category ->img_cover)}}" alt="{{ $category ->name }}">
                     

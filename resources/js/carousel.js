@@ -3,7 +3,7 @@ function init() {
     console.log('hello');
 
     var span = document.getElementsByClassName('carousel-span');
-    var div = document.getElementsByClassName('carousel-images');
+    var div = document.getElementsByClassName('categories');
     var l = 0;
     span[1].onclick = () => {
 

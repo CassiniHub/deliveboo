@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Restaurant;
+use App\Category;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +27,11 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+
+        return view('pages.restaurants.index', compact(
+            'categories'
+        ));
     }
 
     /**

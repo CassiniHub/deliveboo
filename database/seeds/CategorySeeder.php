@@ -17,57 +17,57 @@ class CategorySeeder extends Seeder
             [
                 'name' => 'Pizza',
                 'description' => 'La migliore pizza consegnata rapidamente alla tua porta',
-                'img_cover' => 'storage/images/categories/pizza.jpeg'
+                'img_cover' => 'pizza.jpeg'
             ],
             [
                 'name' => 'Sushi',
                 'description' => 'Il Miglior Sushi consegnato direttamente a casa tua',
-                'img_cover' => 'storage/images/categories/barca-sushi.jpg'
+                'img_cover' => 'barca-sushi.jpg'
             ],
             [
                 'name' => 'Dessert',
                 'description' => 'Togliti uno sfizio e gustati un ottimo dessert comodamente sul tuo divano',
-                'img_cover' => 'storage/images/categories/dunkindonuts.jpg'
+                'img_cover' => 'dunkindonuts.jpg'
             ],
             [
                 'name' => 'Poke',
                 'description' => 'Il miglior poke consegnato direttamente a casa tua',
-                'img_cover' => 'storage/images/categories/poke.jpg'
+                'img_cover' => 'poke.jpg'
             ],
             [
                 'name' => 'Healthy',
                 'description' => 'Non solo gustosi ma anche salutari!',
-                'img_cover' => 'storage/images/categories/healty.jpeg'
+                'img_cover' => 'healthy.jpeg'
             ],
             [
-                'name' => 'gelato',
+                'name' => 'Gelato',
                 'description' => 'Il miglior gelato consegnato direttamente a casa tua',
-                'img_cover' => 'storage/images/categories/grom.png'
+                'img_cover' => 'grom.png'
             ],
             [
                 'name' => 'Hamburger',
                 'description' => 'Il milgior hamburger consegnato direttamente a casa tua',
-                'img_cover' => 'storage/images/categories/hamburger-patate.jpg'
+                'img_cover' => 'hamburger-patate.jpg'
             ],
             [
                 'name' => 'Kebab',
                 'description' => 'Il miglior kebab consegnato direttamente a casa tua',
-                'img_cover' => 'storage/images/categories/kebab.jpeg'
+                'img_cover' => 'kebab.jpeg'
             ],
             [
                 'name' => 'Sandwich',
                 'description' => 'Per un pasto al volo! Il miglior Sanwich per te',
-                'img_cover' => 'storage/images/categories/sandwich.jpeg'
+                'img_cover' => 'sandwich.jpeg'
             ],
             [
                 'name' => 'Americano',
                 'description' => 'Il meglio del cibo di strada americano! Ordinalo comodamente da casa',
-                'img_cover' => 'storage/images/categories/roadhouse.jpg'
+                'img_cover' => 'roadhouse.jpg'
             ],
             [
                 'name' => 'Italiano',
                 'description' => 'Squisita e variegata! Il meglio della cucina italiana direttamente a casa tua',
-                'img_cover' => 'storage/images/categories/italiano.jpeg'
+                'img_cover' => 'italiano.jpeg'
             ],
         ];
 
