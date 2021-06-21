@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', init);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/michele/boo/deliveboo/resources/js/carousel.js */"./resources/js/carousel.js");
+module.exports = __webpack_require__(/*! C:\Users\Alter\boolean\deliveboo\resources\js\carousel.js */"./resources/js/carousel.js");
 
 
 /***/ })

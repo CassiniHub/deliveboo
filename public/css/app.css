@@ -11158,7 +11158,7 @@ a.text-dark:focus {
   overflow-x: auto;
 }
 
-.main-carousel .section-carousel .carousel-images {
+.main-carousel .section-carousel .categories {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11174,7 +11174,7 @@ a.text-dark:focus {
   border-radius: 5px;
 }
 
-.main-carousel .section-carousel .carousel-images img {
+.main-carousel .section-carousel .categories img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
@@ -11205,7 +11205,7 @@ a.text-dark:focus {
   padding: 25px 0;
 }
 
-.footer-bg .footer-card-container .footer-card1 {
+.footer-bg .footer-card-container .footer-card {
   background-color: #434848;
   padding: 15px;
   width: calc(100%/4.2);
@@ -11214,101 +11214,32 @@ a.text-dark:focus {
   border-radius: 5px;
 }
 
-.footer-bg .footer-card-container .footer-card1 li {
+.footer-bg .footer-card-container .footer-card li {
   list-style: none;
   padding: 5px 0;
 }
 
-.footer-bg .footer-card-container .footer-card1 li a {
+.footer-bg .footer-card-container .footer-card li a {
   text-decoration: none;
   color: white;
 }
 
-.footer-bg .footer-card-container .footer-card1 .footer-bolder {
+.footer-bg .footer-card-container .footer-card li a:hover,
+.footer-bg .footer-card-container .footer-card li a:focus,
+.footer-bg .footer-card-container .footer-card li a:active {
+  color: #42f1e9;
+}
+
+.footer-bg .footer-card-container .footer-card .footer-bolder {
   font-weight: bolder;
   font-size: 1.3rem;
   margin-bottom: 10px;
 }
 
-.footer-bg .footer-card-container .footer-card2 {
-  background-color: #434848;
-  padding: 15px;
-  width: calc(100%/4.2);
-  color: white;
-  border-radius: 5px;
-  height: 430px;
-}
-
-.footer-bg .footer-card-container .footer-card2 li {
-  list-style: none;
-  padding: 5px 0;
-}
-
-.footer-bg .footer-card-container .footer-card2 li a {
-  text-decoration: none;
-  color: white;
-}
-
-.footer-bg .footer-card-container .footer-card2 .footer-bolder {
-  font-weight: bolder;
-  font-size: 1.3rem;
-  margin-bottom: 10px;
-}
-
-.footer-bg .footer-card-container .footer-card3 {
-  background-color: #434848;
-  padding: 15px;
-  width: calc(100%/4.2);
-  color: white;
-  border-radius: 5px;
-  height: 430px;
-}
-
-.footer-bg .footer-card-container .footer-card3 li {
-  list-style: none;
-  padding: 5px 0;
-}
-
-.footer-bg .footer-card-container .footer-card3 li a {
-  text-decoration: none;
-  color: white;
-}
-
-.footer-bg .footer-card-container .footer-card3 .footer-bolder {
-  font-weight: bolder;
-  font-size: 1.3rem;
-  margin-bottom: 10px;
-}
-
-.footer-bg .footer-card-container .footer-card4 {
-  background-color: #434848;
-  padding: 15px;
-  width: calc(100%/4.2);
-  color: white;
-  border-radius: 5px;
-  height: 430px;
-}
-
-.footer-bg .footer-card-container .footer-card4 li {
-  list-style: none;
-  padding: 5px 0;
-}
-
-.footer-bg .footer-card-container .footer-card4 li a {
-  text-decoration: none;
-  color: white;
-}
-
-.footer-bg .footer-card-container .footer-card4 li a img {
+.footer-bg .footer-card-container .footer-card img {
   width: 60%;
   border: 1px solid white;
   border-radius: 5px;
-}
-
-.footer-bg .footer-card-container .footer-card4 .footer-bolder {
-  font-weight: bolder;
-  font-size: 1.3rem;
-  margin-bottom: 10px;
 }
 
 .footer-bg .icons-footer {
