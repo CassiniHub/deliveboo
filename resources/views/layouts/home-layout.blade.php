@@ -33,9 +33,12 @@
 
         @include('components.carousel')
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+        <div class="restaurants-list">
+            <main class="py-4">
+                @yield('content')
+            </main>
+        </div>
+        
 
         @include('components.footer')
 
