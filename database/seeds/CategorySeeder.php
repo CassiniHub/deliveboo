@@ -15,54 +15,59 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             [
-                'name' => 'Hamburger',
-                'description' => 'Buoni gli hamburger',
-                'img_cover' => 'storage/images/carousel-images/barca-sushi.jpg'
-            ],
-            [
                 'name' => 'Pizza',
-                'description' => 'Buona la pizza',
-                'img_cover' => 'storage/images/carousel-images/barca-sushi.jpg'
+                'description' => 'La migliore pizza consegnata rapidamente alla tua porta',
+                'img_cover' => 'storage/images/categories/pizza.jpeg'
             ],
             [
                 'name' => 'Sushi',
-                'description' => 'Buono il sushi',
-                'img_cover' => 'storage/images/carousel-images/barca-sushi.jpg'
+                'description' => 'Il Miglior Sushi consegnato direttamente a casa tua',
+                'img_cover' => 'storage/images/categories/barca-sushi.jpg'
             ],
             [
-                'name' => 'Cinese',
-                'description' => 'Buono il cinese',
-                'img_cover' => 'storage/images/carousel-images/barca-sushi.jpg'
+                'name' => 'Dessert',
+                'description' => 'Togliti uno sfizio e gustati un ottimo dessert comodamente sul tuo divano',
+                'img_cover' => 'storage/images/categories/dunkindonuts.jpg'
             ],
             [
-                'name' => 'Street Food',
-                'description' => 'Buono lo street food',
-                'img_cover' => 'storage/images/carousel-images/barca-sushi.jpg'
+                'name' => 'Poke',
+                'description' => 'Il miglior poke consegnato direttamente a casa tua',
+                'img_cover' => 'storage/images/categories/poke.jpg'
             ],
             [
-                'name' => 'Fast Food',
-                'description' => 'Buono il fast food',
-                'img_cover' => 'storage/images/carousel-images/barca-sushi.jpg'
+                'name' => 'Healthy',
+                'description' => 'Non solo gustosi ma anche salutari!',
+                'img_cover' => 'storage/images/categories/healty.jpeg'
             ],
             [
-                'name' => 'Toast',
-                'description' => 'Buoni i toast',
-                'img_cover' => 'storage/images/carousel-images/barca-sushi.jpg'
+                'name' => 'gelato',
+                'description' => 'Il miglior gelato consegnato direttamente a casa tua',
+                'img_cover' => 'storage/images/categories/grom.png'
             ],
             [
-                'name' => 'Pasticceria',
-                'description' => 'Buoni i dolci',
-                'img_cover' => 'storage/images/carousel-images/barca-sushi.jpg'
+                'name' => 'Hamburger',
+                'description' => 'Il milgior hamburger consegnato direttamente a casa tua',
+                'img_cover' => 'storage/images/categories/hamburger-patate.jpg'
             ],
             [
-                'name' => 'Gelati',
-                'description' => 'Buoni i gelati',
-                'img_cover' => 'storage/images/carousel-images/barca-sushi.jpg'
+                'name' => 'Kebab',
+                'description' => 'Il miglior kebab consegnato direttamente a casa tua',
+                'img_cover' => 'storage/images/categories/kebab.jpeg'
             ],
             [
-                'name' => 'Vegani',
-                'description' => 'Buoni le verdure',
-                'img_cover' => 'storage/images/carousel-images/barca-sushi.jpg'
+                'name' => 'Sandwich',
+                'description' => 'Per un pasto al volo! Il miglior Sanwich per te',
+                'img_cover' => 'storage/images/categories/sandwich.jpeg'
+            ],
+            [
+                'name' => 'Americano',
+                'description' => 'Il meglio del cibo di strada americano! Ordinalo comodamente da casa',
+                'img_cover' => 'storage/images/categories/roadhouse.jpg'
+            ],
+            [
+                'name' => 'Italiano',
+                'description' => 'Squisita e variegata! Il meglio della cucina italiana direttamente a casa tua',
+                'img_cover' => 'storage/images/categories/italiano.jpeg'
             ],
         ];
 
