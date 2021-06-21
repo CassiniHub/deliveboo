@@ -77,7 +77,7 @@ class RestaurantController extends Controller
             
         $restaurant ->user() ->associate(Auth::user() ->id);
         $restaurant ->save();
-        return redirect() ->route('dashboard');
+        return redirect() ->route('user.show', Auth::user() -> id);
     }
 
     /**
@@ -88,7 +88,7 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
-        //
+        
     }
 
     /**
@@ -99,7 +99,9 @@ class RestaurantController extends Controller
      */
     public function edit(Restaurant $restaurant)
     {
-        //
+        return view('pages.restaurants.edit', compact(
+            'restaurant'
+        ));
     }
 
     /**
@@ -111,7 +113,11 @@ class RestaurantController extends Controller
      */
     public function update(Request $request, Restaurant $restaurant)
     {
-        //
+        $validateData = $request -> validate(MyValidation::validateRestaurant());
+
+        $restaurant -> update($validateData);
+
+        return redirect() -> route('users.show', Auth::user() -> id);
     }
 
     /**
