@@ -28,9 +28,11 @@ class RestaurantController extends Controller
     public function index()
     {
         $categories = Category::all();
+        $restaurants = Restaurant::all();
 
         return view('pages.restaurants.index', compact(
-            'categories'
+            'categories',
+            'restaurants'
         ));
     }
 
