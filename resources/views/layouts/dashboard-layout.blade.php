@@ -44,7 +44,7 @@
             </div>
 
             <div class="nav-links">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ route('restaurants.index') }}">
                     Home
                 </a>
                <div>

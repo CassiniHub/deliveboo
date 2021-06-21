@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -31,11 +32,10 @@ class RegisterController extends Controller
      */
     // protected $redirectTo = RouteServiceProvider::HOME;
 
-    // TEST -> reindirizzamento post login
-    // !! -> nella versione funzionante aggiungere middleware
-    // ** Middleware aggiunto | Modifica il redirect quando la view sarà pronta
     public function redirectPath() {
-        return route('users.show');
+        $user = Auth::user();
+
+        return route('users.show', $user -> id);
     }
 
     /**
