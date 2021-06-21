@@ -75,7 +75,7 @@ class RestaurantController extends Controller
             
         $restaurant ->user() ->associate(Auth::user() ->id);
         $restaurant ->save();
-        return redirect() ->route('dashboard');
+        return redirect() ->route('user.show', Auth::user() -> id);
     }
 
     /**
