@@ -17,7 +17,3 @@ Route::resources([
 
 // authentication routes
 Auth::routes();
-
-// TEST -> reindirizzamento post login
-Route::get('/dashboard', 'HomeController@index')
-    ->name('dashboard');

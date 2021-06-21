@@ -49975,7 +49975,7 @@ var app = new Vue({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Alter\boolean\deliveboo\resources\js\dashboard.js */"./resources/js/dashboard.js");
+module.exports = __webpack_require__(/*! /Users/marco/Desktop/Boolean/final-project/deliveboo/resources/js/dashboard.js */"./resources/js/dashboard.js");
 
 
 /***/ })

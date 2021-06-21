@@ -35,7 +35,7 @@ class RegisterController extends Controller
     // !! -> nella versione funzionante aggiungere middleware
     // ** Middleware aggiunto | Modifica il redirect quando la view sarà pronta
     public function redirectPath() {
-        return route('dashboard');
+        return route('users.show');
     }
 
     /**
