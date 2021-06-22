@@ -9,6 +9,19 @@
         </form>
     </div>
 
+    <div>
+        <input
+            v-model="search"      
+            type="text" placeholder="Search">
+        
+        <ul v-if="search">
+            <li v-for="category in filteredCategories"
+                @click="getCategoryId(category)">
+                {{ category.name }}
+            </li>
+        </ul>
+    </div>
+
     <div class="main-carousel">
         <div class="section-carousel">
             <div v-for="category in carouselCategories" class="categories">
@@ -43,6 +56,7 @@
                 selectedId: null,
                 restaurants: null,
                 searchText: '',
+                search: ''
             }
         },
         methods: {
@@ -90,5 +104,13 @@
                 }
             }
         },
+
+        computed: {
+            filteredCategories: function() {
+                return this.carouselCategories.filter(category => {
+                    return category.name.toLowerCase().includes(this.search.toLowerCase())
+                });
+            }
+        }
     }
 </script>
