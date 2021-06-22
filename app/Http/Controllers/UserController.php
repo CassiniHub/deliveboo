@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Restaurant;
 
 use Illuminate\Http\Request;
 
@@ -54,9 +55,11 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
+        $restaurants = Restaurant::all() ->where('user_id', $user ->id);
 
         return view('pages.users.show', compact(
-            'user'
+            'user',
+            'restaurants'
         ));
     }
 
