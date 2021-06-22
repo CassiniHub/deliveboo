@@ -38,7 +38,7 @@
                 <a href="{{ route('restaurants.create') }}">
                     Aggiungi un'attività
                 </a>
-                <div class="restaurants-list">   
+                <div class="    ">   
                     @yield('content')
                 </div>
             </div>

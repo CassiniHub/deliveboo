@@ -2,6 +2,8 @@
 
 use App\Restaurant;
 use App\User;
+use App\Category;
+
 use Illuminate\Database\Seeder;
 
 class RestaurantSeeder extends Seeder
@@ -15,9 +17,14 @@ class RestaurantSeeder extends Seeder
     {
         factory(Restaurant::class, 20) -> make()
             -> each(function($restaurant) {
-                $user       = User::inRandomOrder() -> first();
+                $user = User::inRandomOrder() -> first();
                 $restaurant -> user() -> associate($user);
                 $restaurant -> save();
+
+                $categories = Category::inRandomOrder() 
+                    -> limit(rand(1, 5))
+                    ->get();
+                $restaurant -> categories() -> attach($categories);
             });
     }
 }
