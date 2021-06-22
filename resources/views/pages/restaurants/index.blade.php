@@ -2,11 +2,8 @@
 
 @section('content')
 
-    @foreach ($restaurants as $restaurant)
-        <restaurant-card-component
-            :restaurant = "{{ $restaurant }}"
-            :categories = "{{ $restaurant ->categories }}"
-        ></restaurant-card-component>
-    @endforeach
+    <home-component
+        :categories = "{{ $categories }}"
+    ></home-component>
 
 @endsection

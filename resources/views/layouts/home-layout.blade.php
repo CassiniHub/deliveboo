@@ -31,13 +31,7 @@
 
         @include('components.jumbotron')
 
-        @include('components.carousel')
-
-        <div class="restaurants-list">
-            <main class="py-4">
-                @yield('content')
-            </main>
-        </div>
+        @yield('content')
         
 
         @include('components.footer')
