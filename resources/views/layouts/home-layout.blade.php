@@ -29,10 +29,7 @@
 
         @include('components.home-header')
 
-        @include('components.jumbotron')
-
         @yield('content')
-        
 
         @include('components.footer')
 
