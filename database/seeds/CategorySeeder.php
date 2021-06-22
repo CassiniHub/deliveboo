@@ -72,14 +72,7 @@ class CategorySeeder extends Seeder
         ];
 
         foreach ($categories as $category) {
-            Category::create($category)
-                -> each(function($category) {
-                    $restaurant = Restaurant::inRandomOrder()
-                            -> limit(5)
-                            -> get();
-                    $category -> restaurants() -> attach($restaurant);
-                    $category -> save();
-                });
+            Category::create($category);
         }
     }
 }
