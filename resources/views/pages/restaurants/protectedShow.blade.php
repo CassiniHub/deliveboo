@@ -62,7 +62,7 @@
                                 <button class="btn btn-danger" type="submit">Elimina piatto</button>
                             </form>
                         
-                            <form action="" method="GET">
+                            <form action="{{ route('dishes.edit', $dish) }}" method="GET">
                                 @csrf
                                 @method('GET')
                                 <button class="btn btn-primary" type="submit">Modifica piatto</button>
