@@ -35,11 +35,8 @@
                     Le tue attività
                 </h4>
 
-                <a href="{{ route('restaurants.create') }}">
-                    Aggiungi un'attività
-                </a>
-                <div class="    ">   
-                    @yield('content')
+                <div class="">   
+                    @yield('sidebar-content')
                 </div>
             </div>
 
@@ -58,7 +55,10 @@
                     </form>
                </div>
             </div>
+        </section>
 
+        <section id="dashboard-main">
+            @yield('main-content')
         </section>
 
     </div>

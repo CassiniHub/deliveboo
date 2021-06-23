@@ -14,5 +14,8 @@ Route::resources([
     'orders'      => 'OrderController',
 ]);
 
+Route::get('/restaurants/protectedShow/{id}', 'RestaurantController@protectedShow')
+    ->name('restaurants.protectedShow');
+
 // authentication routes
 Auth::routes();
