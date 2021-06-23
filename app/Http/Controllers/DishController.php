@@ -6,7 +6,6 @@ use App\Dish;
 use App\Restaurant;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 Use App\Library\Helpers\MyValidation;
 
 Use App\Library\Helpers\Images;
