@@ -11,7 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/carousel.js') }}" defer></script>
+    {{-- <script src="{{ asset('js/carousel.js') }}" defer></script> --}}
 
 
     <!-- Fonts -->
@@ -29,16 +29,7 @@
 
         @include('components.home-header')
 
-        @include('components.jumbotron')
-
-        @include('components.carousel')
-
-        <div class="restaurants-list">
-            <main class="py-4">
-                @yield('content')
-            </main>
-        </div>
-        
+        @yield('content')
 
         @include('components.footer')
 

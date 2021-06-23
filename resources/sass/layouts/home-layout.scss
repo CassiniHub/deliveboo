@@ -6,10 +6,38 @@
 
 @import '../components/footer';
 
-#home-title{
-    text-align: center;
+.restaurants-container{
+    width: 800px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    
+    .restaurant-card{
+        width: 400px;
+        flex-shrink: 0;
+        margin: 20px auto;
+        padding: 15px;
 
-    h1{
-        color: red;
+        &>div{
+            margin-bottom: 10px;
+        }
+
+        .name{
+            height: 80px;
+            h3{
+                line-height: 80px;
+            }
+        }
+
+        .info{
+            p{
+                margin-bottom: 0;
+
+                span{
+                    font-weight: 600;
+                }
+            }
+        }
     }
+
 }
