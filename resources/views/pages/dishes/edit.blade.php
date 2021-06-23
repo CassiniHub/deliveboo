@@ -45,37 +45,6 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="type" class="col-md-4 col-form-label text-md-right">Type</label>
-
-                                <div class="col-md-6">
-                                    <select name="type" id="type">
-                                        <option value="antipasto"
-                                            @if ({{ $dish -> type === 'antipasto' }})
-                                                selected
-                                            @endif
-                                        >Antipasto</option>
-                                        <option value="primo"
-                                            @if ({{ $dish -> type === 'primo' }})
-                                                selected
-                                            @endif
-                                        >Primo</option>
-                                        <option value="secondo"
-                                            @if ({{ $dish -> type === 'secondo' }})
-                                                selected
-                                            @endif
-                                        >Secondo</option>
-                                        <option value="dolci"
-                                            @if ({{ $dish -> type === 'dolci' }})
-                                                selected
-                                            @endif
-                                        >Dolci</option>
-                                    </select>
-                                    {{-- <input type="text" class="form-control" value="{{ $dish -> type }}" required> --}}
-                                </div>
-                            </div>
-
-
-                            <div class="form-group row">
                                 <label for="img" class="col-md-4 col-form-label text-md-right">Img</label>
 
                                 <div class="col-md-6">
@@ -98,6 +67,49 @@
                                     <label class="form-check-label">
                                     No
                                     </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group d-flex col-md-8 offset-md-2">
+                                <label for="type">Tipo di piatto</label>
+                                <div class="d-flex mb-3 mx-3">
+                                    <div>
+                                        <input type="radio" name="type" value="Primi" 
+                                        @if ($dish ->type == 'Primi')
+                                            checked
+                                        @endif>
+                                         Primo <br>
+                                        <input type="radio" name="type" value="Secondi"
+                                        @if ($dish ->type == 'Secondi')
+                                            checked
+                                        @endif>
+                                         Secondo <br>
+                                        <input type="radio" name="type" value="Contorni"
+                                        @if ($dish ->type == 'Contorni')
+                                            checked
+                                        @endif>
+                                         Contorno <br>
+                                        <input type="radio" name="type" value="Dolci"
+                                        @if ($dish ->type == 'Dolci')
+                                            checked
+                                        @endif>
+                                         Dolce <br>
+                                        <input type="radio" name="type" value="Panini"
+                                        @if ($dish ->type == 'Panini')
+                                            checked
+                                        @endif>
+                                        Panino <br>
+                                        <input type="radio" name="type" value="Pizze"
+                                        @if ($dish ->type == 'Pizze')
+                                            checked
+                                        @endif>
+                                         Pizza <br>
+                                        <input type="radio" name="type" value="Insalate"
+                                        @if ($dish ->type == 'Insalate')
+                                            checked
+                                        @endif>
+                                         Insalata <br>
+                                    </div>
                                 </div>
                             </div>
 
