@@ -20,9 +20,10 @@ class MyValidation {
     static function validateDish() {
         return [
             'name'        => 'required|string|max:255',
-            'ingredients' => 'required|JSON',
+            'ingredients' => 'required|string',
             'price'       => 'required|numeric',
-            'discount'    => 'nullable|numeric',
+            'type'        => 'required|string',
+            'is_visible'     => 'required|boolean'
         ];
     }
 

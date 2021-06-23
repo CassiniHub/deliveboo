@@ -17,5 +17,11 @@ Route::resources([
 Route::get('/restaurants/protectedShow/{id}', 'RestaurantController@protectedShow')
     ->name('restaurants.protectedShow');
 
+Route::get('/dishes/createDish/{id}', 'DishController@createDish')
+    ->name('dishes.createDish');
+
+Route::post('/dishes/storeDish/{id}', 'DishController@storeDish')
+    ->name('dishes.storeDish');
+
 // authentication routes
 Auth::routes();

@@ -35,7 +35,13 @@ class DishController extends Controller
      */
     public function create()
     {
-        return view('pages.dishes.create');
+    }
+
+    public function createDish($id) {
+
+        $restaurant = Restaurant::findOrFail($id);
+
+        return view('pages.dishes.create', compact('restaurant'));
     }
 
     /**
@@ -47,24 +53,27 @@ class DishController extends Controller
     public function store(Request $request)
     {
 
+    }
+
+    public function storeDish(Request $request, $id) {
         $validateData = $request -> validate(MyValidation::validateDish());
         $dish         = Dish::make($validateData);
-
-        $restaurant = Restaurant::findOrFail($request -> get('restaurant_id'));
+        
+        $restaurant = Restaurant::findOrFail($id);
 
         if ($request -> file('img')) {
             $image      = new Images;
             $imgNewName = $image -> getImgName($request, 'img');
             $folderPath = '/images/dishes';
             $storedImg  = ($request -> file('img'))
-                -> storeAs($folderPath, $imgNewName, 'public');
+            -> storeAs($folderPath, $imgNewName, 'public');
             $dish -> img = $imgNewName;
         }
-
-        $dish -> restaurant() -> associate($restaurant -> id);
+        
+        $dish -> restaurant() -> associate($restaurant);
         $dish -> save();
 
-        return redirect() -> route('restaurant.protectedShow', $restaurant -> id);
+        return redirect() -> route('restaurants.protectedShow', $restaurant -> id);
     }
 
     /**
@@ -130,13 +139,14 @@ class DishController extends Controller
      */
     public function destroy(Dish $dish)
     {
+
         if ($dish -> img) {
             $delete   = new Images;
             $toDelete = $dish -> img;
             $delete -> deleteDishImg($toDelete);
         }
-
+        
         $dish -> delete();
-        return redirect()->back()->with('success', 'Il piatto è stato eliminato con successo.');
+        return redirect()->back();
     }
 }
