@@ -146,17 +146,17 @@
 
                    <a href="">
 
-                        <span><i class="fab fa-facebook"></i></span>
+                        <span class="facebook"><i class="fab fa-facebook"></i></span>
 
                    </a>
                     <a href="">
 
-                        <span><i class="fab fa-twitter"></i></span>
+                        <span class="twitter"><i class="fab fa-twitter"></i></span>
 
                     </a>
                     <a href="">
 
-                        <span><i class="fab fa-instagram"></i></span>
+                        <span class="instagram"><i class="fab fa-instagram"></i></span>
 
                     </a>
 
