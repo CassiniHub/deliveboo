@@ -31,10 +31,6 @@
             </div>
 
             <div class="restaurants">
-                <h4>
-                    Le tue attività
-                </h4>
-
                 <div class="">   
                     @yield('sidebar-content')
                 </div>

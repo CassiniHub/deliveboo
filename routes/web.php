@@ -24,6 +24,10 @@ Route::post('/dishes/storeDish/{id}', 'DishController@storeDish')
     ->name('dishes.storeDish');
 Route::post('/dishes/changeVisibility/{id}', 'DishController@changeVisibility')
     ->name('dishes.changeVisibility');
+Route::get('/restaurants/protectedOrders/{id}', 'RestaurantController@protectedOrders')
+    ->name('restaurants.protectedOrders');
+Route::get('/restaurants/protectedStatistics/{id}', 'RestaurantController@protectedStatistics')
+    ->name('restaurants.protectedStatistics');
 
 // authentication routes
 Auth::routes();

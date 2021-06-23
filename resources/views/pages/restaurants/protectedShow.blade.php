@@ -7,12 +7,12 @@
         </a>
     </div>
     <div>
-        <a href="">
+        <a href="{{ route('restaurants.protectedOrders', $restaurant ->id) }}">
             Sotrico ordini
         </a>
     </div>
     <div>
-        <a href="">
+        <a href=" {{ route('restaurants.protectedStatistics', $restaurant ->id) }} ">
             Statistiche ristorante
         </a>
     </div>
