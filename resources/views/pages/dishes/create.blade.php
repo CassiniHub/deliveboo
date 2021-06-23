@@ -88,6 +88,21 @@
                             </div>
                         </div>
 
+                        <div class="form-group d-flex col-md-8 offset-md-2">
+                            <label for="type">Tipo di piatto</label>
+                            <div class="d-flex mb-3 mx-3">
+                                <div>
+                                    <input type="radio" name="type" value="Primi"> Primo <br>
+                                    <input type="radio" name="type" value="Secondi"> Secondo <br>
+                                    <input type="radio" name="type" value="Contorni"> Contorno <br>
+                                    <input type="radio" name="type" value="Dolci"> Dolce <br>
+                                    <input type="radio" name="type" value="Panini"> Panino <br>
+                                    <input type="radio" name="type" value="Pizze"> Pizza <br>
+                                    <input type="radio" name="type" value="Insalate"> Insalata <br>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
