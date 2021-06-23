@@ -66,6 +66,7 @@ class RestaurantController extends Controller
                 ->storeAs($folderPath, $coverImgNewName, 'public');
             $restaurant ->img_cover = $coverImgNewName;
         }
+
         if ($request ->file('logo')) {
             $image = new Images;
             $logoimgNewName = $image->getImgName($request, 'logo');
@@ -114,6 +115,36 @@ class RestaurantController extends Controller
     public function update(Request $request, Restaurant $restaurant)
     {
         $validateData = $request -> validate(MyValidation::validateRestaurant());
+
+        if ($restaurant ->img_cover) {
+            $delete = new Images;
+            $toDelete = $restaurant ->img_cover;
+            $delete ->deleteRestaurantCover($toDelete);
+        }
+
+        if ($restaurant ->logo) {
+            $delete = new Images;
+            $toDelete = $restaurant ->logo;
+            $delete ->deleteRestaurantLogo($toDelete);
+        }
+
+        if ($request ->file('img_cover')) {
+            $image = new Images;
+            $coverImgNewName = $image->getImgName($request, 'img_cover');
+            $folderPath = '/images/restaurants/cover';
+            $storedImg = ($request ->file('img_cover')) 
+                ->storeAs($folderPath, $coverImgNewName, 'public');
+            $restaurant ->img_cover = $coverImgNewName;
+        }
+
+        if ($request ->file('logo')) {
+            $image = new Images;
+            $logoimgNewName = $image->getImgName($request, 'logo');
+            $folderPath = '/images/restaurants/logo';
+            $storedImg = ($request ->file('logo')) 
+                ->storeAs($folderPath, $logoimgNewName, 'public');
+            $restaurant ->logo = $logoimgNewName;
+        }
 
         $restaurant -> update($validateData);
 

@@ -65,7 +65,7 @@ class DishController extends Controller
         $dish -> restaurant() -> associate($restaurant -> id);
         $dish -> save();
 
-        return redirect() -> route('protectedRestaurant.show', $restaurant -> id);
+        return redirect() -> route('restaurant.protectedShow', $restaurant -> id);
     }
 
     /**
@@ -103,6 +103,21 @@ class DishController extends Controller
     {
         $validateData = $request -> validate(MyValidation::validateDish());
 
+        if ($request -> file('img')) {
+
+            $delete   = new Images;
+            $toDelete = $dish -> img;
+            $delete -> deleteDishImg($toDelete);
+
+            $image      = new Images;
+            $imgNewName = $image -> getImgName($request, 'img');
+            $folderPath = '/images/dishes';
+            $storedImg  = ($request -> file('img'))
+                -> storeAs($folderPath, $imgNewName, 'public');
+
+            $dish -> img = $imgNewName;
+        }
+
         $dish -> update($validateData);
 
         return redirect() -> route('restaurants.protectedShow', $dish -> restaurant_id);
@@ -116,6 +131,12 @@ class DishController extends Controller
      */
     public function destroy(Dish $dish)
     {
+        if ($dish -> img) {
+            $delete   = new Images;
+            $toDelete = $dish -> img;
+            $delete -> deleteDishImg($toDelete);
+        }
+
         $dish -> delete();
         return redirect()->back()->with('success', 'Il piatto è stato eliminato con successo.');
     }
