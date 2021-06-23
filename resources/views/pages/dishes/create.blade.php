@@ -1,7 +1,21 @@
 @extends('layouts.dashboard-layout')
 
 @section('sidebar-content')
-
+    <div>
+        <a href="{{ route('restaurants.protectedShow', $restaurant ->id) }}">
+            Torna al ristorante
+        </a>
+    </div>
+    <div>
+        <a href="">
+            Sotrico ordini
+        </a>
+    </div>
+    <div>
+        <a href="">
+            Statistiche ristorante
+        </a>
+    </div>
 @endsection
 
 @section('main-content')
@@ -12,7 +26,7 @@
                 <div class="card-header">New Dish</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('dishes.store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('dishes.storeDish', $restaurant ->id) }}" enctype="multipart/form-data">
                         @method('POST')
                         @csrf
                         
@@ -28,7 +42,7 @@
                             <label for="ingredients" class="col-md-4 col-form-label text-md-right">Ingredients</label>
 
                             <div class="col-md-6">
-                                <textarea id="ingredients" type="text" class="form-control"  name="ingredients"  required></textarea>
+                                <textarea id="ingredients" type="text" class="form-control"  name="ingredients" placeholder="Inserisci gli ingredienti separati da una virgola"  required></textarea>
                             </div>
                         </div>
 
@@ -36,7 +50,7 @@
                             <label for="price" class="col-md-4 col-form-label text-md-right">Price</label>
 
                             <div class="col-md-6">
-                                <input id="price" type="text" class="form-control"  name="price"  required>
+                                <input id="price" type="number" value='0.00' step=".10" class="form-control"  name="price"  required>
                             </div>
                         </div>
 
@@ -58,16 +72,16 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="form-check" class="col-md-4 col-form-label text-md-right">Visibility</label>
+                            <label for="form-check" class="col-md-4 col-form-label text-md-right">Visible</label>
 
                             <div class="form-check my-2 mx-5">
-                                <input class="form-check-input" type="radio" name="allow_cash" id="visibility" value="1" checked>
+                                <input class="form-check-input" type="radio" name="is_visible" id="is_visible" value="1" checked>
                                 <label class="form-check-label">
                                   Yes
                                 </label>
                             </div>
                             <div class="form-check my-2">
-                                <input class="form-check-input" type="radio" name="allow_cash" id="visibility" value="0">
+                                <input class="form-check-input" type="radio" name="is_visible" id="is_visible" value="0">
                                 <label class="form-check-label">
                                   No
                                 </label>

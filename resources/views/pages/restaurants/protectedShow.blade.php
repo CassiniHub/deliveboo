@@ -41,14 +41,14 @@
 
     <div class="dishes-list">
         <h3>I tuoi piatti</h3>
-        <form action="" method="GET">
+        <form action="{{ route('dishes.createDish', $restaurant ->id) }}" method="GET">
             @csrf
             @method('GET')
             <button class="btn btn-success" type="submit">Aggiungi un piatto</button>
         </form>
         <ul>
             @foreach ($dishes as $dish)
-                <li class="shadow-sm">
+                <li class="shadow-sm {{ $dish ->is_visible == 0 ? 'not-visible' : '' }}">
                     <div class="flex-container">
                         <div class="dish-name">
                             <h4>
@@ -56,7 +56,7 @@
                             </h4>
                         </div>
                         <div class="dish-actions">
-                            <form action="" method="POST">
+                            <form action="{{ route('dishes.destroy', $dish) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger" type="submit">Elimina piatto</button>

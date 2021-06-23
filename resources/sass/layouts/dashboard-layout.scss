@@ -35,6 +35,7 @@
 #dashboard-main{
 
     padding: 30px 50px;
+    width: 85%;
 
     .restaurant-actions{
         display: flex;
@@ -79,6 +80,10 @@
             }
         }
     }
+}
+
+.not-visible{
+    opacity: .5;
 }
 
 

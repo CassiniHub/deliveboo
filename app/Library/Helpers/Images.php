@@ -29,7 +29,7 @@ class Images {
     }
 
     public function deleteDishImg($img) {
-        $src = Storage::path("images/dishes". $img);
+        $src = Storage::path("images/dishes/". $img);
         if (File::exists($src)) {
             File::delete($src);
         }
