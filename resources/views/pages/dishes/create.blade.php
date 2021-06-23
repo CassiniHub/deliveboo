@@ -6,19 +6,18 @@
             Torna al ristorante
         </a>
     </div>
-    <div>
-        <a href="">
-            Sotrico ordini
-        </a>
-    </div>
-    <div>
-        <a href="">
-            Statistiche ristorante
-        </a>
-    </div>
 @endsection
 
 @section('main-content')
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -50,7 +49,7 @@
                             <label for="price" class="col-md-4 col-form-label text-md-right">Price</label>
 
                             <div class="col-md-6">
-                                <input id="price" type="number" value='0.00' step=".10" class="form-control"  name="price"  required>
+                                <input id="price" type="number" value='0.00' step=".01" class="form-control"  name="price"  required>
                             </div>
                         </div>
 
