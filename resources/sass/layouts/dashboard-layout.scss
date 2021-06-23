@@ -34,7 +34,51 @@
 
 #dashboard-main{
 
-    width: 85%;
-    height: 100%;
+    padding: 30px 50px;
+
+    .restaurant-actions{
+        display: flex;
+        
+        form {
+            margin: 10px 30px;
+        }
+    }
+    
+    .dishes-list{
+        
+        margin-top: 40px;
+
+
+    
+        ul{
+            list-style: none;
+            margin-top: 30px;
+            
+            li{
+
+                .flex-container{
+                    
+                    display: flex;
+                    align-items: center;
+                    height: 60px;
+
+                    .dish-name{
+
+                        h4{
+                            text-transform: uppercase;
+                        }
+                    }
+                    .dish-actions{
+                        display: flex;
+                
+                        form {
+                            margin: 10px 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
+
 

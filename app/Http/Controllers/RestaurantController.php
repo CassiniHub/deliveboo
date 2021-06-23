@@ -77,7 +77,7 @@ class RestaurantController extends Controller
             
         $restaurant ->user() ->associate(Auth::user() ->id);
         $restaurant ->save();
-        return redirect() ->route('user.show', Auth::user() -> id);
+        return redirect() ->route('users.show', Auth::user() -> id);
     }
 
     /**
@@ -89,6 +89,14 @@ class RestaurantController extends Controller
     public function show(Restaurant $restaurant)
     {
         
+    }
+
+    public function protectedShow($id)
+    {
+        $restaurant = Restaurant::findOrFail($id);
+        $dishes = $restaurant ->dishes() ->orderBy('name') -> get();
+
+        return view('pages.restaurants.protectedShow', compact('restaurant', 'dishes'));
     }
 
     /**
@@ -143,6 +151,6 @@ class RestaurantController extends Controller
         }
 
         $restaurant ->delete();
-        return back();
+        return redirect() -> route('users.show', Auth::user() -> id);
     }
 }
