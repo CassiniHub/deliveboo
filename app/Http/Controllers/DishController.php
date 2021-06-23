@@ -76,7 +76,7 @@ class DishController extends Controller
      */
     public function show(Dish $dish)
     {
-        //
+        return view('pages.dishes.show', $dish -> id);
     }
 
     /**
@@ -87,7 +87,9 @@ class DishController extends Controller
      */
     public function edit(Dish $dish)
     {
-        //
+        return view('pages.dishes.edit', compact(
+            'dish'
+        ));
     }
 
     /**
@@ -99,7 +101,11 @@ class DishController extends Controller
      */
     public function update(Request $request, Dish $dish)
     {
-        //
+        $validateData = $request -> validate(MyValidation::validateDish());
+
+        $dish -> update($validateData);
+
+        return redirect() -> route('restaurants.protectedShow', $dish -> restaurant_id);
     }
 
     /**
@@ -110,6 +116,7 @@ class DishController extends Controller
      */
     public function destroy(Dish $dish)
     {
-        //
+        $dish -> delete();
+        return redirect()->back()->with('success', 'Il piatto è stato eliminato con successo.');
     }
 }
