@@ -30,7 +30,7 @@
             <button class="btn btn-danger" type="submit">Elimina ristorante</button>
         </form>
     
-        <form action="" method="GET">
+        <form action=" {{ route('restaurants.edit', $restaurant ->id) }} " method="GET">
             @csrf
             @method('GET')
             <button class="btn btn-primary" type="submit">Modifica dati ristorante</button>
@@ -66,6 +66,20 @@
                                 @csrf
                                 @method('GET')
                                 <button class="btn btn-primary" type="submit">Modifica piatto</button>
+                            </form>
+
+                            <form action="{{ route('dishes.changeVisibility', $dish ->id) }}" method="post">
+                                @csrf
+                                @method('POST')
+                                <button class="btn btn-warning" type="submit">
+                                    
+                                    @if ($dish ->is_visible)
+                                        Nascondi
+                                    @else
+                                        Mostra
+                                    @endif
+                                    piatto
+                                </button>
                             </form>
                         </div>
                     </div>

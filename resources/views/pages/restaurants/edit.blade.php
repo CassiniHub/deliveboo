@@ -2,8 +2,18 @@
 
 @section('sidebar-content')
     <div>
-        <a href="{{ route('users.show', Auth::user() ->id) }}">
-            Torna alla tua dashboard
+        <a href="{{ route('restaurants.protectedShow', $restaurant ->id) }}">
+            Torna al ristorante
+        </a>
+    </div>
+    <div>
+        <a href="">
+            Sotrico ordini
+        </a>
+    </div>
+    <div>
+        <a href="">
+            Statistiche ristorante
         </a>
     </div>
 @endsection
@@ -16,15 +26,15 @@
                 <div class="card-header">New Restaurant</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('restaurants.store') }}" enctype="multipart/form-data">
-                        @method('POST')
+                    <form method="POST" action="{{ route('restaurants.update', $restaurant) }}" enctype="multipart/form-data">
+                        @method('PUT')
                         @csrf
                         
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control"  name="name"  required autofocus>
+                                <input id="name" type="text" class="form-control"  name="name" value="{{ $restaurant ->name }}" required autofocus>
                             </div>
                         </div>
 
@@ -32,7 +42,7 @@
                             <label for="address" class="col-md-4 col-form-label text-md-right">Address</label>
 
                             <div class="col-md-6">
-                                <input id="address" type="text" class="form-control"  name="address"  required>
+                                <input id="address" type="text" class="form-control"  name="address" value="{{ $restaurant ->address }}" required>
                             </div>
                         </div>
 
@@ -40,7 +50,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">E-mail</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="text" class="form-control"  name="email"  required>
+                                <input id="email" type="text" class="form-control"  name="email" value="{{ $restaurant ->email }}" required>
                             </div>
                         </div>
 
@@ -48,7 +58,7 @@
                             <label for="telephone" class="col-md-4 col-form-label text-md-right">Phone number</label>
 
                             <div class="col-md-6">
-                                <input id="telephone" type="text" class="form-control"  name="telephone"  required>
+                                <input id="telephone" type="text" class="form-control"  name="telephone" value="{{ $restaurant ->telephone }}" required>
                             </div>
                         </div>
 
@@ -73,13 +83,19 @@
                             <label for="form-check" class="col-md-4 col-form-label text-md-right">Allow cash</label>
 
                             <div class="form-check my-2 mx-5">
-                                <input class="form-check-input" type="radio" name="allow_cash" id="allow_cash" value="1" checked>
+                                <input class="form-check-input" type="radio" name="allow_cash" id="allow_cash" value="1" 
+                                @if ($restaurant ->allow_cash == 1)
+                                    checked
+                                @endif>
                                 <label class="form-check-label" for="exampleRadios1">
                                   Yes
                                 </label>
                             </div>
                             <div class="form-check my-2">
-                                <input class="form-check-input" type="radio" name="allow_cash" id="allow_cash" value="0">
+                                <input class="form-check-input" type="radio" name="allow_cash" id="allow_cash" value="0"
+                                @if ($restaurant ->allow_cash == 0)
+                                    checked
+                                @endif>
                                 <label class="form-check-label" for="exampleRadios2">
                                   No
                                 </label>
@@ -90,7 +106,7 @@
                             <label for="delivery_cost" class="col-md-4 col-form-label text-md-right">Delivery cost</label>
 
                             <div class="col-md-6">
-                                <input id="delivery_cost" type="number" value='0.00' step=".01" min="0" class="form-control"  name="delivery_cost"  required>
+                                <input id="delivery_cost" type="number" value='{{ $restaurant ->delivery_cost }}' step=".01" min="0" class="form-control"  name="delivery_cost"  required>
                             </div>
                         </div>
 
@@ -98,7 +114,9 @@
                             <label for="description" class="col-md-4 col-form-label text-md-right">Description</label>
 
                             <div class="col-md-6">
-                                <textarea name="description" id="description" cols="35" rows="5"></textarea>
+                                <textarea name="description" id="description" cols="35" rows="5">
+                                    {{ $restaurant ->description }}
+                                </textarea>
                             </div>
                         </div>
 
@@ -107,7 +125,14 @@
                             <div class="d-flex mb-3 mx-3">
                                 <div>
                                     @foreach ($categories as $category)
-                                        <input type="Checkbox" name="category_id[]" value="{{ $category -> id }}">{{ $category -> name }} <br>
+                                        <input type="Checkbox" name="category_id[]" value="{{ $category -> id }}"
+                                        @foreach ($restaurant ->categories as $restaurantCategory)
+                                            @if ($restaurantCategory ->id == $category ->id)
+                                                checked
+                                            @endif
+                                        @endforeach
+                                        >
+                                        {{ $category -> name }}<br>
                                     @endforeach
                                 </div>
                             </div>
@@ -116,7 +141,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Add
+                                    Edit
                                 </button>
                             </div>
                         </div>
@@ -126,5 +151,4 @@
         </div>
     </div>
 </div>
-
 @endsection

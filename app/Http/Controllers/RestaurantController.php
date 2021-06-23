@@ -43,7 +43,9 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        return view('pages.restaurants.create');
+        $categories = Category::all();
+
+        return view('pages.restaurants.create', compact('categories'));
     }
 
     /**
@@ -57,6 +59,7 @@ class RestaurantController extends Controller
         
         $validateData = $request ->validate(MyValidation::validateRestaurant());
         $restaurant = Restaurant::make($validateData);
+        $categories = $request ->get('category_id');
         
         if ($request ->file('img_cover')) {
             $image = new Images;
@@ -75,9 +78,10 @@ class RestaurantController extends Controller
                 ->storeAs($folderPath, $logoimgNewName, 'public');
             $restaurant ->logo = $logoimgNewName;
         }
-            
+
         $restaurant ->user() ->associate(Auth::user() ->id);
         $restaurant ->save();
+        $restaurant ->categories() ->attach($categories);
         return redirect() ->route('users.show', Auth::user() -> id);
     }
 
@@ -108,8 +112,11 @@ class RestaurantController extends Controller
      */
     public function edit(Restaurant $restaurant)
     {
+        $categories = Category::all();
+
         return view('pages.restaurants.edit', compact(
-            'restaurant'
+            'restaurant',
+            'categories'
         ));
     }
 
@@ -123,6 +130,7 @@ class RestaurantController extends Controller
     public function update(Request $request, Restaurant $restaurant)
     {
         $validateData = $request -> validate(MyValidation::validateRestaurant());
+        $categories = $request ->get('category_id');
 
         if ($restaurant ->img_cover) {
             $delete = new Images;
@@ -154,7 +162,9 @@ class RestaurantController extends Controller
             $restaurant ->logo = $logoimgNewName;
         }
 
-        $restaurant -> update($validateData);
+        $restaurant ->update($validateData);
+        $restaurant ->categories() ->sync($categories);
+        $restaurant ->save();
 
         return redirect() -> route('users.show', Auth::user() -> id);
     }
