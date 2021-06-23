@@ -31,7 +31,7 @@ class DishController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.dishes.create');
     }
 
     /**
