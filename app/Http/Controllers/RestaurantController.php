@@ -194,4 +194,18 @@ class RestaurantController extends Controller
         $restaurant ->delete();
         return redirect() -> route('users.show', Auth::user() -> id);
     }
+
+    public function protectedOrders($id) {
+
+        $restaurant = Restaurant::findOrFail($id);
+
+        return view('pages.restaurants.protectedOrders', compact('restaurant'));
+    }
+
+    public function protectedStatistics($id) {
+
+        $restaurant = Restaurant::findOrFail($id);
+
+        return view('pages.restaurants.protectedStatistics', compact('restaurant'));
+    }
 }

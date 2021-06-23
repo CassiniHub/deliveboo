@@ -2,6 +2,10 @@
 
 @section('sidebar-content')
 
+    <h4>
+        Le tue attività
+    </h4>
+
     <a href="{{ route('restaurants.create') }}">
         Aggiungi un'attività
     </a>

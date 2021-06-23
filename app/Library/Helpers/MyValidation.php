@@ -2,7 +2,8 @@
 
 namespace App\Library\Helpers;
 
-class MyValidation {    
+class MyValidation {       
+
     static function validateRestaurant() {
         return [
             'name'          => 'required|string|max:255',
