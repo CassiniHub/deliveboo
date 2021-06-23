@@ -2,6 +2,4 @@
 
 @section('content')
 
-lista ristoranti
-
 @endsection
