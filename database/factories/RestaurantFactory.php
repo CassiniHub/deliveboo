@@ -10,7 +10,7 @@ $factory->define(Restaurant::class, function (Faker $faker) {
         'name'          => $faker -> company(),
         'address'       => $faker -> address(),
         'email'         => $faker -> email(),
-        'telephone'     => $faker -> word(),
+        'telephone'     => $faker -> numerify('##########'), 
         'description'   => $faker -> text($maxNbChars = 300),
         'img_cover'     => $faker -> imageUrl($width = 640, $height = 480),
         'logo'          => $faker -> imageUrl($width = 300, $height = 300),
