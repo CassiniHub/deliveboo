@@ -22,6 +22,8 @@ Route::get('/dishes/createDish/{id}', 'DishController@createDish')
 
 Route::post('/dishes/storeDish/{id}', 'DishController@storeDish')
     ->name('dishes.storeDish');
+Route::post('/dishes/changeVisibility/{id}', 'DishController@changeVisibility')
+    ->name('dishes.changeVisibility');
 
 // authentication routes
 Auth::routes();
