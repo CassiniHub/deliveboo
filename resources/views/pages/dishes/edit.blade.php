@@ -75,37 +75,37 @@
                                 <div class="d-flex mb-3 mx-3">
                                     <div>
                                         <input type="radio" name="type" value="Primi" 
-                                        @if ($dish ->type == 'Primi')
+                                        @if ($dish ->type == 'primi')
                                             checked
                                         @endif>
                                          Primo <br>
                                         <input type="radio" name="type" value="Secondi"
-                                        @if ($dish ->type == 'Secondi')
+                                        @if ($dish ->type == 'secondi')
                                             checked
                                         @endif>
                                          Secondo <br>
                                         <input type="radio" name="type" value="Contorni"
-                                        @if ($dish ->type == 'Contorni')
+                                        @if ($dish ->type == 'contorni')
                                             checked
                                         @endif>
                                          Contorno <br>
                                         <input type="radio" name="type" value="Dolci"
-                                        @if ($dish ->type == 'Dolci')
+                                        @if ($dish ->type == 'dolci')
                                             checked
                                         @endif>
                                          Dolce <br>
                                         <input type="radio" name="type" value="Panini"
-                                        @if ($dish ->type == 'Panini')
+                                        @if ($dish ->type == 'panini')
                                             checked
                                         @endif>
                                         Panino <br>
                                         <input type="radio" name="type" value="Pizze"
-                                        @if ($dish ->type == 'Pizze')
+                                        @if ($dish ->type == 'pizze')
                                             checked
                                         @endif>
                                          Pizza <br>
                                         <input type="radio" name="type" value="Insalate"
-                                        @if ($dish ->type == 'Insalate')
+                                        @if ($dish ->type == 'insalate')
                                             checked
                                         @endif>
                                          Insalata <br>

@@ -92,13 +92,13 @@
                             <label for="type">Tipo di piatto</label>
                             <div class="d-flex mb-3 mx-3">
                                 <div>
-                                    <input type="radio" name="type" value="Primi"> Primo <br>
-                                    <input type="radio" name="type" value="Secondi"> Secondo <br>
-                                    <input type="radio" name="type" value="Contorni"> Contorno <br>
-                                    <input type="radio" name="type" value="Dolci"> Dolce <br>
-                                    <input type="radio" name="type" value="Panini"> Panino <br>
-                                    <input type="radio" name="type" value="Pizze"> Pizza <br>
-                                    <input type="radio" name="type" value="Insalate"> Insalata <br>
+                                    <input type="radio" name="type" value="primi"> Primo <br>
+                                    <input type="radio" name="type" value="secondi"> Secondo <br>
+                                    <input type="radio" name="type" value="contorni"> Contorno <br>
+                                    <input type="radio" name="type" value="dolci"> Dolce <br>
+                                    <input type="radio" name="type" value="panini"> Panino <br>
+                                    <input type="radio" name="type" value="pizze"> Pizza <br>
+                                    <input type="radio" name="type" value="insalate"> Insalata <br>
                                 </div>
                             </div>
                         </div>
