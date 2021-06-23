@@ -56,7 +56,6 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
-        
         $validateData = $request ->validate(MyValidation::validateRestaurant());
         $restaurant = Restaurant::make($validateData);
         $categories = $request ->get('category_id');

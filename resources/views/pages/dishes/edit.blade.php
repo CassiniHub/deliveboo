@@ -3,12 +3,21 @@
 @section('sidebar-content')
     <div>
         <a href="{{ route('restaurants.protectedShow', Auth::user() -> id) }}">
-            Torna alla tua dashboard
+            Torna al ristorante
         </a>
     </div>
 @endsection
 
 @section('main-content')
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -40,7 +49,7 @@
                                 <label for="price" class="col-md-4 col-form-label text-md-right">Price</label>
 
                                 <div class="col-md-6">
-                                    <input id="price" name="price" type="number" class="form-control" value="{{ $dish -> price}}" step=".10" min="0" max="999999" required>
+                                    <input id="price"  value='0.00' step=".01" name="price" type="number" class="form-control" value="{{ $dish -> price}}" step=".10" min="0" max="999999" required>
                                 </div>
                             </div>
 
