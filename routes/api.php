@@ -20,5 +20,3 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('filter/category/{id}', 'ApiController@index')
     ->name('get-category');
-Route::get('filter/categoryArr/{arr}', 'ApiController@indexTest')
-    ->name('get-categoryArr');

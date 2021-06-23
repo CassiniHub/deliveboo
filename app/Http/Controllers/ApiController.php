@@ -16,20 +16,4 @@ class ApiController extends Controller
 
         return response() -> json($restaurants);
     }
-
-    public function indexTest($arr) {
-
-        $jsonArray = json_decode($arr, true);
-        $restaurants = null;
-
-        for ($x=0; $x<count($jsonArray); $x++){
-            $id = $jsonArray[$x];
-            $restaurant = Restaurant::whereHas('categories', function($q) use ($id) {
-                $q->where('category_id', $id);
-            })->get();
-            $restaurants[$x] = $restaurant;
-        }
-
-        return response() -> json($restaurants);
-    }
 }
