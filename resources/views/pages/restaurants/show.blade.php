@@ -47,7 +47,7 @@
                     <div class="restaurant-description">
 
                         <b>Descrizione:</b> <br>
-                        <p>{{$restaurant-> description}}</p>
+                        <p>{{$restaurant ->description}}</p>
 
                     </div>
 
