@@ -28,13 +28,21 @@
 
                     <div class="restaurant-address">
 
+<<<<<<< Updated upstream
                         <b>Indirizzo:</b> {{$restaurant->address}}
+=======
+                        <b>Indirizzo:</b> {{$restaurant ->address}}
+>>>>>>> Stashed changes
 
                     </div>
 
                     <div class="restaurant-email">
 
+<<<<<<< Updated upstream
                         <b>E-mail:</b> {{$restaurant->email}}
+=======
+                        <b>E-mail:</b> {{$restaurant ->email}}
+>>>>>>> Stashed changes
 
                     </div>
 
@@ -47,7 +55,7 @@
                     <div class="restaurant-description">
 
                         <b>Descrizione:</b> <br>
-                        <p>{{$restaurant-> description}}</p>
+                        <p>{{$restaurant ->description}}</p>
 
                     </div>
 
@@ -69,7 +77,11 @@
                         </div>
                         <div class="delivery-cost">
 
+<<<<<<< Updated upstream
                             <b>Costo consegna:</b> {{$restaurant->delivery_cost}} €
+=======
+                            <b>Costo consegna:</b> {{$restaurant ->delivery_cost}} €
+>>>>>>> Stashed changes
 
                         </div>
                         <div class="allow-cash">
@@ -78,9 +90,29 @@
 
                                 @if ($restaurant->allow_cash == 1)
 
+<<<<<<< Updated upstream
                                     <b>Accetta Contanti</b>
 
                                 @else
+=======
+                            <input type="radio" class="input-radio-margin" id="sceltaSi" name="" value=""
+                            @if ($restaurant ->allow_cash == 1)
+
+                                checked
+
+                            @endif>
+                            <label for="sceltaSi"><b>Sì</b></label>
+
+                            <br>
+
+                            <input type="radio" id="sceltaNo" name="" value=""
+                            @if ($restaurant ->allow_cash == 0)
+
+                                checked
+
+                            @endif>
+                            <label for="sceltaNo"><b>No</b></label>
+>>>>>>> Stashed changes
 
                                     <b>Non Accetta Contanti</b>
 
