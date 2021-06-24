@@ -7,4 +7,5 @@
         :route="'{{ route('restaurants.show', [""]) }}'"
     ></home-component>
 
+    
 @endsection

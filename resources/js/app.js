@@ -23,6 +23,7 @@ window.Vue = require('vue');
 // Vue.component('category-card-component', require('./components/CategoryCardComponent.vue').default);
 
 Vue.component('home-component', require('./components/HomeComponent.vue').default);
+Vue.component('test-component', require('./components/TestComponent.vue').default);
 
 
 /**
@@ -32,5 +33,5 @@ Vue.component('home-component', require('./components/HomeComponent.vue').defaul
  */
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
 });

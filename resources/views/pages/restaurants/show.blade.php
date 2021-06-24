@@ -114,6 +114,9 @@
         </div>
 
 
+        <test-component
+        ></test-component>
 
+    </div>
 
 @endsection
