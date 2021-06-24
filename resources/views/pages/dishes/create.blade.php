@@ -54,15 +54,6 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="type" class="col-md-4 col-form-label text-md-right">Type</label>
-
-                            <div class="col-md-6">
-                                <input id="type" type="text" class="form-control"  name="type"  required>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row">
                             <label for="img" class="col-md-4 col-form-label text-md-right">Img</label>
 
                             <div class="col-md-6">
