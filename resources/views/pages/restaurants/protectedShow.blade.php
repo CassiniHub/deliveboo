@@ -7,8 +7,13 @@
         </a>
     </div>
     <div>
+<<<<<<< Updated upstream
         <a href="{{ route('restaurants.protectedOrders', $restaurant ->id) }}">
             Sotrico ordini
+=======
+        <a href="">
+            Storico ordini
+>>>>>>> Stashed changes
         </a>
     </div>
     <div>
