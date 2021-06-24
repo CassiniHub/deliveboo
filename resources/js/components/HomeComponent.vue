@@ -28,7 +28,7 @@
 
     <div class="main-carousel">
         <div class="section-carousel">
-            <div v-for="category in carouselCategories" class="categories">
+            <div v-for="category in carouselCategories" @click="$event.target.classList.toggle('active')" class="categories">
                 <span @click="getCategoryId(category)" >
                     <img :src="`storage/images/categories/${category.img_cover}`">
                 </span>
@@ -64,8 +64,8 @@
             </div>
             <div>
                 <ul>
-                    <li v-for="">
-
+                    <li v-for="category in restaurant.categories">
+                        {{ category.name }}
                     </li>
                 </ul>
             </div>
@@ -88,14 +88,15 @@
                 carouselCategories: this.categories,
                 selectedId: [],
                 restaurants: null, 
-                search: ''
+                search: '',
+                isActive: false,
             }
         },
         methods: {
             getCategoryId: function(category) {
 
                 this.restaurants = null;
-
+            
                 if (!this.selectedId.includes(category.id)) {
                     
                     this.selectedId.push(category.id);
