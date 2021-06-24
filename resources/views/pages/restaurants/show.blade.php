@@ -98,22 +98,10 @@
 
             </div>
 
-        </div>
-        <div class="categories-spacer">
-
-            --categories?--
-
-        </div>
-
-        <div class="dishes-container">
-
-            @foreach ($restaurant ->dishes as $dish)
-                {{ $dish ->name }}
-            @endforeach
-
-        </div>
 
 
+    </div>
+    <showcart-component>
 
-
+    </showcart-component>
 @endsection

@@ -16,13 +16,15 @@ window.Vue = require('vue');
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+ /* const files = require.context('./', true, /\.vue$/i)
+ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default)) */
 
 // Vue.component('restaurant-card-component', require('./components/RestaurantCardComponent.vue').default);
 // Vue.component('category-card-component', require('./components/CategoryCardComponent.vue').default);
 
 Vue.component('home-component', require('./components/HomeComponent.vue').default);
+Vue.component('showcart-component', require('./components/ShowcartComponent.vue').default);
+
 
 
 /**
@@ -32,5 +34,6 @@ Vue.component('home-component', require('./components/HomeComponent.vue').defaul
  */
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+
 });

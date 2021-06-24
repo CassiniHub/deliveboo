@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script src="{{ asset('/js/app.js') }}"></script> 
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <title>public</title>
 </head>
@@ -23,7 +23,7 @@
 
     </div>
 
- 
+
 
 </body>
 </html>
