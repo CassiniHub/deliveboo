@@ -136,8 +136,7 @@
             filteredCategories: function() {
                 // create new array of filtered value
                 return this.carouselCategories.filter(category => {
-                    // function applied to each category which check if there's
-                    // a match between user's search and the name of a category
+                    // Check for every category if there is a match with the user search
                     return category.name.toLowerCase().includes(this.search.toLowerCase())
                 });
             },
