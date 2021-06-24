@@ -149,4 +149,17 @@ class DishController extends Controller
         $dish -> delete();
         return redirect()->back();
     }
+
+    public function changeVisibility($id) {
+        $dish = Dish::findOrFail($id);
+        if ($dish ->is_visible){
+            $dish ->is_visible = false;
+            $dish ->save();
+        }else{
+            $dish ->is_visible = true;
+            $dish ->save();
+        }
+
+        return redirect() ->route('restaurants.protectedShow', $dish ->restaurant_id);
+    }
 }

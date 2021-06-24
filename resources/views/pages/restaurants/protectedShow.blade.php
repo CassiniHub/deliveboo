@@ -7,12 +7,12 @@
         </a>
     </div>
     <div>
-        <a href="">
+        <a href="{{ route('restaurants.protectedOrders', $restaurant ->id) }}">
             Sotrico ordini
         </a>
     </div>
     <div>
-        <a href="">
+        <a href=" {{ route('restaurants.protectedStatistics', $restaurant ->id) }} ">
             Statistiche ristorante
         </a>
     </div>
@@ -30,7 +30,7 @@
             <button class="btn btn-danger" type="submit">Elimina ristorante</button>
         </form>
     
-        <form action="" method="GET">
+        <form action=" {{ route('restaurants.edit', $restaurant ->id) }} " method="GET">
             @csrf
             @method('GET')
             <button class="btn btn-primary" type="submit">Modifica dati ristorante</button>
@@ -62,10 +62,24 @@
                                 <button class="btn btn-danger" type="submit">Elimina piatto</button>
                             </form>
                         
-                            <form action="" method="GET">
+                            <form action="{{ route('dishes.edit', $dish) }}" method="GET">
                                 @csrf
                                 @method('GET')
                                 <button class="btn btn-primary" type="submit">Modifica piatto</button>
+                            </form>
+
+                            <form action="{{ route('dishes.changeVisibility', $dish ->id) }}" method="post">
+                                @csrf
+                                @method('POST')
+                                <button class="btn btn-warning" type="submit">
+                                    
+                                    @if ($dish ->is_visible)
+                                        Nascondi
+                                    @else
+                                        Mostra
+                                    @endif
+                                    piatto
+                                </button>
                             </form>
                         </div>
                     </div>

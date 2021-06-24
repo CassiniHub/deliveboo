@@ -6,19 +6,18 @@
             Torna al ristorante
         </a>
     </div>
-    <div>
-        <a href="">
-            Sotrico ordini
-        </a>
-    </div>
-    <div>
-        <a href="">
-            Statistiche ristorante
-        </a>
-    </div>
 @endsection
 
 @section('main-content')
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -50,7 +49,7 @@
                             <label for="price" class="col-md-4 col-form-label text-md-right">Price</label>
 
                             <div class="col-md-6">
-                                <input id="price" type="number" value='0.00' step=".10" class="form-control"  name="price"  required>
+                                <input id="price" type="number" value='0.00' step=".01" class="form-control"  name="price"  required>
                             </div>
                         </div>
 
@@ -85,6 +84,21 @@
                                 <label class="form-check-label">
                                   No
                                 </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group d-flex col-md-8 offset-md-2">
+                            <label for="type">Tipo di piatto</label>
+                            <div class="d-flex mb-3 mx-3">
+                                <div>
+                                    <input type="radio" name="type" value="primi"> Primo <br>
+                                    <input type="radio" name="type" value="secondi"> Secondo <br>
+                                    <input type="radio" name="type" value="contorni"> Contorno <br>
+                                    <input type="radio" name="type" value="dolci"> Dolce <br>
+                                    <input type="radio" name="type" value="panini"> Panino <br>
+                                    <input type="radio" name="type" value="pizze"> Pizza <br>
+                                    <input type="radio" name="type" value="insalate"> Insalata <br>
+                                </div>
                             </div>
                         </div>
 
