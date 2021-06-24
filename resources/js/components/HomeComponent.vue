@@ -36,6 +36,16 @@
         </div>
     </div>
 
+    <!-- Applied categories filter -->
+    <!-- <div class="">
+        <ul>
+            <li v-for="category in category in selectedFilteredCategories" >
+                <span>X</span>
+                <span>{{ category.name }}</span>
+            </li>
+        </ul>
+    </div> -->
+
     <div class="restaurants-container">
         <div v-for="restaurant in restaurants" class="restaurant-card shadow-sm">
             <div class="name">
@@ -52,6 +62,13 @@
                 <p> <span>Phone Number:</span> {{ restaurant.telephone }}</p>
                 <p> <span>Address:</span> {{ restaurant.address }}</p>
             </div>
+            <div>
+                <ul>
+                    <li v-for="">
+
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
     
@@ -65,10 +82,11 @@
         },
         data: function() {
 
+            // 
             return {
                 
                 carouselCategories: this.categories,
-                selectedId: null,
+                selectedId: [],
                 restaurants: null, 
                 search: ''
             }
@@ -77,14 +95,43 @@
             getCategoryId: function(category) {
 
                 this.restaurants = null;
-                this.selectedId = category.id;       
-                this.search = '';         
-                axios.get('/api/filter/category/' + this.selectedId)
-                    .then(res => {
-                        this.restaurants = res.data;
-                    })
-                    .catch(err => console.log(err));
+
+                if (!this.selectedId.includes(category.id)) {
+                    
+                    this.selectedId.push(category.id);
+                } else {
+
+                    for( var i = 0; i < this.selectedId.length; i++){ 
+    
+                        if (this.selectedId[i] === category.id) { 
+
+                            this.selectedId.splice(i, 1); 
+                        }
+                    }
+                }
+
+                console.log(this.selectedId);
+
+                this.search = '';
+                if (this.selectedId.length > 0) {
+
+                    let ids =JSON.stringify(this.selectedId);
+                    
+                    axios.get('/api/filter/category/' + ids)
+                        .then(res => {
+                            console.log(res);
+                            this.restaurants = res.data;
+                        })
+                        .catch(err => console.log(err));
+                } else {
+
+                    this.restaurants = null;
+                }
             },
+
+            // deselectId: function(category) {
+            //     this.selectedId.splice(category.id, 1);
+            // }
         },
 
         computed: {
@@ -92,7 +139,18 @@
                 return this.carouselCategories.filter(category => {
                     return category.name.toLowerCase().includes(this.search.toLowerCase())
                 });
-            }
+            },
+
+            // Returns dynamic array of categories in which id correspond to the selected array of ids
+            // filteredSelectedCategories: function() {
+            //     return this.carouselCategories.filter(category => {
+            //         this.selecteId.forEach(index => {
+            //             if(index == category.id) {
+            //                 return true;
+            //             }
+            //         })
+            //     });
+            // }
         }
     }
 </script>

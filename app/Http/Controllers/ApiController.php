@@ -8,11 +8,14 @@ use App\Category;
 
 class ApiController extends Controller
 {
-    public function index($id) {
+    public function index($ids) {
 
-        $restaurants = Restaurant::whereHas('categories', function($q) use ($id) {
-            $q->where('category_id', $id);
-         })->get();
+        $ids_decoded = json_decode($ids,true);
+            
+            $restaurants = Restaurant::whereHas('categories', function($q) use ($ids_decoded) {
+    
+                $q->whereIn('category_id', $ids_decoded);
+            }) -> get();
 
         return response() -> json($restaurants);
     }
