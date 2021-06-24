@@ -36,16 +36,6 @@
         </div>
     </div>
 
-    <!-- Applied categories filter -->
-    <!-- <div class="">
-        <ul>
-            <li v-for="category in category in selectedFilteredCategories" >
-                <span>X</span>
-                <span>{{ category.name }}</span>
-            </li>
-        </ul>
-    </div> -->
-
     <div class="restaurants-container">
         <div v-for="restaurant in restaurants" class="restaurant-card shadow-sm">
             <div class="name">
@@ -86,37 +76,47 @@
             return {
                 
                 carouselCategories: this.categories,
-                selectedId: [],
+                selectedIds: [],
                 restaurants: null, 
                 search: '',
                 isActive: false,
             }
         },
         methods: {
-            getCategoryId: function(category) {
 
-                this.restaurants = null;
+            // Get the clicked carousel category ids and push them into an array 
+            // to make an API call which gives back restaurants of the selected categories
+            // @param {object} category [clicked carousel category]
             
-                if (!this.selectedId.includes(category.id)) {
+            getCategoryId: function(category) {
+                // REVIEW]
+                // Not sure of the visual effect given by this line of code
+                this.restaurants = null;
+                
+                // If the category's id is not in the array yet, push it
+                if (!this.selectedIds.includes(category.id)) {
                     
-                    this.selectedId.push(category.id);
+                    this.selectedIds.push(category.id);
                 } else {
 
-                    for( var i = 0; i < this.selectedId.length; i++){ 
-    
-                        if (this.selectedId[i] === category.id) { 
+                    // if it is in the array, find the position and remove from the array
+                    for( var i = 0; i < this.selectedIds.length; i++){ 
+                        
+                        if (this.selectedIds[i] === category.id) { 
 
-                            this.selectedId.splice(i, 1); 
+                            this.selectedIds.splice(i, 1); 
                         }
                     }
                 }
 
-                console.log(this.selectedId);
-
+                // console.log(this.selectedIds);
+                // Make the search bar empty
                 this.search = '';
-                if (this.selectedId.length > 0) {
 
-                    let ids =JSON.stringify(this.selectedId);
+                // Make API call only if the array has at least 1 element
+                if (this.selectedIds.length > 0) {
+
+                    let ids =JSON.stringify(this.selectedIds);
                     
                     axios.get('/api/filter/category/' + ids)
                         .then(res => {
@@ -125,33 +125,22 @@
                         })
                         .catch(err => console.log(err));
                 } else {
-
+                    
                     this.restaurants = null;
                 }
-            },
-
-            // deselectId: function(category) {
-            //     this.selectedId.splice(category.id, 1);
-            // }
+            }
         },
 
         computed: {
+            // Get filtered categories based on link between carouselCategories and search bar
             filteredCategories: function() {
+                // create new array of filtered value
                 return this.carouselCategories.filter(category => {
+                    // function applied to each category which check if there's
+                    // a match between user's search and the name of a category
                     return category.name.toLowerCase().includes(this.search.toLowerCase())
                 });
             },
-
-            // Returns dynamic array of categories in which id correspond to the selected array of ids
-            // filteredSelectedCategories: function() {
-            //     return this.carouselCategories.filter(category => {
-            //         this.selecteId.forEach(index => {
-            //             if(index == category.id) {
-            //                 return true;
-            //             }
-            //         })
-            //     });
-            // }
         }
     }
 </script>
