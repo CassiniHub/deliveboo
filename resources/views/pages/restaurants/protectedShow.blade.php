@@ -7,6 +7,7 @@
         </a>
     </div>
     <div>
+<<<<<<< Updated upstream
         <a href="{{ route('restaurants.protectedOrders', $restaurant ->id) }}">
             Storico ordini
         </a>

@@ -73,17 +73,54 @@
         justify-content: space-between;
         padding-bottom: 15px;
 
-        i{
+            .facebook{
 
-        color: white;
-        padding: 0 5px;
-        font-size: 22px;
-        }
-        .copyright-footer{
+            color: white;
+            padding: 0 5px;
+            font-size: 22px;
 
-        color: gray;
+                &:hover,
+                &:focus,
+                &:active {
+                    color: #2a20b8;
+                }  
+                
+            }
+                            
+            .twitter{
+
+            color: white;
+            padding: 0 5px;
+            font-size: 22px;
+
+                &:hover,
+                &:focus,
+                &:active {
+                    color: #48d0e2;
+                }
+            }
+
+            .instagram{
+
+            color: white;
+            padding: 0 5px;
+            font-size: 22px;
+
+                &:hover,
+                &:focus,
+                &:active {
+                    
+                    background: -webkit-linear-gradient(rgb(228, 27, 201), rgb(243, 175, 29));
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
+            
+            }
+            .copyright-footer{
+
+            color: gray;
+            }
         }
-    }
 
 
 }
