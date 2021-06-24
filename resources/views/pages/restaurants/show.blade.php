@@ -28,19 +28,19 @@
 
                     <div class="restaurant-address">
 
-                        <b>Indirizzo:</b> {{$restaurant-> address}}
+                        <b>Indirizzo:</b> {{$restaurant->address}}
 
                     </div>
 
                     <div class="restaurant-email">
 
-                        <b>E-mail:</b> {{$restaurant-> email}}
+                        <b>E-mail:</b> {{$restaurant->email}}
 
                     </div>
 
                     <div class="restaurant-telephone">
 
-                        <b>Telefono:</b> {{$restaurant-> telephone}}
+                        <b>Telefono:</b> {{$restaurant ->telephone}}
 
                     </div>
 
@@ -69,34 +69,24 @@
                         </div>
                         <div class="delivery-cost">
 
-                            <b>Costo consegna:</b> {{$restaurant-> delivery_cost}} €
+                            <b>Costo consegna:</b> {{$restaurant->delivery_cost}} €
 
                         </div>
                         <div class="allow-cash">
 
+                            <span>
 
-                            <b>Accetta Contanti:</b> <br>
+                                @if ($restaurant->allow_cash == 1)
 
-                            <input type="radio" class="input-radio-margin" id="sceltaSi" name="" value=""
-                            @if ($restaurant-> allow_cash == 1)
+                                    <b>Accetta Contanti</b>
 
-                                checked
+                                @else
 
-                            @endif>
-                            <label for="sceltaSi"><b>Sì</b></label>
+                                    <b>Non Accetta Contanti</b>
 
-                            <br>
+                                @endif
 
-                            <input type="radio" id="sceltaNo" name="" value=""
-                            @if ($restaurant-> allow_cash == 0)
-
-                                checked
-
-                            @endif>
-                            <label for="sceltaNo"><b>No</b></label>
-
-
-
+                            </span>
 
                         </div>
 
