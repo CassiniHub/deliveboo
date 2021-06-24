@@ -165,7 +165,7 @@ class RestaurantController extends Controller
         $restaurant ->categories() ->sync($categories);
         $restaurant ->save();
 
-        return redirect() -> route('users.show', Auth::user() -> id);
+        return redirect() -> route('restaurants.protectedShow', $restaurant -> id);
     }
 
     /**

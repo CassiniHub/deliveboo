@@ -49,7 +49,7 @@
                                 <label for="price" class="col-md-4 col-form-label text-md-right">Price</label>
 
                                 <div class="col-md-6">
-                                    <input id="price"  value='0.00' step=".01" name="price" type="number" class="form-control" value="{{ $dish -> price}}" step=".10" min="0" max="999999" required>
+                                    <input id="price"  value='{{ $dish -> price }}' step=".01" name="price" type="number" class="form-control" value="{{ $dish -> price}}" step=".10" min="0" max="999999" required>
                                 </div>
                             </div>
 
