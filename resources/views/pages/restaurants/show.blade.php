@@ -28,25 +28,26 @@
 
                     <div class="restaurant-address">
 
-                        --restaurant-address--
+                        <b>Indirizzo:</b> {{$restaurant-> address}}
 
                     </div>
 
                     <div class="restaurant-email">
 
-                        --restaurant-email--
+                        <b>E-mail:</b> {{$restaurant-> email}}
 
                     </div>
 
                     <div class="restaurant-telephone">
 
-                        --restaurant-telephone--
+                        <b>Telefono:</b> {{$restaurant-> telephone}}
 
                     </div>
 
                     <div class="restaurant-description">
 
-                        <p>--restaurant--description</p>
+                        <b>Descrizione:</b> <br>
+                        <p>{{$restaurant-> description}}</p>
 
                     </div>
 
@@ -61,21 +62,43 @@
                             <img src="{{ $restaurant ->img_cover }}" alt="">
 
                         </div>
-                    <div class="tempo-consegna">
+                        <div class="tempo-consegna">
 
-                            Consegna in 30 minuti
+                            Consegna in <br>   30 minuti
 
-                    </div>
-                    <div class="delivery-cost">
+                        </div>
+                        <div class="delivery-cost">
 
-                            --delivery-cost--
+                            <b>Costo consegna:</b> {{$restaurant-> delivery_cost}} €
 
-                    </div>
-                    <div class="allow-cash">
+                        </div>
+                        <div class="allow-cash">
 
-                            --allowcash--
 
-                    </div>
+                            <b>Accetta Contanti:</b> <br>
+
+                            <input type="radio" class="input-radio-margin" id="sceltaSi" name="" value=""
+                            @if ($restaurant-> allow_cash == 1)
+
+                                checked
+
+                            @endif>
+                            <label for="sceltaSi"><b>Sì</b></label>
+
+                            <br>
+
+                            <input type="radio" id="sceltaNo" name="" value=""
+                            @if ($restaurant-> allow_cash == 0)
+
+                                checked
+
+                            @endif>
+                            <label for="sceltaNo"><b>No</b></label>
+
+
+
+
+                        </div>
 
                     </div>
 
