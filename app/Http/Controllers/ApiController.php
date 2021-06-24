@@ -12,9 +12,15 @@ class ApiController extends Controller
 
         $ids_decoded = json_decode($ids,true);
 
-        $restaurants = Restaurant::with('categories') ->whereHas('categories', function($q) use ($ids_decoded) {
-            $q->whereIn('category_id', $ids_decoded);
-        }) -> get();
+        $query = new Restaurant;
+
+        foreach($ids_decoded as $id_decoded) {
+            $query = $query -> with('categories') -> whereHas('categories', function($q) use($id_decoded){
+                $q -> where('category_id', $id_decoded);
+            });
+        }
+
+        $restaurants = $query -> get();
 
         return response() -> json($restaurants);
     }
