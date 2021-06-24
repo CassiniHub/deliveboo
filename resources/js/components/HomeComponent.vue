@@ -38,20 +38,22 @@
 
     <div class="restaurants-container">
         <div v-for="restaurant in restaurants" class="restaurant-card shadow-sm">
-            <div class="name">
-                <h3>
-                    {{ restaurant.name }}
-                </h3>
-            </div>
-            <div class="description">
-                <p>
-                    {{ restaurant.description }}
-                </p>
-            </div>
-            <div class="info">
-                <p> <span>Phone Number:</span> {{ restaurant.telephone }}</p>
-                <p> <span>Address:</span> {{ restaurant.address }}</p>
-            </div>
+            <a @click="getRouteId(restaurant)" :href="fullRoute">
+                <div class="name">
+                    <h3>
+                        {{ restaurant.name }}
+                    </h3>
+                </div>
+                <div class="description">
+                    <p>
+                        {{ restaurant.description }}
+                    </p>
+                </div>
+                <div class="info">
+                    <p> <span>Phone Number:</span> {{ restaurant.telephone }}</p>
+                    <p> <span>Address:</span> {{ restaurant.address }}</p>
+                </div>
+            </a>
         </div>
     </div>
     
@@ -62,6 +64,7 @@
     export default {
         props: {
             categories: Array,
+            route: String,
         },
         data: function() {
 
@@ -70,7 +73,8 @@
                 carouselCategories: this.categories,
                 selectedId: null,
                 restaurants: null, 
-                search: ''
+                search: '',
+                routeParam: null,
             }
         },
         methods: {
@@ -85,6 +89,9 @@
                     })
                     .catch(err => console.log(err));
             },
+            getRouteId: function(restaurant) {
+                this.routeParam = restaurant.id;
+            }
         },
 
         computed: {
@@ -92,6 +99,9 @@
                 return this.carouselCategories.filter(category => {
                     return category.name.toLowerCase().includes(this.search.toLowerCase())
                 });
+            },
+            fullRoute() {
+                return this.route + '/' + this.routeParam;
             }
         }
     }

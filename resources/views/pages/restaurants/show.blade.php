@@ -12,14 +12,13 @@
 
                         <div class="restaurant-logo">
 
-                            --logo--
-                            <img src="" alt="">
+                            <img src="{{ $restaurant ->logo }}" alt="">
 
 
                         </div>
                         <div class="restaurant-name">
 
-                            <h1>--nome-ristorante--</h1>
+                            <h1>{{ $restaurant ->name }}</h1>
 
                         </div>
 
@@ -59,7 +58,7 @@
 
                         <div class="restaurant-img-cover">
 
-                            <img src="" alt="">
+                            <img src="{{ $restaurant ->img_cover }}" alt="">
 
                         </div>
                     <div class="tempo-consegna">
@@ -92,9 +91,12 @@
             --categories?--
 
         </div>
+
         <div class="dishes-container">
 
-            dishes list
+            @foreach ($restaurant ->dishes as $dish)
+                {{ $dish ->name }}
+            @endforeach
 
         </div>
 
