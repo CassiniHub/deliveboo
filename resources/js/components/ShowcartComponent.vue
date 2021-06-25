@@ -2,21 +2,100 @@
 
     <div>
 
-        <div class="spacer-type">
+        <div v-if="!showCheckout" class="showRestaurant" >
+            <div class="protected-restaurant-show-top-container">
 
-            <!-- <div class="type-list" >
-
-                <div v-for="dish in dishes" class="type-list-item">
-
-                    {{dish.type}}
-
+                <div class="restaurant-show-info-container">
+        
+                    <div class="description-left">
+        
+                        <div class="restaurant-logo-name">
+        
+                            <div class="restaurant-logo">
+        
+                                <img :src="restaurant.logo" alt="">
+        
+        
+                            </div>
+                            <div class="restaurant-name">
+        
+                                <h1>{{ restaurant.name }}</h1>
+        
+                            </div>
+        
+        
+        
+                        </div>
+        
+                        <div class="-address">
+        
+                            <b>Indirizzo:</b> {{restaurant.address}}
+        
+                        </div>
+        
+                        <div class="restaurant-email">
+        
+                            <b>E-mail:</b> {{restaurant.email}}
+        
+                        </div>
+        
+                        <div class="restaurant-telephone">
+        
+                            <b>Telefono:</b> {{restaurant.telephone}}
+        
+                        </div>
+        
+                        <div class="restaurant-description">
+        
+                            <b>Descrizione:</b> <br>
+                            <p>{{restaurant.description}}</p>
+        
+                        </div>
+        
+        
+                    </div>
+                    <div class="description-right">
+        
+                        <div class="card-restaurant">
+        
+                            <div class="restaurant-img-cover">
+        
+                                <img :src="restaurant.img_cover" alt="">
+        
+                            </div>
+                            <div class="tempo-consegna">
+        
+                                Consegna in <br>   30 minuti
+        
+                            </div>
+                            <div class="delivery-cost">
+        
+                                <b>Costo consegna:</b> {{restaurant.delivery_cost}} €
+        
+                            </div>
+                            <div class="allow-cash">
+        
+                                <span v-if="restaurant.allow_cash == 1">
+                                   <b>Accetta Contanti</b>
+                                </span>
+                                <span v-else>
+                                    <b>Non Accetta Contanti</b>       
+                                </span>
+        
+                            </div>
+        
+                        </div>
+                    </div>
+        
                 </div>
+            </div>
 
-            </div> -->
+            <div class="spacer-type">
 
-            <h1>I nostri piatti</h1>
+                <h1>I nostri piatti</h1>
+            </div>
 
-        </div>
+            <div>
                 <div class="restaurant-menu-cointainer">
 
                     <div class="dishes-list">
@@ -29,7 +108,7 @@
 
                                     <div class="dish-name">
 
-                                       <b>{{ dish.name }}</b>
+                                        <b>{{ dish.name }}</b>
 
                                     </div>
 
@@ -82,7 +161,7 @@
                                 </div>
                                 <div class="cart-dish-name">
 
-                                   <b>{{ dish.dish.name }}</b>
+                                    <b>{{ dish.dish.name }}</b>
 
                                 </div>
 
@@ -101,20 +180,76 @@
 
                             <div class="totprice">
 
-                               <b>{{ getTotPrice }} €</b>
+                                <b>{{ getTotPrice }} €</b>
 
                             </div>
 
                         </div>
-                        <div class="buttoncart">
+                        <div v-if="dishesArray.length > 0" class="buttoncart">
 
-                            <a href="">Checkout carrello</a>
+                            <div class="checkoutLink" @click="changeView">Checkout carrello</div>
 
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div v-else class="cartCheckout">
+            <div class="">
+                <div @click="changeView">
+                    X
+                </div>
+                <div>
+
+                    <h3>Conferme le tue scelte</h3>
+
+                </div>
+                <div class="cart">
+
+                    <div class="cart-list" v-for="dish in dishesArray">
+
+                        <div class="cart-quantity">
+
+                            <span class="minus-cart" @click="removeDish(dish)" >-</span>
+                                <b>{{ dish.quantity }}</b>
+                            <span class="add-cart" @click="addDish(dish)" >+</span>
+
+                        </div>
+                        <div class="cart-dish-name">
+
+                            <b>{{ dish.dish.name }}</b>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <div class="cart-totprice">
+
+                    <div >
+
+                        <b>Totale:</b>
+
+                    </div>
+
+                    <div class="totprice">
+
+                        <b>{{ getTotPrice }} €</b>
+
+                    </div>
+
+                </div>
+                <div v-if="dishesArray.length > 0" class="buttoncart">
+
+                    <div class="checkoutLink" @click="changeView">Vai al Pagamento</div>
+
+                </div>
+            </div>
+        </div>
+
     </div>
 
 </template>
@@ -308,6 +443,19 @@
 
     }
 
+    .cartCheckout{
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        background: white;
+        box-shadow: 5px 10px 18px #888888;
+    }
+
+    .checkoutLink{
+        color: blue;
+        font-weight: 600;
+        cursor: pointer;
+    }
 
 
 </style>
@@ -316,10 +464,12 @@
     export default {
         props:{
             dishes: Array,
+            restaurant: Object,
         },
         data: function() {
             return {
                 dishesArray: [],
+                showCheckout: false,
             }
         },
         mounted() {
@@ -356,6 +506,9 @@
                 }else{
                     this.dishesArray.pop(dish);
                 }
+            },
+            changeView: function() {
+                this.showCheckout = !this.showCheckout;
             }
         },
         computed: {
