@@ -38,29 +38,6 @@
 
     <div class="restaurants-container">
         <div v-for="restaurant in restaurants" class="restaurant-card shadow-sm">
-<<<<<<< HEAD
-            <div class="name">
-                <h3>
-                    {{ restaurant.name }}
-                </h3>
-            </div>
-            <div class="description">
-                <p>
-                    {{ restaurant.description }}
-                </p>
-            </div>
-            <div class="info">
-                <p> <span>Phone Number:</span> {{ restaurant.telephone }}</p>
-                <p> <span>Address:</span> {{ restaurant.address }}</p>
-            </div>
-            <div>
-                <ul>
-                    <li v-for="category in restaurant.categories">
-                        {{ category.name }}
-                    </li>
-                </ul>
-            </div>
-=======
             <a @click="getRouteId(restaurant)" :href="fullRoute">
                 <div class="name">
                     <h3>
@@ -76,8 +53,14 @@
                     <p> <span>Phone Number:</span> {{ restaurant.telephone }}</p>
                     <p> <span>Address:</span> {{ restaurant.address }}</p>
                 </div>
+                <div>
+                    <ul>
+                        <li v-for="category in restaurant.categories">
+                            {{ category.name }}
+                        </li>
+                    </ul>
+                </div>
             </a>
->>>>>>> FE_RESTAURANTS_SHOW
         </div>
     </div>
     
@@ -99,11 +82,8 @@
                 selectedIds: [],
                 restaurants: null, 
                 search: '',
-<<<<<<< HEAD
                 isActive: false,
-=======
                 routeParam: null,
->>>>>>> FE_RESTAURANTS_SHOW
             }
         },
         methods: {
@@ -116,7 +96,6 @@
                 // REVIEW]
                 // Not sure of the visual effect given by this line of code
                 this.restaurants = null;
-<<<<<<< HEAD
                 
                 // If the category's id is not in the array yet, push it
                 if (!this.selectedIds.includes(category.id)) {
@@ -153,18 +132,9 @@
                     
                     this.restaurants = null;
                 }
-=======
-                this.selectedId = category.id;       
-                this.search = '';         
-                axios.get('/api/filter/category/' + this.selectedId)
-                    .then(res => {
-                        this.restaurants = res.data;
-                    })
-                    .catch(err => console.log(err));
             },
             getRouteId: function(restaurant) {
                 this.routeParam = restaurant.id;
->>>>>>> FE_RESTAURANTS_SHOW
             }
         },
 
@@ -177,12 +147,9 @@
                     return category.name.toLowerCase().includes(this.search.toLowerCase())
                 });
             },
-<<<<<<< HEAD
-=======
             fullRoute() {
                 return this.route + '/' + this.routeParam;
             }
->>>>>>> FE_RESTAURANTS_SHOW
         }
     }
 </script>
