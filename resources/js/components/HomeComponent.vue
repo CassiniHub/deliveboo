@@ -7,10 +7,10 @@
             <div class="searchbar-container">
                 <label for="searchbar">Di cosa ha voglia oggi?</label>
                 <input
-                    v-model="search"      
+                    v-model="search"
                     type="text" name="searchbar">
             </div>
-            
+
             <div class="search-dropdown shadow-sm">
                 <ul v-if="search">
                     <li v-for="category in filteredCategories"
@@ -29,9 +29,15 @@
     <div class="main-carousel">
         <div class="section-carousel">
             <div v-for="category in carouselCategories" @click="$event.target.classList.toggle('active')" class="categories">
-                <span @click="getCategoryId(category)" >
+
                     <img :src="`storage/images/categories/${category.img_cover}`">
-                </span>
+                    <div @click="getCategoryId(category)" class="carousel-layover">
+
+                        <span class="carousel-string"><b>{{category.name}}</b></span>
+
+                    </div>
+
+
             </div>
         </div>
     </div>
@@ -39,31 +45,29 @@
     <div class="restaurants-container">
         <div v-for="restaurant in restaurants" class="restaurant-card shadow-sm">
             <a @click="getRouteId(restaurant)" :href="fullRoute">
+
+                <div class="image-cover">
+
+                    <img :src="restaurant.img_cover" alt="">
+
+                </div>
                 <div class="name">
                     <h3>
                         {{ restaurant.name }}
                     </h3>
                 </div>
-                <div class="description">
-                    <p>
-                        {{ restaurant.description }}
-                    </p>
-                </div>
-                <div class="info">
-                    <p> <span>Phone Number:</span> {{ restaurant.telephone }}</p>
-                    <p> <span>Address:</span> {{ restaurant.address }}</p>
-                </div>
-                <div>
-                    <ul>
-                        <li v-for="category in restaurant.categories">
-                            {{ category.name }}
-                        </li>
-                    </ul>
+
+                <div class="categories-type-list">
+
+                    <div v-for="category in restaurant.categories">
+                           <b> {{ category.name }} </b>
+                    </div>
+
                 </div>
             </a>
         </div>
     </div>
-    
+
 </div>
 </template>
 
@@ -75,12 +79,12 @@
         },
         data: function() {
 
-            // 
+            //
             return {
-                
+
                 carouselCategories: this.categories,
                 selectedIds: [],
-                restaurants: null, 
+                restaurants: null,
                 search: '',
                 isActive: false,
                 routeParam: null,
@@ -88,27 +92,27 @@
         },
         methods: {
 
-            // Get the clicked carousel category ids and push them into an array 
+            // Get the clicked carousel category ids and push them into an array
             // to make an API call which gives back restaurants of the selected categories
             // @param {object} category [clicked carousel category]
-            
+
             getCategoryId: function(category) {
                 // REVIEW]
                 // Not sure of the visual effect given by this line of code
                 this.restaurants = null;
-                
+
                 // If the category's id is not in the array yet, push it
                 if (!this.selectedIds.includes(category.id)) {
-                    
+
                     this.selectedIds.push(category.id);
                 } else {
 
                     // if it is in the array, find the position and remove from the array
-                    for( var i = 0; i < this.selectedIds.length; i++){ 
-                        
-                        if (this.selectedIds[i] === category.id) { 
+                    for( var i = 0; i < this.selectedIds.length; i++){
 
-                            this.selectedIds.splice(i, 1); 
+                        if (this.selectedIds[i] === category.id) {
+
+                            this.selectedIds.splice(i, 1);
                         }
                     }
                 }
@@ -121,7 +125,7 @@
                 if (this.selectedIds.length > 0) {
 
                     let ids =JSON.stringify(this.selectedIds);
-                    
+
                     axios.get('/api/filter/category/' + ids)
                         .then(res => {
                             console.log(res);
@@ -129,7 +133,7 @@
                         })
                         .catch(err => console.log(err));
                 } else {
-                    
+
                     this.restaurants = null;
                 }
             },

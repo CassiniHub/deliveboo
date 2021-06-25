@@ -6,35 +6,60 @@
 
 @import '../components/footer';
 
+
+
 .restaurants-container{
-    width: 800px;
+    width: 70%;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
-    
+
     .restaurant-card{
         width: 400px;
         flex-shrink: 0;
         margin: 20px auto;
         padding: 15px;
 
-        &>div{
+        a{
+            text-decoration: none;
+
+        }
+
+       /*  &>div{
             margin-bottom: 10px;
+        } */
+
+        .image-cover{
+
+            margin-bottom: 10px;
+            border-radius: 5px;
+            img{
+
+                width: 100%;
+                height: 100%;
+                border-radius: 5px;
+            }
         }
 
         .name{
+            display: flex;
             height: 80px;
+            align-items: center;
+            justify-content: center;
         }
 
-        .info{
-            p{
-                margin-bottom: 0;
 
-                span{
-                    font-weight: 600;
-                }
-            }
+
+        .categories-type-list{
+
+            height: 50px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
         }
+
+
     }
 
 }
