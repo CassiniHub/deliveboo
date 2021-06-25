@@ -4,6 +4,8 @@
 
     <home-component
         :categories = "{{ $categories }}"
-    ></home-component>
+        :route="'{{ route('restaurants.show', [""]) }}'">
+    </home-component>
 
+    
 @endsection

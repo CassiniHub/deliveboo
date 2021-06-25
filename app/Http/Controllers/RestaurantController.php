@@ -90,9 +90,10 @@ class RestaurantController extends Controller
      * @param  \App\Restaurant  $restaurant
      * @return \Illuminate\Http\Response
      */
-    public function show(Restaurant $restaurant)
+    public function show($id)
     {
-        
+        $restaurant = Restaurant::findOrFail($id);
+        return view('pages.restaurants.show', compact('restaurant'));
     }
 
     public function protectedShow($id)

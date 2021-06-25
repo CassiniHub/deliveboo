@@ -12,14 +12,13 @@
 
                         <div class="restaurant-logo">
 
-                            --logo--
-                            <img src="" alt="">
+                            <img src="{{ $restaurant ->logo }}" alt="">
 
 
                         </div>
                         <div class="restaurant-name">
 
-                            <h1>--nome-ristorante--</h1>
+                            <h1>{{ $restaurant ->name }}</h1>
 
                         </div>
 
@@ -29,25 +28,26 @@
 
                     <div class="restaurant-address">
 
-                        --restaurant-address--
+                        <b>Indirizzo:</b> {{$restaurant->address}}
 
                     </div>
 
                     <div class="restaurant-email">
 
-                        --restaurant-email--
+                        <b>E-mail:</b> {{$restaurant->email}}
 
                     </div>
 
                     <div class="restaurant-telephone">
 
-                        --restaurant-telephone--
+                        <b>Telefono:</b> {{$restaurant ->telephone}}
 
                     </div>
 
                     <div class="restaurant-description">
 
-                        <p>--restaurant--description</p>
+                        <b>Descrizione:</b> <br>
+                        <p>{{$restaurant ->description}}</p>
 
                     </div>
 
@@ -59,24 +59,36 @@
 
                         <div class="restaurant-img-cover">
 
-                            <img src="" alt="">
+                            <img src="{{ $restaurant ->img_cover }}" alt="">
 
                         </div>
-                    <div class="tempo-consegna">
+                        <div class="tempo-consegna">
 
-                            Consegna in 30 minuti
+                            Consegna in <br>   30 minuti
 
-                    </div>
-                    <div class="delivery-cost">
+                        </div>
+                        <div class="delivery-cost">
 
-                            --delivery-cost--
+                            <b>Costo consegna:</b> {{$restaurant->delivery_cost}} €
 
-                    </div>
-                    <div class="allow-cash">
+                        </div>
+                        <div class="allow-cash">
 
-                            --allowcash--
+                            <span>
 
-                    </div>
+                                @if ($restaurant->allow_cash == 1)
+
+                                    <b>Accetta Contanti</b>
+
+                                @else
+
+                                    <b>Non Accetta Contanti</b>
+
+                                @endif
+
+                            </span>
+
+                        </div>
 
                     </div>
 
@@ -86,19 +98,11 @@
 
             </div>
 
-        </div>
-        <div class="categories-spacer">
-
-            --categories?--
-
-        </div>
-        <div class="dishes-container">
-
-            dishes list
-
-        </div>
 
 
+    </div>
+    <showcart-component
+        :selectedRestaurantDishes = "{{ $type }}">
 
-
+    </showcart-component>
 @endsection
