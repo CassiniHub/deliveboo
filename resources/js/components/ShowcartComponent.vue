@@ -4,15 +4,19 @@
 
         <div class="spacer-type">
 
-            <div class="type-list">
+            <!-- <div class="type-list" >
 
-                <ul>
+                <div v-for="dish in dishes" class="type-list-item">
 
-                </ul>
+                    {{dish.type}}
 
-            </div>
+                </div>
 
-            </div>
+            </div> -->
+
+            <h1>I nostri piatti</h1>
+
+        </div>
                 <div class="restaurant-menu-cointainer">
 
                     <div class="dishes-list">
@@ -25,45 +29,88 @@
 
                                     <div class="dish-name">
 
-                                        {{ dish.name }}
+                                       <b>{{ dish.name }}</b>
+
+                                    </div>
+
+
+                                    <div class="dish-ingr">
+
+                                        {{ dish.ingredients }}
 
                                     </div>
 
                                     <div class="dish-price">
 
-                                        {{ dish.price }}
+                                        {{ dish.price }} €
 
                                     </div>
 
                                 </div>
                                 <div class="dish-img">
 
-                                    image
+
                                     <img :src="dish.img" alt="">
 
                                 </div>
 
+
+
                             </div>
 
-                            <!-- !!!!! AGGIUNGERE INGREDIENTI -->
+
 
                         </div>
                     </div>
 
                     <div class="container-cart">
-                        <ul>
-                            <li v-for="dish in dishesArray">
-                                {{ dish.dish.name }} - {{ dish.quantity }} <span @click="removeDish(dish)" >-</span> <span @click="addDish(dish)" >+</span>
-                            </li>
-                        </ul>
                         <div>
-                            tot price: {{ getTotPrice }}
+
+                            <h3>Anteprima Carrello</h3>
+
+                        </div>
+                        <div class="cart">
+
+                            <div class="cart-list" v-for="dish in dishesArray">
+
+                                <div class="cart-quantity">
+
+                                    <span class="minus-cart" @click="removeDish(dish)" >-</span>
+                                        <b>{{ dish.quantity }}</b>
+                                    <span class="add-cart" @click="addDish(dish)" >+</span>
+
+                                </div>
+                                <div class="cart-dish-name">
+
+                                   <b>{{ dish.dish.name }}</b>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="cart-totprice">
+
+                            <div>
+
+                                <b>Totale:</b>
+
+                            </div>
+
+                            <div class="totprice">
+
+                               <b>{{ getTotPrice }} €</b>
+
+                            </div>
+
                         </div>
                         <div class="buttoncart">
 
                             <a href="">Checkout carrello</a>
 
-                        </div>             
+                        </div>
                     </div>
                 </div>
             </div>
@@ -76,9 +123,14 @@
 
     .spacer-type{
 
-        height: 80px;
+        height: 100px;
         width: 100%;
+        margin: auto;
         border-bottom: 1px solid grey;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
     }
 
     .type-list{
@@ -93,41 +145,19 @@
 
     }
 
-    .type-list ul{
+    .type-list-item{
 
-        display: flex;
-        list-style: none;
-        height: 100%;
-
-
+        /* border: 1px solid red; */
+        padding-left: 30px;
     }
 
-    .type-list ul li{
-
-        padding-right: 25px;
-        opacity: 1;
-        color: purple;
-
-
-    }
-
-    .type-list ul li:hover{
-
-        opacity: 0.5;
-    }
-
-    /* .type-list ul li:focus{
-
-        background: yellow;
-
-    } */
 
     .restaurant-menu-cointainer{
 
         min-height: 500px;
-        width: 70%;
+        width: 75%;
         margin: auto;
-        background-color: white;
+        background-color: #F4F5F5;
         display: flex;
         justify-content: space-between;
         position: relative;
@@ -137,19 +167,21 @@
     .dishes-list{
 
         width: 50%;
-        padding: 35px;
-        border: 2px solid red;
+        padding: 30px;
         display: flex;
         flex-wrap: wrap;
+        margin-top: 20px;
     }
 
     .dish-card{
 
-        height: 130px;
+        height: 150px;
         width: 300px;
-        background-color: red;
         transition: box-shadow 0.2s ease-in-out;
+        margin-right: 20px;
         cursor: pointer;
+        background-color: white;
+        border-radius: 5px;
     }
 
     .dish-card:hover{
@@ -161,7 +193,6 @@
 
         height: 100%;
         padding: 10px;
-        border: 1px solid black;
         display: flex;
     }
 
@@ -174,42 +205,107 @@
         /* border: 1px solid black; */
     }
 
-    .dish-name, .dish-price{
+    .dish-name, .dish-price, .dish-ingr{
 
-        height: 50%;
+
         display: flex;
         align-items: center;
-        border: 1px solid black;
+
     }
+
+    .dish-name, .dish-price{
+
+        min-height: 25%;
+    }
+
+    .dish-ingr{
+
+        min-height: 50%
+
+    }
+
 
     .dish-img{
 
         width: 30%;
-        height: 100px;
+        height: 80px;
         border: 1px solid black;
+        margin: auto;
     }
 
     .dish-img img{
 
         width: 100%;
         height: 100%;
+        object-position: center;
+
     }
 
     .container-cart{
+        margin-top: 55px;
+        height: 50%;
         width: 30%;
         background: white;
         box-shadow: 5px 10px 18px #888888;
-        /* position: fixed; */
         display: flex;
         flex-direction: column;
         align-items: center;
         padding: 15px 0;
 
     }
+
+    .cart{
+
+        width: 80%;
+
+    }
+
+    .cart-list{
+
+        width: 100%;
+        display: flex;
+        padding-top: 15px;
+        justify-content: space-between;
+    }
+
+    .cart-quantity b{
+
+        margin: 0 10px;
+    }
+
+    .cart-dish-name{
+
+        display: flex;
+        text-align: center;
+        align-items: center;
+    }
+
     .container-cart span{
         cursor: pointer;
         padding: 0 10px;
         font-size: 24px;
+    }
+
+    .minus-cart{
+
+        background-color: red;
+        border-radius: 50%;
+    }
+
+    .add-cart{
+
+        background-color: green;
+        border-radius: 50%;
+        margin-right:15px;
+    }
+
+    .cart-totprice{
+
+        width: 80%;
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+
     }
 
 
@@ -268,8 +364,8 @@
                 for (let i=0; i<this.dishesArray.length; i++){
                     sum += (this.dishesArray[i].dish.price * this.dishesArray[i].quantity);
                 }
-                
-                return sum;
+
+                return sum.toFixed(2);
             }
         }
     }
