@@ -101,7 +101,8 @@
 
 
     </div>
-    <showcart-component>
+    <showcart-component
+        :selectedRestaurantDishes = "{{ $type }}">
 
     </showcart-component>
 @endsection

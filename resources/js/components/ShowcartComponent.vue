@@ -7,13 +7,10 @@
 
                 <ul>
 
-                    <li>Primi</li>
-                    <li>Secondi</li>
-                    <li>Contorni</li>
-                    <li>Dolci</li>
-                    <li>Panini</li>
-                    <li>Pizza</li>
-                    <li>Insalate</li>
+                    <li v-for="type in items" :key="index">
+
+                    </li>
+                    
 
 
                 </ul>
@@ -59,7 +56,13 @@
 
                 <div class="container-cart">
 
-                    CART WIP
+                    <div class="buttoncart">
+
+                        <a href="">Vai alla cassa</a>
+
+                    </div>
+
+                    
 
                 </div>
 
@@ -197,13 +200,15 @@
     }
 
     .container-cart{
-
-        min-height: 150px;
+        height: 100px;
         width: 30%;
-        border: 1px solid orange;
-        background: orange;
+        background: white;
+        box-shadow: 5px 10px 18px #888888;
         /* position: fixed; */
+        display: flex;
+        justify-content: center;
 
+       
     }
 
 
@@ -212,9 +217,28 @@
 
 <script>
     export default {
-      mounted() {
-            console.log('Component mounted.')
-        }
+    //     props:{
+
+    //         selectedRestaurantDishes: Array
+
+
+    //     },
+
+    //     data:{
+    //         selectedRestaurantDishes: [],
+
+    //     },
+
+    //     methods: {
+    //         getRestDish: function(){
+    //             axios.get('')
+    //         }
+    //     },
+
+
+    //   mounted() {
+    //         console.log('Component mounted.')
+    //     }
 
     }
 
