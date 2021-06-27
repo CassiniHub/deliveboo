@@ -2,254 +2,185 @@
 
     <div>
 
-        <div v-if="!showCheckout" class="showRestaurant" >
+        <!-- RESTAURANT INFO -->
+        <section v-if="!showCheckout" class="showRestaurant" >
             <div class="protected-restaurant-show-top-container">
-
                 <div class="restaurant-show-info-container">
-        
                     <div class="description-left">
-        
                         <div class="restaurant-logo-name">
-        
                             <div class="restaurant-logo">
-        
                                 <img :src="restaurant.logo" alt="">
-        
-        
                             </div>
                             <div class="restaurant-name">
-        
                                 <h1>{{ restaurant.name }}</h1>
-        
                             </div>
-        
-        
-        
                         </div>
         
+                        <!-- why the score before the "address"? -->
                         <div class="-address">
-        
-                            <b>Indirizzo:</b> {{restaurant.address}}
-        
+                            <strong>Indirizzo:</strong> {{restaurant.address}}
                         </div>
         
                         <div class="restaurant-email">
-        
-                            <b>E-mail:</b> {{restaurant.email}}
-        
+                            <strong>E-mail:</strong> {{restaurant.email}}
                         </div>
         
                         <div class="restaurant-telephone">
-        
-                            <b>Telefono:</b> {{restaurant.telephone}}
-        
+                            <strong>Telefono:</strong> {{restaurant.telephone}}
                         </div>
         
                         <div class="restaurant-description">
-        
-                            <b>Descrizione:</b> <br>
+                            <strong>Descrizione:</strong> <br>
                             <p>{{restaurant.description}}</p>
-        
                         </div>
-        
-        
-                    </div>
+                    </div> <!-- description-left -->
+                
                     <div class="description-right">
-        
                         <div class="card-restaurant">
-        
                             <div class="restaurant-img-cover">
-        
                                 <img :src="restaurant.img_cover" alt="">
-        
                             </div>
+
                             <div class="tempo-consegna">
-        
-                                Consegna in <br>   30 minuti
-        
+                                Consegna in <br> 30 minuti
                             </div>
+
                             <div class="delivery-cost">
-        
-                                <b>Costo consegna:</b> {{restaurant.delivery_cost}} €
-        
+                                <strong>Costo consegna:</strong> {{restaurant.delivery_cost}} €
                             </div>
+
                             <div class="allow-cash">
-        
                                 <span v-if="restaurant.allow_cash == 1">
-                                   <b>Accetta Contanti</b>
+                                   <strong>Accetta Contanti</strong>
                                 </span>
                                 <span v-else>
-                                    <b>Non Accetta Contanti</b>       
+                                    <strong>Non Accetta Contanti</strong>       
                                 </span>
-        
                             </div>
-        
-                        </div>
-                    </div>
-        
-                </div>
-            </div>
+                        </div> <!-- card-restaurant -->
+                    </div> <!-- description-right -->
+                </div> <!-- restaurant-show-info-container -->
+            </div> <!-- protected-restaurant-show-top-container -->
 
             <div class="spacer-type">
-
                 <h1>I nostri piatti</h1>
             </div>
 
+            <!-- why this div? -->
             <div>
                 <div class="restaurant-menu-cointainer">
-
                     <div class="dishes-list">
-
                         <div v-for="dish in dishes" class="dish-card my-3" @click="getDish(dish)">
 
                             <div class="dish-card-container">
-
                                 <div class="dish-name-price">
-
                                     <div class="dish-name">
-
                                         <b>{{ dish.name }}</b>
-
                                     </div>
 
-
                                     <div class="dish-ingr">
-
                                         {{ dish.ingredients }}
-
                                     </div>
 
                                     <div class="dish-price">
-
                                         {{ dish.price }} €
-
                                     </div>
-
                                 </div>
+
                                 <div class="dish-img">
-
-
                                     <img :src="dish.img" alt="">
-
                                 </div>
-
-
-
                             </div>
 
-
-
-                        </div>
+                        </div> <!-- dish-card -->
                     </div>
-
+                    
                     <div class="container-cart">
-                        <div>
+                        <h3>Anteprima Carrello</h3>
 
-                            <h3>Anteprima Carrello</h3>
-
-                        </div>
                         <div class="cart">
-
                             <div class="cart-list" v-for="dish in dishesArray">
 
                                 <div class="cart-quantity">
-
                                     <span class="minus-cart" @click="removeDish(dish)" >-</span>
                                         <b>{{ dish.quantity }}</b>
                                     <span class="add-cart" @click="addDish(dish)" >+</span>
-
                                 </div>
+
                                 <div class="cart-dish-name">
-
                                     <b>{{ dish.dish.name }}</b>
-
                                 </div>
-
-
+                                
                             </div>
-
                         </div>
 
                         <div class="cart-totprice">
-
+                            <!-- Div with no class? -->
                             <div>
-
-                                <b>Totale:</b>
-
+                                <strong>Totale:</strong>
                             </div>
 
                             <div class="totprice">
-
                                 <b>{{ getTotPrice }} €</b>
-
                             </div>
-
                         </div>
+
                         <div v-if="dishesArray.length > 0" class="buttoncart">
-
                             <div class="checkoutLink" @click="changeView">Checkout carrello</div>
-
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    </div> <!-- container-cart -->
 
-        <div v-else class="cartCheckout">
+                </div> <!-- restaurant-menu-cointainer -->
+            </div> <!-- why this div? -->
+        </section> <!-- showRestaurant -->
+
+        <!-- - - - - - - - - - - - - - - - - - - - - - -->
+
+        <section v-else class="cartCheckout">
+
+            <!-- why this div? -->
             <div class="">
                 <div @click="changeView">
                     X
                 </div>
+
+                <!-- why this div? No class with inside a block element-->
                 <div>
-
                     <h3>Conferme le tue scelte</h3>
-
                 </div>
-                <div class="cart">
 
+                <div class="cart">
                     <div class="cart-list" v-for="dish in dishesArray">
 
                         <div class="cart-quantity">
-
                             <span class="minus-cart" @click="removeDish(dish)" >-</span>
-                                <b>{{ dish.quantity }}</b>
+                                <strong>{{ dish.quantity }}</strong>
                             <span class="add-cart" @click="addDish(dish)" >+</span>
-
                         </div>
+
                         <div class="cart-dish-name">
-
-                            <b>{{ dish.dish.name }}</b>
-
+                            <strong>{{ dish.dish.name }}</strong>
                         </div>
-
 
                     </div>
-
-                </div>
+                </div> <!-- cart -->
 
                 <div class="cart-totprice">
-
-                    <div >
-
-                        <b>Totale:</b>
-
+                    <!-- div with no class? -->
+                    <div>
+                        <strong>Totale:</strong>
                     </div>
 
                     <div class="totprice">
-
-                        <b>{{ getTotPrice }} €</b>
-
+                        <strong>{{ getTotPrice }} €</strong>
                     </div>
-
                 </div>
+
                 <div v-if="dishesArray.length > 0" class="buttoncart">
-
-                    <div class="checkoutLink" @click="changeView">Vai al Pagamento</div>
-
+                    <a :href="route" class="checkoutLink" @click="changeView">Vai al Pagamento</a>
                 </div>
-            </div>
-        </div>
-
+            </div> <!-- why this div? -->
+        </section> <!-- cartCheckout -->
     </div>
 
 </template>
@@ -465,6 +396,7 @@
         props:{
             dishes: Array,
             restaurant: Object,
+            route: String
         },
         data: function() {
             return {
@@ -519,7 +451,7 @@
                 }
 
                 return sum.toFixed(2);
-            }
+            },
         }
     }
 
