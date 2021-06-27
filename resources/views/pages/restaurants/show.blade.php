@@ -4,6 +4,6 @@
     <showcart-component
     :dishes = "{{ $restaurant ->dishes }}"
     :restaurant = "{{ $restaurant }}"
-    :route="'{{ route('checkouts.index') }}'">
+    :route="'{{ route('checkouts.index', [""]) }}'">
     ></showcart-component>
 @endsection

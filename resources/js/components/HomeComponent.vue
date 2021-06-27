@@ -28,8 +28,8 @@
 
     <div class="main-carousel">
         <div class="section-carousel">
-            <div v-for="category in carouselCategories" @click="$event.target.classList.toggle('active')" class="categories">
-                <span @click="getCategoryId(category)" >
+            <div v-for="category in carouselCategories" class="categories">
+                <span @click="getCategoryId(category)">
                     <img :src="`storage/images/categories/${category.img_cover}`">
                 </span>
             </div>
@@ -96,7 +96,7 @@
                 // REVIEW]
                 // Not sure of the visual effect given by this line of code
                 this.restaurants = null;
-                
+
                 // If the category's id is not in the array yet, push it
                 if (!this.selectedIds.includes(category.id)) {
                     
@@ -124,7 +124,7 @@
                     
                     axios.get('/api/filter/category/' + ids)
                         .then(res => {
-                            console.log(res);
+                            console.log(res);  
                             this.restaurants = res.data;
                         })
                         .catch(err => console.log(err));

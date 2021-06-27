@@ -70,7 +70,7 @@
             <div>
                 <div class="restaurant-menu-cointainer">
                     <div class="dishes-list">
-                        <div v-for="dish in dishes" class="dish-card my-3" @click="getDish(dish)">
+                        <div v-if="dish.is_visible" v-for="dish in dishes" class="dish-card my-3" @click="getDish(dish)">
 
                             <div class="dish-card-container">
                                 <div class="dish-name-price">
@@ -177,8 +177,10 @@
                 </div>
 
                 <div v-if="dishesArray.length > 0" class="buttoncart">
-                    <a :href="route" class="checkoutLink" @click="changeView">Vai al Pagamento</a>
+                    <a :href="fullRoute" class="checkoutLink">Vai al Pagamento</a>
                 </div>
+
+
             </div> <!-- why this div? -->
         </section> <!-- cartCheckout -->
     </div>
@@ -380,6 +382,12 @@
         height: 100vh;
         background: white;
         box-shadow: 5px 10px 18px #888888;
+        padding: 30px 200px;
+    }
+
+    .cartCheckout span{
+        padding: 5px 10px;
+        cursor: pointer;
     }
 
     .checkoutLink{
@@ -402,6 +410,7 @@
             return {
                 dishesArray: [],
                 showCheckout: false,
+                dishesIds: [],
             }
         },
         mounted() {
@@ -410,6 +419,7 @@
         methods: {
             getDish: function(dish) {
 
+                this.dishesIds.push(dish.id);
 
                 if (this.dishesArray.length == 0) {
 
@@ -430,9 +440,11 @@
             },
             addDish: function(dish) {
                 dish.quantity ++
-                console.log(dish);
+                this.dishesIds.push(dish.dish.id);
             },
             removeDish: function(dish) {
+                this.dishesIds.pop(dish.dish.id);
+
                 if (dish.quantity > 1){
                     dish.quantity --
                 }else{
@@ -441,6 +453,17 @@
             },
             changeView: function() {
                 this.showCheckout = !this.showCheckout;
+            },
+
+            createOrder: function() {
+
+                axios.post('/api/create/order/' + JSON.stringify(this.dishesIds))
+                    .then(res => {
+                        console.log(res);
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
             }
         },
         computed: {
@@ -452,6 +475,10 @@
 
                 return sum.toFixed(2);
             },
+
+            fullRoute () {
+                return this.route + '/' + JSON.stringify(this.dishesIds);
+            }
         }
     }
 

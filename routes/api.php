@@ -20,3 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('filter/category/{id}', 'ApiController@index')
     ->name('get-category');
+
+Route::post('create/order/{dishesIds}', 'OrderController@createOrder')
+    ->name('orders.createOrder');
