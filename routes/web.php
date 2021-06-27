@@ -31,9 +31,9 @@ Route::post('/dishes/changeVisibility/{id}', 'DishController@changeVisibility')
     ->name('dishes.changeVisibility');
 
 // PAYMENTS ROUTES
-Route::get('/checkouts/{totCart}', 'CheckoutController@index')
+Route::get('/checkouts/{dishesIds}', 'CheckoutController@index')
     ->name('checkouts.index');
-Route::post('/checkouts/transaction', 'CheckoutController@index')
+Route::post('/checkouts/transaction/{totPrice}', 'CheckoutController@transaction')
     ->name('checkouts.transaction');
 
 // authentication routes

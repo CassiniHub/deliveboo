@@ -41,14 +41,33 @@
         @endif
 
         <div class="content">
-            <form method="post" id="payment-form" action="{{ route('checkouts.transaction') }}">
+            <form method="post" id="payment-form" action="{{ route('checkouts.transaction', $totPrice) }}">
                 @csrf
                 <section>
+
                     <label for="amount">
                         <span class="input-label">Amount</span>
                         <div class="input-wrapper amount-wrapper">
-                            <input id="amount" name="amount" type="tel" min="1" placeholder="Amount" value="10">
+                            <span>
+                                {{ $totPrice }}
+                            </span>
                         </div>
+                    </label>
+
+                    <label for="note">
+                        <span>
+                            Note:
+                        </span>
+                        <textarea name="note" id="note" cols="30" rows="10">
+    
+                        </textarea>
+                    </label>
+
+                    <label for="address">
+                        <span>
+                            Address:
+                        </span>
+                        <input name="address" id="address" type="text">
                     </label>
 
                     <div class="bt-drop-in-wrapper">
