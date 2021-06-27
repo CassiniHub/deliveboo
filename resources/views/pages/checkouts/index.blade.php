@@ -41,7 +41,7 @@
         @endif
 
         <div class="content">
-            <form method="post" id="payment-form" action="{{ route('checkouts.transaction', $totPrice) }}">
+            <form method="post" id="payment-form" action="{{ route('checkouts.transaction', [$totPrice, $dishes_ids]) }}">
                 @csrf
                 <section>
 
@@ -63,11 +63,11 @@
                         </textarea>
                     </label>
 
-                    <label for="address">
+                    <label for="delivery_address">
                         <span>
-                            Address:
+                            Delivery address:
                         </span>
-                        <input name="address" id="address" type="text">
+                        <input name="delivery_address" id="delivery_address" type="text">
                     </label>
 
                     <div class="bt-drop-in-wrapper">

@@ -105,10 +105,6 @@
                 }
             ],
             "description": "Braintree PHP Client Library",
-            "support": {
-                "issues": "https://github.com/braintree/braintree_php/issues",
-                "source": "https://github.com/braintree/braintree_php/tree/6.3.0"
-            },
             "time": "2021-06-21T21:36:45+00:00"
         },
         {
@@ -7314,5 +7310,5 @@
         "php": "^7.2.5|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "1.1.0"
 }

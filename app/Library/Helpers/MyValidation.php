@@ -38,7 +38,7 @@ class MyValidation {
 
     static function validateOrder() {
         return [
-            'notes'            => 'nullable|string',
+            'note'            => 'nullable|string',
             'delivery_address' => 'required|string',
         ];
     }

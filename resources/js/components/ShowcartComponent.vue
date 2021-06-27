@@ -382,6 +382,12 @@
         height: 100vh;
         background: white;
         box-shadow: 5px 10px 18px #888888;
+        padding: 30px 200px;
+    }
+
+    .cartCheckout span{
+        padding: 5px 10px;
+        cursor: pointer;
     }
 
     .checkoutLink{
@@ -431,14 +437,13 @@
                         this.dishesArray.push({'dish': dish, 'quantity': 1});
                     }
                 }
-                console.log(this.dishesIds);
             },
             addDish: function(dish) {
                 dish.quantity ++
-                this.dishesIds.push(dish.id);
+                this.dishesIds.push(dish.dish.id);
             },
             removeDish: function(dish) {
-                this.dishesIds.pop(dish.id);
+                this.dishesIds.pop(dish.dish.id);
 
                 if (dish.quantity > 1){
                     dish.quantity --

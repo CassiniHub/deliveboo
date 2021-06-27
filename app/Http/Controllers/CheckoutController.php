@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Dish;
-use App\Library\Helpers\MyValidation;
 use App\Order;
+
+use App\Library\Helpers\MyValidation;
 
 use Illuminate\Http\Request;
 
@@ -37,11 +38,12 @@ class CheckoutController extends Controller
         return view('pages.checkouts.index', [
             'token'    => $token,
             'totPrice' => $totPrice,
+            'dishes_ids' => $dishesIds
         ]);
     }
 
-    public function transaction (Request $request, $totPrice) {
-        dd($totPrice);
+    public function transaction (Request $request, $totPrice, $dishes_ids) {
+        $dishesIds_decoded = json_decode($dishes_ids);
         $gateway = new \Braintree\Gateway([
             'environment' => config('services.braintree.environment'),
             'merchantId'  => config('services.braintree.merchantId'),
@@ -59,8 +61,10 @@ class CheckoutController extends Controller
                 'submitForSettlement' => true
             ]
         ]);
-    
+        
         if ($result->success) {
+            
+            
             $transaction = $result->transaction;
             // header("Location: " . $baseUrl . "transaction.php?id=" . $transaction->id);
 
@@ -69,16 +73,18 @@ class CheckoutController extends Controller
 
             $order -> tot_price = $totPrice;
             $order -> status = 0;
-
-
-
             $order -> save();
 
-    
+            foreach ($dishesIds_decoded as $id) {
+                $order -> dishes() -> attach($id);
+            }
+            
             return back() -> with('success_message', 'Transaction successful. The ID is:' . $transaction -> id);
         } else {
             $errorString = "";
-    
+
+            dd('dioporco');
+
             foreach($result->errors->deepAll() as $error) {
                 $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
             }
