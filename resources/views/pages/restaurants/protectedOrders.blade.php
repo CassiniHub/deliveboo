@@ -19,5 +19,11 @@
 @endsection
 
 @section('main-content')
-    storico ordini
+    <ul>
+        @foreach ($ordersArr as $order)
+            <li>
+                {{ $order ->id }}
+            </li>
+        @endforeach
+    </ul>
 @endsection

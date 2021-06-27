@@ -1,4 +1,4 @@
-<nav id="main-header" class="navbar navbar-expand-md navbar-light shadow-sm">
+<nav id="home-header" class="navbar navbar-expand-md navbar-light shadow-sm">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
             Deliveboo
@@ -27,6 +27,7 @@
                     @endif
                 @else
                     <li class="nav-item dropdown">
+
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->company_name }}
                         </a>
@@ -37,10 +38,13 @@
                                                 document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
-
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
+
+                            <a class="dropdown-item" href="{{ route('users.show', Auth::user() -> id) }}">
+                                Dashboard
+                            </a>
                         </div>
                     </li>
                 @endguest
