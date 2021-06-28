@@ -38,6 +38,7 @@
                 width: 100%;
                 height: 100%;
                 border-radius: 5px;
+                opacity: 1;
             }
         }
 
@@ -48,8 +49,6 @@
             justify-content: center;
         }
 
-
-
         .categories-type-list{
 
             height: 50px;
@@ -58,8 +57,14 @@
             align-items: center;
             justify-content: space-around;
         }
-
-
     }
+}
 
+.no-restaurants{
+
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }

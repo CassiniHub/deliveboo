@@ -42,7 +42,7 @@
 
     <div class="main-carousel color-gradient">
         <div class="section-carousel color-gradient">
-            <div v-for="category in carouselCategories" @click="$event.target.classList.toggle('active')" class="categories">
+            <div v-for="category in carouselCategories" class="categories" :class="selectedIds.includes(category.id) ? 'active' : ''">
 
                     <img :src="`storage/images/categories/${category.img_cover}`">
                     <div @click="getCategoryId(category)" class="carousel-layover">
@@ -56,8 +56,8 @@
         </div>
     </div>
 
-    <div class="restaurants-container">
-        <div v-for="restaurant in restaurants" class="restaurant-card shadow-sm">
+    <div v-if="showedRestaurants && showedRestaurants.length > 0" class="restaurants-container">
+        <div v-for="restaurant in showedRestaurants" class="restaurant-card shadow-sm">
             <a @click="getRouteId(restaurant)" :href="fullRoute">
 
                 <div class="image-cover">
@@ -82,10 +82,10 @@
         </div>
     </div>
 
-    <div class="test-prova">
-
-        test-prova
-
+    <div v-else class="no-restaurants">
+        <h3>
+            Nessun ristorante corrispondente
+        </h3>
     </div>
 
 </div>
@@ -172,6 +172,7 @@
         props: {
             categories: Array,
             route: String,
+            restaurants: Array
         },
         data: function() {
 
@@ -180,11 +181,14 @@
 
                 carouselCategories: this.categories,
                 selectedIds: [],
-                restaurants: null,
                 search: '',
                 isActive: false,
                 routeParam: null,
+                showedRestaurants: this.restaurants
             }
+        },
+        mounted() {
+            console.log(this.restaurants);
         },
         methods: {
 
@@ -195,7 +199,7 @@
             getCategoryId: function(category) {
                 // REVIEW]
                 // Not sure of the visual effect given by this line of code
-                this.restaurants = null;
+                this.restaurants = this.restaurants;
 
                 // If the category's id is not in the array yet, push it
                 if (!this.selectedIds.includes(category.id)) {
@@ -224,14 +228,15 @@
 
                     axios.get('/api/filter/category/' + ids)
                         .then(res => {
-                            console.log(res);  
-                            this.restaurants = res.data;
+                            this.showedRestaurants = res.data;
                         })
                         .catch(err => console.log(err));
                 } else {
 
-                    this.restaurants = null;
+                    this.showedRestaurants = null;
                 }
+
+                console.log(this.showedRestaurants);
             },
             getRouteId: function(restaurant) {
                 this.routeParam = restaurant.id;
