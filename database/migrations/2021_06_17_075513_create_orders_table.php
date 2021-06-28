@@ -20,6 +20,7 @@ class CreateOrdersTable extends Migration
             $table -> integer('status');
             $table -> text('notes') -> nullable();
             $table -> string('delivery_address');
+            $table -> dateTime('order_datetime');
 
             $table -> softDeletes();
             $table -> bigInteger('restaurant_id') -> unsigned() -> index();

@@ -10,5 +10,6 @@ $factory->define(Order::class, function (Faker $faker) {
         'status'           => 0,
         'notes'            => $faker -> text($maxNbChars = 300),
         'delivery_address' => $faker -> address(),
+        'order_datetime'   => $faker -> dateTimeBetween('-2 years', 'now'),
     ];
 });
