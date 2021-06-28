@@ -100,7 +100,7 @@
 
                                 <div class="dish-details">
                                     <div class="cart-dish-img">
-                                        <img :src="dish.img" alt="">
+                                        <img :src="dish.dish.img" alt="">
                                     </div>
 
                                     <div class="cart-dish-name">
@@ -162,6 +162,10 @@
 
                 <div class="cart">
                     <div class="cart-list" v-for="dish in dishesArray">
+
+                        <div>
+                             <img :src="dish.dish.img" alt="">
+                        </div>
 
                         <div class="cart-dish-name">
                             <b>{{ dish.dish.name }}</b>

@@ -25,6 +25,27 @@
     }
 }
 
+.success-container{
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+    .success-disclaimer{
+        font-size: 40px;
+        font-weight: 600;
+    }
+    
+    .success-button{
+        background-color: yellowgreen;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 5px 5px 5px #888888;
+    }
+}
+
 
 
 
