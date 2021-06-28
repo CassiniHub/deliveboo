@@ -7,8 +7,8 @@
 }
 
 .footer-bg{
+    background-color: rgb(97, 129, 199);
 
-    background-color: #2E3333;
     min-height: 300px;
     width: 100%;
 
@@ -22,11 +22,11 @@
 
        .footer-card{
 
-            background-color: #434848;
+            background-color: #51d8c1;
             padding: 15px;
             width: calc(100%/4.2);
             height: 430px;
-            color: white;
+            color: #0c41a3;
             border-radius: 5px;
 
             li{
@@ -37,11 +37,11 @@
                 a{
 
                     text-decoration: none;
-                    color: white;
+                    color: black;
                         &:hover,
                         &:focus,
                         &:active {
-                        color: #42f1e9;
+                        color: white;
                         }
                 }
 
@@ -118,9 +118,9 @@
             }
             .copyright-footer{
 
-            color: gray;
+            color: rgb(255, 255, 255);
             }
-        }
+    }
 
 
 }
