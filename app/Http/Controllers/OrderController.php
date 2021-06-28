@@ -34,6 +34,11 @@ class OrderController extends Controller
         //
     }
 
+    public function createOrder()
+    {
+        //
+    }
+
     /**
      * Store a newly created resource in storage.
      *
