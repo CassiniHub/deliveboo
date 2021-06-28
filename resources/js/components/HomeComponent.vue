@@ -43,15 +43,12 @@
     <div class="main-carousel color-gradient">
         <div class="section-carousel color-gradient">
             <div v-for="category in carouselCategories" class="categories" :class="selectedIds.includes(category.id) ? 'active' : ''">
+                <img :src="`storage/images/categories/${category.img_cover}`">
+                <div @click="getCategoryId(category)" class="carousel-layover">
 
-                    <img :src="`storage/images/categories/${category.img_cover}`">
-                    <div @click="getCategoryId(category)" class="carousel-layover">
+                    <span class="carousel-string"><b>{{category.name}}</b></span>
 
-                        <span class="carousel-string"><b>{{category.name}}</b></span>
-
-                    </div>
-
-
+                </div>
             </div>
         </div>
     </div>
@@ -99,7 +96,6 @@
     height: 550px;
 }
 
-
 #jumbotron .container{
 
     height: 100%;
@@ -127,7 +123,6 @@
 
     height: 100%;
     width: 40%;
-
 }
 
 #videoBG{
