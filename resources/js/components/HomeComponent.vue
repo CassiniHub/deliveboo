@@ -224,7 +224,7 @@
 
                     axios.get('/api/filter/category/' + ids)
                         .then(res => {
-                            console.log(res);
+                            console.log(res);  
                             this.restaurants = res.data;
                         })
                         .catch(err => console.log(err));

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Restaurant;
 use App\Category;
+use App\Dish;
+use App\Order;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -198,8 +200,23 @@ class RestaurantController extends Controller
     public function protectedOrders($id) {
 
         $restaurant = Restaurant::findOrFail($id);
+        $dishes = Dish::all() ->where('restaurant_id', $restaurant->id);
+        $ordersArr = [];
+        // DA SISTEMARE -> PUSHA ORDINI DOPPI   
+        // foreach ($dishes as $dish) {
+        //     foreach ($dish ->orders as $key => $order) {
+        //         if (count($ordersArr) > 0) {
 
-        return view('pages.restaurants.protectedOrders', compact('restaurant'));
+        //             for($i=0;$i<count($ordersArr);$i++)
+        //                 if($order ->id == $ordersArr[$i] ->id){
+        //                     $ordersArr[] = $order;
+        //                 }
+        //         }else{
+        //             $ordersArr[] = $order;
+        //         }
+        //     }
+        // }
+        return view('pages.restaurants.protectedOrders', compact('restaurant', 'ordersArr'));
     }
 
     public function protectedStatistics($id) {

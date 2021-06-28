@@ -2,119 +2,187 @@
 
     <div>
 
-        <div class="spacer-type">
+        <!-- RESTAURANT INFO -->
+        <section v-if="!showCheckout" class="showRestaurant" >
+            <div class="protected-restaurant-show-top-container">
+                <div class="restaurant-show-info-container">
+                    <div class="description-left">
+                        <div class="restaurant-logo-name">
+                            <div class="restaurant-logo">
+                                <img :src="restaurant.logo" alt="">
+                            </div>
+                            <div class="restaurant-name">
+                                <h1>{{ restaurant.name }}</h1>
+                            </div>
+                        </div>
+        
+                        <!-- why the score before the "address"? -->
+                        <div class="-address">
+                            <strong>Indirizzo:</strong> {{restaurant.address}}
+                        </div>
+        
+                        <div class="restaurant-email">
+                            <strong>E-mail:</strong> {{restaurant.email}}
+                        </div>
+        
+                        <div class="restaurant-telephone">
+                            <strong>Telefono:</strong> {{restaurant.telephone}}
+                        </div>
+        
+                        <div class="restaurant-description">
+                            <strong>Descrizione:</strong> <br>
+                            <p>{{restaurant.description}}</p>
+                        </div>
+                    </div> <!-- description-left -->
+                
+                    <div class="description-right">
+                        <div class="card-restaurant">
+                            <div class="restaurant-img-cover">
+                                <img :src="restaurant.img_cover" alt="">
+                            </div>
 
-            <!-- <div class="type-list" >
+                            <div class="tempo-consegna">
+                                Consegna in <br> 30 minuti
+                            </div>
 
-                <div v-for="dish in dishes" class="type-list-item">
+                            <div class="delivery-cost">
+                                <strong>Costo consegna:</strong> {{restaurant.delivery_cost}} €
+                            </div>
 
-                    {{dish.type}}
+                            <div class="allow-cash">
+                                <span v-if="restaurant.allow_cash == 1">
+                                   <strong>Accetta Contanti</strong>
+                                </span>
+                                <span v-else>
+                                    <strong>Non Accetta Contanti</strong>       
+                                </span>
+                            </div>
+                        </div> <!-- card-restaurant -->
+                    </div> <!-- description-right -->
+                </div> <!-- restaurant-show-info-container -->
+            </div> <!-- protected-restaurant-show-top-container -->
 
-                </div>
+            <div class="spacer-type">
+                <h1>I nostri piatti</h1>
+            </div>
 
-            </div> -->
-
-            <h1>I nostri piatti</h1>
-
-        </div>
+            <!-- why this div? -->
+            <div>
                 <div class="restaurant-menu-cointainer">
-
                     <div class="dishes-list">
-
-                        <div v-for="dish in dishes" class="dish-card my-3" @click="getDish(dish)">
+                        <div v-if="dish.is_visible" v-for="dish in dishes" class="dish-card my-3" @click="getDish(dish)">
 
                             <div class="dish-card-container">
-
                                 <div class="dish-name-price">
-
                                     <div class="dish-name">
-
-                                       <b>{{ dish.name }}</b>
-
+                                        <b>{{ dish.name }}</b>
                                     </div>
 
-
                                     <div class="dish-ingr">
-
                                         {{ dish.ingredients }}
-
                                     </div>
 
                                     <div class="dish-price">
-
                                         {{ dish.price }} €
-
                                     </div>
-
                                 </div>
+
                                 <div class="dish-img">
-
-
                                     <img :src="dish.img" alt="">
-
                                 </div>
-
-
-
                             </div>
 
-
-
-                        </div>
+                        </div> <!-- dish-card -->
                     </div>
-
+                    
                     <div class="container-cart">
-                        <div>
+                        <h3>Anteprima Carrello</h3>
 
-                            <h3>Anteprima Carrello</h3>
-
-                        </div>
                         <div class="cart">
-
                             <div class="cart-list" v-for="dish in dishesArray">
 
                                 <div class="cart-quantity">
-
                                     <span class="minus-cart" @click="removeDish(dish)" >-</span>
                                         <b>{{ dish.quantity }}</b>
                                     <span class="add-cart" @click="addDish(dish)" >+</span>
-
                                 </div>
+
                                 <div class="cart-dish-name">
-
-                                   <b>{{ dish.dish.name }}</b>
-
+                                    <b>{{ dish.dish.name }}</b>
                                 </div>
-
-
+                                
                             </div>
-
                         </div>
 
                         <div class="cart-totprice">
-
+                            <!-- Div with no class? -->
                             <div>
-
-                                <b>Totale:</b>
-
+                                <strong>Totale:</strong>
                             </div>
 
                             <div class="totprice">
-
-                               <b>{{ getTotPrice }} €</b>
-
+                                <b>{{ getTotPrice }} €</b>
                             </div>
-
                         </div>
-                        <div class="buttoncart">
 
-                            <a href="">Checkout carrello</a>
-
+                        <div v-if="dishesArray.length > 0" class="buttoncart">
+                            <div class="checkoutLink" @click="changeView">Checkout carrello</div>
                         </div>
+                    </div> <!-- container-cart -->
+
+                </div> <!-- restaurant-menu-cointainer -->
+            </div> <!-- why this div? -->
+        </section> <!-- showRestaurant -->
+
+        <!-- - - - - - - - - - - - - - - - - - - - - - -->
+
+        <section v-else class="cartCheckout">
+
+            <!-- why this div? -->
+            <div class="">
+                <div @click="changeView">
+                    X
+                </div>
+
+                <!-- why this div? No class with inside a block element-->
+                <div>
+                    <h3>Conferme le tue scelte</h3>
+                </div>
+
+                <div class="cart">
+                    <div class="cart-list" v-for="dish in dishesArray">
+
+                        <div class="cart-quantity">
+                            <span class="minus-cart" @click="removeDish(dish)" >-</span>
+                                <strong>{{ dish.quantity }}</strong>
+                            <span class="add-cart" @click="addDish(dish)" >+</span>
+                        </div>
+
+                        <div class="cart-dish-name">
+                            <strong>{{ dish.dish.name }}</strong>
+                        </div>
+
+                    </div>
+                </div> <!-- cart -->
+
+                <div class="cart-totprice">
+                    <!-- div with no class? -->
+                    <div>
+                        <strong>Totale:</strong>
+                    </div>
+
+                    <div class="totprice">
+                        <strong>{{ getTotPrice }} €</strong>
                     </div>
                 </div>
-            </div>
-        </div>
+
+                <div v-if="dishesArray.length > 0" class="buttoncart">
+                    <a :href="fullRoute" class="checkoutLink">Vai al Pagamento</a>
+                </div>
+
+
+            </div> <!-- why this div? -->
+        </section> <!-- cartCheckout -->
     </div>
 
 </template>
@@ -308,6 +376,25 @@
 
     }
 
+    .cartCheckout{
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        background: white;
+        box-shadow: 5px 10px 18px #888888;
+        padding: 30px 200px;
+    }
+
+    .cartCheckout span{
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+    .checkoutLink{
+        color: blue;
+        font-weight: 600;
+        cursor: pointer;
+    }
 
 
 </style>
@@ -316,10 +403,14 @@
     export default {
         props:{
             dishes: Array,
+            restaurant: Object,
+            route: String
         },
         data: function() {
             return {
                 dishesArray: [],
+                showCheckout: false,
+                dishesIds: [],
             }
         },
         mounted() {
@@ -328,6 +419,7 @@
         methods: {
             getDish: function(dish) {
 
+                this.dishesIds.push(dish.id);
 
                 if (this.dishesArray.length == 0) {
 
@@ -348,14 +440,30 @@
             },
             addDish: function(dish) {
                 dish.quantity ++
-                console.log(dish);
+                this.dishesIds.push(dish.dish.id);
             },
             removeDish: function(dish) {
+                this.dishesIds.pop(dish.dish.id);
+
                 if (dish.quantity > 1){
                     dish.quantity --
                 }else{
                     this.dishesArray.pop(dish);
                 }
+            },
+            changeView: function() {
+                this.showCheckout = !this.showCheckout;
+            },
+
+            createOrder: function() {
+
+                axios.post('/api/create/order/' + JSON.stringify(this.dishesIds))
+                    .then(res => {
+                        console.log(res);
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
             }
         },
         computed: {
@@ -366,6 +474,10 @@
                 }
 
                 return sum.toFixed(2);
+            },
+
+            fullRoute () {
+                return this.route + '/' + JSON.stringify(this.dishesIds);
             }
         }
     }

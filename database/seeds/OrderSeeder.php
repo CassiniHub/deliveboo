@@ -13,7 +13,7 @@ class OrderSeeder extends Seeder
      */
     public function run()
     {
-        factory(Order::class, 5) -> make()
+        factory(Order::class, 100) -> make()
             -> each(function($order) {
                 $totPrice = 0;
                 $dishes = null;
