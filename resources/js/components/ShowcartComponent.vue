@@ -1,7 +1,6 @@
 <template>
 
     <div>
-
         <div v-if="!showCheckout" class="show-restaurant" >
             <div class="protected-restaurant-show-top-container">
                 <div class="restaurant-show-info-container">
@@ -100,27 +99,19 @@
                             <div class="cart-list" v-for="dish in dishesArray">
 
                                 <div class="dish-details">
-
                                     <div class="cart-dish-img">
-
                                         <img :src="dish.img" alt="">
-
                                     </div>
 
                                     <div class="cart-dish-name">
-
                                         <b>{{ dish.dish.name }}</b>
-
                                     </div>
-
                                 </div>
 
                                 <div class="cart-quantity">
-
                                     <span class="button-cart" @click="removeDish(dish)" >-</span>
                                         <b class="dish-quantity">{{ dish.quantity }}</b>
                                     <span class="button-cart" @click="addDish(dish)" >+</span>
-
                                 </div>
 
                             </div>
@@ -138,9 +129,7 @@
                         </div>
 
                         <div v-if="dishesArray.length > 0" class="button-cart">
-
                             <div @click="changeView"><span class="checkout-link">Checkout carrello</span></div>
-
                         </div>
 
                     </div>
@@ -149,94 +138,60 @@
         </div>
 
         <div v-else class="cart-checkout-container">
-
             <div class="cart-checkout">
 
                 <div class="nav-conferma">
-
                     <div class="nav-text">
-
                         <div class="nav-text-icon">
-
                             <h3>&#128722;</h3>
-
                         </div>
 
                         <div class="nav-text-title">
                             <h3>Carrello</h3>
                         </div>
-
-
                     </div>
 
                     <div class="quadrato">
-
                         <span  class="x" @click="changeView">&times;</span>
-
                     </div>
-
                 </div>
 
                 <div class="nav-text-subtitle">
-
                     <h5>Conferma le tue scelte</h5>
-
                 </div>
 
-
                 <div class="cart">
+                    <div class="cart-list" v-for="dish in dishesArray">
 
-                <div class="cart-list" v-for="dish in dishesArray">
+                        <div class="cart-dish-name">
+                            <b>{{ dish.dish.name }}</b>
+                        </div>
 
-                    <div class="cart-dish-name">
-
-                        <b>{{ dish.dish.name }}</b>
-
-                    </div>
-
-                    <div class="cart-quantity">
-
-                        <span class="button-cart" @click="removeDish(dish)" >-</span>
-                            <b class="dish-quantity">{{ dish.quantity }}</b>
-                        <span class="button-cart" @click="addDish(dish)" >+</span>
+                        <div class="cart-quantity">
+                            <span class="button-cart" @click="removeDish(dish)" >-</span>
+                                <b class="dish-quantity">{{ dish.quantity }}</b>
+                            <span class="button-cart" @click="addDish(dish)" >+</span>
+                        </div>
 
                     </div>
                 </div> <!-- cart -->
 
-                </div>
-
                 <div class="checkout-cart-totprice">
-
                     <div >
-
                         <b>Totale:</b>
-
                     </div>
 
                     <div class="checkout-totprice">
-
                         <b>{{ getTotPrice }} €</b>
-
                     </div>
                 </div>
-
-                    <div class="payment-link">Vai al Pagamento</div>
-
-                </div>
-            
-            </div>
-
-            </div>
-
-            
                 
-        </div>
-
-
-            </div> <!-- why this div? -->
-        </section> <!-- cartCheckout -->
-    </div>
-
+                <a :href="fullRoute" class="payment-link">Vai al Pagamento</a>
+            
+               
+            </div>
+        </div>  <!-- cart-checkout-container -->
+    </div> <!-- single root component -->
 </template>
 
 <style scoped>
@@ -601,9 +556,11 @@
             addDish: function(dish) {
                 dish.quantity ++
                 this.dishesIds.push(dish.dish.id);
+                console.log(this.dishesIds);
             },
             removeDish: function(dish) {
                 this.dishesIds.pop(dish.dish.id);
+                console.log(this.dishesIds);
 
                 if (dish.quantity > 1){
                     dish.quantity --
