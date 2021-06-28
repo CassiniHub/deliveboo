@@ -1,9 +1,7 @@
 <template>
 
     <div>
-
-        <!-- RESTAURANT INFO -->
-        <section v-if="!showCheckout" class="showRestaurant" >
+        <div v-if="!showCheckout" class="show-restaurant" >
             <div class="protected-restaurant-show-top-container">
                 <div class="restaurant-show-info-container">
                     <div class="description-left">
@@ -66,8 +64,7 @@
                 <h1>I nostri piatti</h1>
             </div>
 
-            <!-- why this div? -->
-            <div>
+            <div class="element-container">
                 <div class="restaurant-menu-cointainer">
                     <div class="dishes-list">
                         <div v-if="dish.is_visible" v-for="dish in dishes" class="dish-card my-3" @click="getDish(dish)">
@@ -101,16 +98,22 @@
                         <div class="cart">
                             <div class="cart-list" v-for="dish in dishesArray">
 
-                                <div class="cart-quantity">
-                                    <span class="minus-cart" @click="removeDish(dish)" >-</span>
-                                        <b>{{ dish.quantity }}</b>
-                                    <span class="add-cart" @click="addDish(dish)" >+</span>
+                                <div class="dish-details">
+                                    <div class="cart-dish-img">
+                                        <img :src="dish.img" alt="">
+                                    </div>
+
+                                    <div class="cart-dish-name">
+                                        <b>{{ dish.dish.name }}</b>
+                                    </div>
                                 </div>
 
-                                <div class="cart-dish-name">
-                                    <b>{{ dish.dish.name }}</b>
+                                <div class="cart-quantity">
+                                    <span class="button-cart" @click="removeDish(dish)" >-</span>
+                                        <b class="dish-quantity">{{ dish.quantity }}</b>
+                                    <span class="button-cart" @click="addDish(dish)" >+</span>
                                 </div>
-                                
+
                             </div>
                         </div>
 
@@ -125,79 +128,84 @@
                             </div>
                         </div>
 
-                        <div v-if="dishesArray.length > 0" class="buttoncart">
-                            <div class="checkoutLink" @click="changeView">Checkout carrello</div>
+                        <div v-if="dishesArray.length > 0" class="button-cart">
+                            <div @click="changeView"><span class="checkout-link">Checkout carrello</span></div>
                         </div>
-                    </div> <!-- container-cart -->
 
-                </div> <!-- restaurant-menu-cointainer -->
-            </div> <!-- why this div? -->
-        </section> <!-- showRestaurant -->
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <!-- - - - - - - - - - - - - - - - - - - - - - -->
+        <div v-else class="cart-checkout-container">
+            <div class="cart-checkout">
 
-        <section v-else class="cartCheckout">
+                <div class="nav-conferma">
+                    <div class="nav-text">
+                        <div class="nav-text-icon">
+                            <h3>&#128722;</h3>
+                        </div>
 
-            <!-- why this div? -->
-            <div class="">
-                <div @click="changeView">
-                    X
+                        <div class="nav-text-title">
+                            <h3>Carrello</h3>
+                        </div>
+                    </div>
+
+                    <div class="quadrato">
+                        <span  class="x" @click="changeView">&times;</span>
+                    </div>
                 </div>
 
-                <!-- why this div? No class with inside a block element-->
-                <div>
-                    <h3>Conferme le tue scelte</h3>
+                <div class="nav-text-subtitle">
+                    <h5>Conferma le tue scelte</h5>
                 </div>
 
                 <div class="cart">
                     <div class="cart-list" v-for="dish in dishesArray">
 
-                        <div class="cart-quantity">
-                            <span class="minus-cart" @click="removeDish(dish)" >-</span>
-                                <strong>{{ dish.quantity }}</strong>
-                            <span class="add-cart" @click="addDish(dish)" >+</span>
+                        <div class="cart-dish-name">
+                            <b>{{ dish.dish.name }}</b>
                         </div>
 
-                        <div class="cart-dish-name">
-                            <strong>{{ dish.dish.name }}</strong>
+                        <div class="cart-quantity">
+                            <span class="button-cart" @click="removeDish(dish)" >-</span>
+                                <b class="dish-quantity">{{ dish.quantity }}</b>
+                            <span class="button-cart" @click="addDish(dish)" >+</span>
                         </div>
 
                     </div>
                 </div> <!-- cart -->
 
-                <div class="cart-totprice">
-                    <!-- div with no class? -->
-                    <div>
-                        <strong>Totale:</strong>
+                <div class="checkout-cart-totprice">
+                    <div >
+                        <b>Totale:</b>
                     </div>
 
-                    <div class="totprice">
-                        <strong>{{ getTotPrice }} €</strong>
+                    <div class="checkout-totprice">
+                        <b>{{ getTotPrice }} €</b>
                     </div>
                 </div>
-
-                <div v-if="dishesArray.length > 0" class="buttoncart">
-                    <a :href="fullRoute" class="checkoutLink">Vai al Pagamento</a>
-                </div>
-
-
-            </div> <!-- why this div? -->
-        </section> <!-- cartCheckout -->
-    </div>
-
+                
+                <a :href="fullRoute" class="payment-link">Vai al Pagamento</a>
+            
+               
+            </div>
+        </div>  <!-- cart-checkout-container -->
+    </div> <!-- single root component -->
 </template>
 
 <style scoped>
 
     .spacer-type{
-
+        background-color: white;
         height: 100px;
-        width: 100%;
+        width: 80%;
         margin: auto;
         border-bottom: 1px solid grey;
         display: flex;
         align-items: center;
         justify-content: center;
+        color: rgb(2, 150, 241);
 
     }
 
@@ -219,13 +227,16 @@
         padding-left: 30px;
     }
 
+    .element-container{
+        background-color: lightskyblue;
+    }
 
     .restaurant-menu-cointainer{
 
         min-height: 500px;
-        width: 75%;
+        width: 80%;
         margin: auto;
-        background-color: #F4F5F5;
+        background-color: rgb(2, 150, 241);
         display: flex;
         justify-content: space-between;
         position: relative;
@@ -275,7 +286,6 @@
 
     .dish-name, .dish-price, .dish-ingr{
 
-
         display: flex;
         align-items: center;
 
@@ -319,83 +329,188 @@
         flex-direction: column;
         align-items: center;
         padding: 15px 0;
+        border-radius: 5px;
 
     }
 
     .cart{
 
         width: 80%;
+        margin: auto;
 
     }
 
     .cart-list{
-
         width: 100%;
-        display: flex;
         padding-top: 15px;
-        justify-content: space-between;
-    }
-
-    .cart-quantity b{
-
-        margin: 0 10px;
-    }
-
-    .cart-dish-name{
-
         display: flex;
-        text-align: center;
+        justify-content: space-between;
         align-items: center;
     }
 
-    .container-cart span{
+    .cart-quantity b{
+        margin: 0 10px;
+    }
+
+    .dish-details{
+        width: 150px;
+        border: 1px solid black;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex-direction: column;
+    }
+
+    .cart-dish-img{
+        width: 50%;
+        height: 80px;
+        border: 1px solid black;
+        margin: auto;
+        display: flex;
+        justify-content: flex-end;
+    }
+    
+    .cart-dish-img img{
+
+        width: 100%;
+        height: 100%;
+        object-position: center;
+
+    }
+
+    .cart-dish-name{
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .button-cart{
         cursor: pointer;
-        padding: 0 10px;
-        font-size: 24px;
+        background-color: rgb(2, 150, 241);
+        color: white;
+        padding: 0 20px;
+        border-radius: 5px;
+        box-shadow: 2px 5px 5px #888888;
+        font-size: 25px;
+        font-weight: 600;
     }
 
-    .minus-cart{
-
-        background-color: red;
-        border-radius: 50%;
-    }
-
-    .add-cart{
-
-        background-color: green;
-        border-radius: 50%;
-        margin-right:15px;
+    .dish-quantity{
+        font-size: 25px;
     }
 
     .cart-totprice{
 
         width: 80%;
-        margin-top: 20px;
         display: flex;
-        justify-content: space-between;
+        margin: 20px 0;
+        justify-content: flex-end;
+        font-size: 25px;
+        font-weight: 600;
 
     }
 
-    .cartCheckout{
+    .totprice{
+        margin-left: 20px;
+    }
+
+    
+
+    .cart-checkout-container{
         position: absolute;
         width: 100%;
         height: 100vh;
-        background: white;
+        background: rgb(99 168 195);
         box-shadow: 5px 10px 18px #888888;
-        padding: 30px 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
-    .cartCheckout span{
-        padding: 5px 10px;
+    .cart-checkout{
+        width: 80%;
+        margin: auto;
+        background-color: white;
+        border-radius: 10px;
+    }
+
+
+    .nav-conferma{
+        width: 100%;
+        background-color: black;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .nav-text{
+        width: 20%;
+        margin: 0px 15px;
+        display: flex;
+        align-items: center;
+
+    }
+
+    .nav-text-subtitle{
+        width: 80%;
+        margin: 30px auto;
+    }
+
+    .nav-text-subtitle h5{
+        font-weight: 600;
+    }
+
+    .quadrato{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .x{
+        color: white;
+        padding: 0 20px;
         cursor: pointer;
+        font-size: 20px;
+        font-weight: 600;
+        margin-right: 10px;
+        transition: all 1s ease 0s;
     }
 
-    .checkoutLink{
-        color: blue;
+    .x:hover{
+        background-color: red;
+    }
+
+    .checkout-cart-totprice{
+
+        width: 100%;
+        display: flex;
+        margin: 20px 0;
+        justify-content: flex-end;
+        font-size: 25px;
+        font-weight: 600;
+
+    }
+
+    .checkout-totprice{
+        margin-left: 20px;
+    }
+
+    .payment-link{
+        width: 100%;
+        padding: 5px;
+        border-radius: 5px;
+        color: white;
         font-weight: 600;
         cursor: pointer;
+        background-color: rgb(2, 150, 241);
+        padding: 0 20px;
+        box-shadow: 2px 5px 5px #888888;
+        font-size: 25px;
+        text-align: center;
+        margin: 30px 0px 30px 0px;
     }
-
 
 </style>
 
@@ -441,9 +556,11 @@
             addDish: function(dish) {
                 dish.quantity ++
                 this.dishesIds.push(dish.dish.id);
+                console.log(this.dishesIds);
             },
             removeDish: function(dish) {
                 this.dishesIds.pop(dish.dish.id);
+                console.log(this.dishesIds);
 
                 if (dish.quantity > 1){
                     dish.quantity --

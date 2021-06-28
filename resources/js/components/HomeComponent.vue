@@ -92,6 +92,7 @@
 </template>
 
 <style scoped>
+    
 #jumbotron{
     background-color: white;
     display: flex;
@@ -118,10 +119,8 @@
 }
 
 .searchbar-container input{
-
     text-align: center;
     border: 3px solid #FABD12;
-
 }
 
 #jumbotron .container .jumbotron-video{
