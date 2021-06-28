@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Dish;
+use App\Restaurant;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
@@ -17,5 +18,9 @@ class Order extends Model
 
     public function dishes() {
         return $this -> belongsToMany(Dish::class);
+    }
+
+    public function restaurant() {
+        return $this -> belongsTo(Restaurant::class);
     }
 }

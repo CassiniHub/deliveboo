@@ -22,6 +22,7 @@ class CreateOrdersTable extends Migration
             $table -> string('delivery_address');
 
             $table -> softDeletes();
+            $table -> bigInteger('restaurant_id') -> unsigned() -> index();
 
             $table -> timestamps();
         });
