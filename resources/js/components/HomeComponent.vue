@@ -5,10 +5,10 @@
 
         <div class="container">
             <div class="searchbar-container">
-                <label for="searchbar">Di cosa ha voglia oggi?</label>
+                <label for="searchbar">Dimmi... cosa desideri?</label>
                 <input
                     v-model="search"
-                    type="text" name="searchbar">
+                    type="text" name="searchbar" placeholder="Inserisci qui la categoria">
             </div>
 
             <div class="search-dropdown shadow-sm">
@@ -23,11 +23,25 @@
                     </li>
                 </ul>
             </div>
+
+            <div class="jumbotron-video">
+
+                <video id="videoBG" autoplay muted loop>
+                <source :src="`storage/video/video-jumbo.mp4`" type="video/mp4">
+                </video>
+
+            </div>
         </div>
     </div>
 
-    <div class="main-carousel">
-        <div class="section-carousel">
+    <div class="spacer-precarousel">
+
+       Scegli tra le catagorie più richieste
+
+    </div>
+
+    <div class="main-carousel color-gradient">
+        <div class="section-carousel color-gradient">
             <div v-for="category in carouselCategories" @click="$event.target.classList.toggle('active')" class="categories">
 
                     <img :src="`storage/images/categories/${category.img_cover}`">
@@ -68,8 +82,90 @@
         </div>
     </div>
 
+    <div class="test-prova">
+
+        test-prova
+
+    </div>
+
 </div>
 </template>
+
+<style scoped>
+#jumbotron{
+    background-color: white;
+    display: flex;
+    height: 550px;
+}
+
+
+#jumbotron .container{
+
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchbar-container{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    color: #007E8A;
+}
+
+.searchbar-container input{
+
+    text-align: center;
+    border: 3px solid #FABD12;
+
+}
+
+#jumbotron .container .jumbotron-video{
+
+    height: 100%;
+    width: 40%;
+
+}
+
+#videoBG{
+
+    height: 100%;
+    width: 100%;
+}
+
+.spacer-precarousel{
+
+    width: 100%;
+    height: 50px;
+    margin: auto;
+    text-align: center;
+    line-height: 50px;
+    font-size: 25px;
+
+}
+
+.color-gradient{
+
+    background: radial-gradient(#FE8F50, #FFC065);
+
+}
+
+.main-carousel{
+
+    height: 200px;
+}
+
+.test-prova{
+
+    height: 100px;
+    background-color: #FABD12;
+}
+
+</style>
 
 <script>
     export default {
