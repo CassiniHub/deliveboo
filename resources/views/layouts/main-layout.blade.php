@@ -14,7 +14,7 @@
 
     <div id="app">
 
-        @include('components.main-header')
+        @include('components.home-header')
 
         @yield('content')
 

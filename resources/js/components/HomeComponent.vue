@@ -89,30 +89,6 @@
 </template>
 
 <style scoped>
-    
-#jumbotron{
-    background-color: white;
-    display: flex;
-    height: 550px;
-}
-
-#jumbotron .container{
-
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.searchbar-container{
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-    color: #007E8A;
-}
 
 .searchbar-container input{
     text-align: center;

@@ -1,4 +1,4 @@
-@import '../components/main-header.scss';
+@import '../components/home-header.scss';
 
 @import '../components/sidebar.scss';
 
@@ -13,7 +13,6 @@
 
     .sidebar-part{
 
-        position: fixed;
         width: 15%;
         position: fixed;
         top: 0;
@@ -26,24 +25,82 @@
 }
 
 .success-container{
-    height: 60vh;
+    min-height: 800px;
+    width: 60%;
+    margin: 20px auto;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    
+    background-color: #51D8C1;
+    border-radius: 5px;
+
+
     .success-disclaimer{
         font-size: 40px;
-        font-weight: 600;
-    }
-    
-    .success-button{
-        background-color: yellowgreen;
-        color: white;
-        padding: 10px;
+        background-color: white;
+        width: 90%;
+        height: 200px;
         border-radius: 5px;
-        box-shadow: 5px 5px 5px #888888;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        color: #007E8E;
+
     }
+
+    .order-recap{
+
+        width: 90%;
+        margin: 20px auto;
+        min-height: 400px;
+        background-color: white;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+
+
+    }
+
+    .success-action{
+
+        height: 100px;
+        width: 90%;
+        background-color: white;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        margin-bottom: 20px;
+        .success-home-button, .success-ctb-button{
+
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 5px 5px 5px #888888;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .success-home-button{
+
+            background-color: #007E8E;
+        }
+
+        .success-ctb-button{
+
+            background-color: #FABD12;
+        }
+
+
+
+    }
+
 }
 
 
