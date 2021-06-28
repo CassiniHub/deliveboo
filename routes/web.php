@@ -36,5 +36,7 @@ Route::get('/checkouts/{dishesIds}', 'CheckoutController@index')
 Route::post('/checkouts/transaction/{totPrice}/{dishes_ids}', 'CheckoutController@transaction')
     ->name('checkouts.transaction');
 
+Route::view('/success', 'pages.orders.success');
+
 // authentication routes
 Auth::routes();

@@ -1,17 +1,25 @@
 #jumbotron{
-    height: 400px;
+    height: 550px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: lightskyblue;
+    background-color: white;
 
     .container{
         position: relative;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         .searchbar-container{
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            width: 50%;
+            color: #007E8A;
 
             label{
                 font-size: 32px;
