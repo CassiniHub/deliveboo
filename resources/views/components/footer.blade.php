@@ -9,7 +9,7 @@
                     <ul>
 
                         <li class="footer-bolder">
-                            <span>Scopri Deliveroo</span>
+                            <span>Scopri Deliveboo</span>
                         </li>
 
                         <li>

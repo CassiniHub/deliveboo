@@ -8,7 +8,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <title>public</title>
+    <title>Deliveboo</title>
 </head>
 <body>
 
