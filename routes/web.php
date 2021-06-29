@@ -30,6 +30,10 @@ Route::post('/dishes/storeDish/{id}', 'DishController@storeDish')
 Route::post('/dishes/changeVisibility/{id}', 'DishController@changeVisibility')
     ->name('dishes.changeVisibility');
 
+// CUSTOM ORDERS ROUTES
+Route::post('/orders/changeStatus/{id}', 'OrderController@changeStatus')
+    ->name('orders.changeStatus');
+
 // PAYMENTS ROUTES
 Route::get('/checkouts/{dishesIds}', 'CheckoutController@index')
     ->name('checkouts.index');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Dish;
 use App\Order;
+use App\Restaurant;
 
 use App\Library\Helpers\MyValidation;
 
@@ -72,7 +73,12 @@ class CheckoutController extends Controller
             $order = Order::make($validatedData);
 
             $order -> tot_price = $totPrice;
-            $order -> status = 0;
+            $order -> status = 1;
+
+            $dish = Dish::findOrFail($dishesIds_decoded[0]);
+            $restaurant = Restaurant::findOrFail($dish ->restaurant_id);
+            $order ->restaurant() ->associate($restaurant);
+
             $order -> save();
 
             foreach ($dishesIds_decoded as $id) {

@@ -200,7 +200,7 @@ class RestaurantController extends Controller
     public function protectedOrders($id) {
 
         $restaurant = Restaurant::findOrFail($id);
-        $orders = $restaurant -> orders() -> get();
+        $orders = $restaurant -> orders() ->orderBy('order_datetime', 'DESC') -> get();
         return view('pages.restaurants.protectedOrders', compact('restaurant', 'orders'));
     }
 
@@ -215,7 +215,7 @@ class RestaurantController extends Controller
     public function getOrders($id) {
 
         $restaurant = Restaurant::findOrFail($id);
-        $orders = $restaurant ->orders() -> orderBy('order_datetime', 'DESC') ->get();
+        $orders = $restaurant ->orders() -> orderBy('order_datetime', 'ASC') ->get();
 
         return response() ->json($orders);
     }
