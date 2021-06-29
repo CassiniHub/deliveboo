@@ -3,18 +3,37 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+    &::-webkit-scrollbar{
+
+        width: 10px;
+                height: 10px;
+    }
+
+    &::-webkit-scrollbar-track{
+
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    }
+
+    &::-webkit-scrollbar-thumb{
+
+        border-radius: 10px;
+        background-color: gold
+    }
 }
 
 .main-carousel{
 
     width: 100%;
-    height: 400px;
+    height: 200px;
     margin: auto;
     overflow: hidden;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+    background: radial-gradient(#FE8F50, #FFC065);
 
     .carousel-span{
         display: flex;
@@ -45,18 +64,18 @@
 
         }
 
-
-
         .section-carousel{
 
-            width: 98%;
+            width: 60%;
             height: 150px;
             background: #f4f4f4;
             margin: 10px auto;
             display: flex;
             justify-content: left;
             align-items: center;
-            overflow-x: auto;
+            overflow-x: scroll;
+            background: radial-gradient(#FE8F50, #FFC065);
+            border-radius: 5px;
 
 
             .categories{
@@ -65,24 +84,20 @@
                 justify-content: center;
                 align-items: center;
                 cursor: pointer;
-
                 width: 300px;
                 height: 100px;
                 position: relative;
                 left: 0;
                 text-align: center;
-
                 margin: 10px 20px;
                 color: white;
-
-
                 transition: 0.5s;
                 border-radius: 5px;
 
                 img{
 
-                    width: 100%;
-                    height: 100%;
+                    width: 150px;
+                    height: 100px;
                     object-fit: cover;
                     object-position: center;
                     border-radius: 5px;
