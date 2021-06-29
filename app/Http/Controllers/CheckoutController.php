@@ -17,9 +17,18 @@ class CheckoutController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($dishesIds)
+
+    public function setSession(Request $request) {
+
+        $ids_decoded = json_decode($request -> ids);
+        dd($ids_decoded);
+        return redirect() -> route('checkouts.index') -> with($ids_decoded);
+    }
+
+    public function index($ids)
     {
-        dd($dishesIds);
+        dd($ids);
+        dd(session() -> all());
         $dishesIds_decoded = json_decode($dishesIds);
         $totPrice = 0;
 

@@ -208,7 +208,15 @@
                 </div>
 
                 <div class="payment-link">
-                    <a :href="fullRoute">Vai al Pagamento</a>
+                    
+                    <form action="{{ route('checkouts.index') }}" method="POST">
+                        @csrf
+                        @method('POST')
+                        <input id="ids" name="ids" :value="stringifiedDishesIds" type="text" hidden style="display: none">
+                        <button type="submit">
+                            Vai al pagamento
+                        </button>
+                    </form>
                 </div>
 
             </div>
@@ -290,6 +298,9 @@
                     return sum.toFixed(2);
                 },
 
+                stringifiedDishesIds () {
+                    return JSON.stringify(this.dishesIds);
+                },
                 fullRoute () {
                     return this.route + '/' + JSON.stringify(this.dishesIds);
                 },
