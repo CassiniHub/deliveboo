@@ -33,7 +33,7 @@
         </select>
     </div>
 
-    <div style="width:50vw">
+    <div>
         <canvas id="myChart" width="600" height="400"></canvas>
     </div>
 </div>
@@ -53,7 +53,7 @@
                     years: [],
                     selYear: null,
                     showingChart: null,
-                    totMoneyMonth: 0,
+                    totMoneyMonth: [],
                 }
             },
             mounted() {                    
@@ -143,9 +143,20 @@
                             datasets: [{
                                 type: 'bar',
                                 label: 'Tot ordini',
-                                backgroundColor: 'rgb(252, 106, 1)',
+                                backgroundColor: 'rgba(54, 162, 235, 0.3)',
+                                borderColor: 'rgb(54, 162, 235)',
+                                borderWidth: 1,
                                 yAxisID: 'y1',
                                 data: this.totOrdersMonth
+                            },
+                            {
+                                type: 'bar',
+                                label: 'Entrate totali',
+                                backgroundColor: 'rgba(255, 205, 86, 0.2)',
+                                borderColor: 'rgb(255, 205, 86)',
+                                borderWidth: 1,
+                                yAxisID: 'y2',
+                                data: this.totMoneyMonth
                             }],
                         },
                         options:{
@@ -157,7 +168,22 @@
                                     title: {
                                         display: true,
                                         text: 'Numero ordini',
-                                        color: 'rgb(0, 194, 184)',
+                                        font: {
+                                            size: 24,
+                                        },
+                                        color: 'rgb(54, 162, 235)',
+                                    },
+                                },
+                                'y2':{
+                                    type: 'linear',
+                                    position:'right',
+                                    title: {
+                                        display: true,
+                                        text: 'Entrate totali',
+                                        font: {
+                                            size: 24,
+                                        },
+                                        color: 'rgb(255, 205, 86)',
                                     },
                                 }
                             }
