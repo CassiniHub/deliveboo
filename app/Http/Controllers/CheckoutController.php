@@ -19,6 +19,7 @@ class CheckoutController extends Controller
      */
     public function index($dishesIds)
     {
+        dd($dishesIds);
         $dishesIds_decoded = json_decode($dishesIds);
         $totPrice = 0;
 

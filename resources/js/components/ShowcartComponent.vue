@@ -163,10 +163,7 @@
                 <div class="cart">
                     <div class="cart-list" v-for="dish in dishesArray">
 
-                        <div>
-                             <img :src="dish.dish.img" alt="">
-                        </div>
-
+                        
                         <div class="cart-dish-name">
                             <b>{{ dish.dish.name }}</b>
                         </div>
@@ -181,7 +178,7 @@
                 </div> <!-- cart -->
 
                 <div class="checkout-cart-totprice">
-                    <div >
+                    <div>
                         <b>Totale:</b>
                     </div>
 
@@ -189,10 +186,17 @@
                         <b>{{ getTotPrice }} €</b>
                     </div>
                 </div>
+
+                <form action="stringifiedActionForm" method="POST">
+                    <input type="hidden" name="_token" :value="csrf">
+                    <input type="text" name="ids" :value="stringifiedDishesIds">
+                    <button type="submit">
+                        Procedi al pagamento
+                    </button>
+                </form>
                 
-                <a :href="fullRoute" class="payment-link">Vai al Pagamento</a>
+                <a :href="fulLRoute" class="payment-link">Vai al Pagamento</a>
             
-               
             </div>
         </div>  <!-- cart-checkout-container -->
     </div> <!-- single root component -->
@@ -523,22 +527,26 @@
         props:{
             dishes: Array,
             restaurant: Object,
-            route: String
+            route: String,
+            
         },
         data: function() {
             return {
                 dishesArray: [],
                 showCheckout: false,
                 dishesIds: [],
+                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             }
         },
         mounted() {
-            console.log(this.dishes);
+            console.log(this.csrf);
         },
         methods: {
             getDish: function(dish) {
 
                 this.dishesIds.push(dish.id);
+                
+                sessionStorage.setItem('dishesIds', this.dishesIds);
 
                 if (this.dishesArray.length == 0) {
 
@@ -557,35 +565,42 @@
                     }
                 }
             },
+
             addDish: function(dish) {
                 dish.quantity ++
                 this.dishesIds.push(dish.dish.id);
                 console.log(this.dishesIds);
+                
             },
+
             removeDish: function(dish) {
                 this.dishesIds.pop(dish.dish.id);
                 console.log(this.dishesIds);
-
+                
                 if (dish.quantity > 1){
                     dish.quantity --
                 }else{
                     this.dishesArray.pop(dish);
                 }
             },
+
             changeView: function() {
                 this.showCheckout = !this.showCheckout;
             },
 
-            createOrder: function() {
-
-                axios.post('/api/create/order/' + JSON.stringify(this.dishesIds))
+            sendDishesIds: function() {
+                let ids =JSON.stringify(this.dishesIds);
+                console.log(ids);
+                axios.post('/checkouts/data/' + ids)
                     .then(res => {
                         console.log(res);
                     })
                     .catch(err => {
                         console.log(err);
                     });
-            }
+                // console.log('working');
+            },
+
         },
         computed: {
             getTotPrice: function() {
@@ -599,6 +614,14 @@
 
             fullRoute () {
                 return this.route + '/' + JSON.stringify(this.dishesIds);
+            },
+
+            stringifiedDishesIds () {
+                return JSON.stringify(this.dishesIds);
+            },
+
+            stringifiedActionForm () {
+                return "/checkouts/" + JSON.stringify(this.dishesIds);
             }
         }
     }
