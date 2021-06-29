@@ -13,26 +13,26 @@
                                 <h1>{{ restaurant.name }}</h1>
                             </div>
                         </div>
-        
+
                         <!-- why the score before the "address"? -->
                         <div class="-address">
                             <strong>Indirizzo:</strong> {{restaurant.address}}
                         </div>
-        
+
                         <div class="restaurant-email">
                             <strong>E-mail:</strong> {{restaurant.email}}
                         </div>
-        
+
                         <div class="restaurant-telephone">
                             <strong>Telefono:</strong> {{restaurant.telephone}}
                         </div>
-        
+
                         <div class="restaurant-description">
                             <strong>Descrizione:</strong> <br>
                             <p>{{restaurant.description}}</p>
                         </div>
                     </div> <!-- description-left -->
-                
+
                     <div class="description-right">
                         <div class="card-restaurant">
                             <div class="restaurant-img-cover">
@@ -52,7 +52,7 @@
                                    <strong>Accetta Contanti</strong>
                                 </span>
                                 <span v-else>
-                                    <strong>Non Accetta Contanti</strong>       
+                                    <strong>Non Accetta Contanti</strong>
                                 </span>
                             </div>
                         </div> <!-- card-restaurant -->
@@ -91,7 +91,7 @@
 
                         </div> <!-- dish-card -->
                     </div>
-                    
+
                     <div class="container-cart">
                         <h3>Anteprima Carrello</h3>
 
@@ -129,7 +129,7 @@
                         </div>
 
                         <div v-if="dishesArray.length > 0" class="button-cart">
-                            <div @click="changeView"><span class="checkout-link">Checkout carrello</span></div>
+                            <div @click="changeView"><span class="checkout-link"><strong>Checkout carrello</strong></span></div>
                         </div>
 
                     </div>
@@ -157,13 +157,16 @@
                 </div>
 
                 <div class="nav-text-subtitle">
-                    <h5>Conferma le tue scelte</h5>
+                    <b>Conferma le tue scelte</b>
                 </div>
 
                 <div class="cart">
                     <div class="cart-list" v-for="dish in dishesArray">
 
-                        
+                        <div class="cart-list-img">
+                             <img :src="dish.dish.img" alt="">
+                        </div>
+
                         <div class="cart-dish-name">
                             <b>{{ dish.dish.name }}</b>
                         </div>
@@ -194,333 +197,17 @@
                         Procedi al pagamento
                     </button>
                 </form>
-                
-                <a :href="fulLRoute" class="payment-link">Vai al Pagamento</a>
-            
+
+                <div class="payment-link">
+
+                    <a :href="fullRoute">Vai al Pagamento</a>
+
+                </div>
+
             </div>
         </div>  <!-- cart-checkout-container -->
     </div> <!-- single root component -->
 </template>
-
-<style scoped>
-
-    .spacer-type{
-        background-color: white;
-        height: 100px;
-        width: 80%;
-        margin: auto;
-        border-bottom: 1px solid grey;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: rgb(2, 150, 241);
-
-    }
-
-    .type-list{
-
-        height: 100%;
-        width: 80%;
-        padding: 35px;
-        margin: auto;
-        display: flex;
-        align-items: center;
-
-
-    }
-
-    .type-list-item{
-
-        /* border: 1px solid red; */
-        padding-left: 30px;
-    }
-
-    .element-container{
-        background-color: lightskyblue;
-    }
-
-    .restaurant-menu-cointainer{
-
-        min-height: 500px;
-        width: 80%;
-        margin: auto;
-        background-color: rgb(2, 150, 241);
-        display: flex;
-        justify-content: space-between;
-        position: relative;
-
-    }
-
-    .dishes-list{
-
-        width: 50%;
-        padding: 30px;
-        display: flex;
-        flex-wrap: wrap;
-        margin-top: 20px;
-    }
-
-    .dish-card{
-
-        height: 150px;
-        width: 300px;
-        transition: box-shadow 0.2s ease-in-out;
-        margin-right: 20px;
-        cursor: pointer;
-        background-color: white;
-        border-radius: 5px;
-    }
-
-    .dish-card:hover{
-
-        box-shadow: 5px 10px 18px #888888;
-    }
-
-    .dish-card-container{
-
-        height: 100%;
-        padding: 10px;
-        display: flex;
-    }
-
-    .dish-name-price{
-
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        width: 70%;
-        /* border: 1px solid black; */
-    }
-
-    .dish-name, .dish-price, .dish-ingr{
-
-        display: flex;
-        align-items: center;
-
-    }
-
-    .dish-name, .dish-price{
-
-        min-height: 25%;
-    }
-
-    .dish-ingr{
-
-        min-height: 50%
-
-    }
-
-
-    .dish-img{
-
-        width: 30%;
-        height: 80px;
-        border: 1px solid black;
-        margin: auto;
-    }
-
-    .dish-img img{
-
-        width: 100%;
-        height: 100%;
-        object-position: center;
-
-    }
-
-    .container-cart{
-        margin-top: 55px;
-        height: 50%;
-        width: 30%;
-        background: white;
-        box-shadow: 5px 10px 18px #888888;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 15px 0;
-        border-radius: 5px;
-
-    }
-
-    .cart{
-
-        width: 80%;
-        margin: auto;
-
-    }
-
-    .cart-list{
-        width: 100%;
-        padding-top: 15px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .cart-quantity b{
-        margin: 0 10px;
-    }
-
-    .dish-details{
-        width: 150px;
-        border: 1px solid black;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        flex-direction: column;
-    }
-
-    .cart-dish-img{
-        width: 50%;
-        height: 80px;
-        border: 1px solid black;
-        margin: auto;
-        display: flex;
-        justify-content: flex-end;
-    }
-    
-    .cart-dish-img img{
-
-        width: 100%;
-        height: 100%;
-        object-position: center;
-
-    }
-
-    .cart-dish-name{
-        display: flex;
-        justify-content: flex-end;
-    }
-
-    .button-cart{
-        cursor: pointer;
-        background-color: rgb(2, 150, 241);
-        color: white;
-        padding: 0 20px;
-        border-radius: 5px;
-        box-shadow: 2px 5px 5px #888888;
-        font-size: 25px;
-        font-weight: 600;
-    }
-
-    .dish-quantity{
-        font-size: 25px;
-    }
-
-    .cart-totprice{
-
-        width: 80%;
-        display: flex;
-        margin: 20px 0;
-        justify-content: flex-end;
-        font-size: 25px;
-        font-weight: 600;
-
-    }
-
-    .totprice{
-        margin-left: 20px;
-    }
-
-    
-
-    .cart-checkout-container{
-        position: absolute;
-        width: 100%;
-        height: 100vh;
-        background: rgb(99 168 195);
-        box-shadow: 5px 10px 18px #888888;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .cart-checkout{
-        width: 80%;
-        margin: auto;
-        background-color: white;
-        border-radius: 10px;
-    }
-
-
-    .nav-conferma{
-        width: 100%;
-        background-color: black;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-radius: 10px 10px 0 0;
-    }
-
-    .nav-text{
-        width: 20%;
-        margin: 0px 15px;
-        display: flex;
-        align-items: center;
-
-    }
-
-    .nav-text-subtitle{
-        width: 80%;
-        margin: 30px auto;
-    }
-
-    .nav-text-subtitle h5{
-        font-weight: 600;
-    }
-
-    .quadrato{
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-    }
-
-    .x{
-        color: white;
-        padding: 0 20px;
-        cursor: pointer;
-        font-size: 20px;
-        font-weight: 600;
-        margin-right: 10px;
-        transition: all 1s ease 0s;
-    }
-
-    .x:hover{
-        background-color: red;
-    }
-
-    .checkout-cart-totprice{
-
-        width: 100%;
-        display: flex;
-        margin: 20px 0;
-        justify-content: flex-end;
-        font-size: 25px;
-        font-weight: 600;
-
-    }
-
-    .checkout-totprice{
-        margin-left: 20px;
-    }
-
-    .payment-link{
-        width: 100%;
-        padding: 5px;
-        border-radius: 5px;
-        color: white;
-        font-weight: 600;
-        cursor: pointer;
-        background-color: rgb(2, 150, 241);
-        padding: 0 20px;
-        box-shadow: 2px 5px 5px #888888;
-        font-size: 25px;
-        text-align: center;
-        margin: 30px 0px 30px 0px;
-    }
-
-</style>
 
 <script>
     export default {
@@ -528,7 +215,7 @@
             dishes: Array,
             restaurant: Object,
             route: String,
-            
+
         },
         data: function() {
             return {
@@ -545,7 +232,7 @@
             getDish: function(dish) {
 
                 this.dishesIds.push(dish.id);
-                
+
                 sessionStorage.setItem('dishesIds', this.dishesIds);
 
                 if (this.dishesArray.length == 0) {
@@ -570,13 +257,13 @@
                 dish.quantity ++
                 this.dishesIds.push(dish.dish.id);
                 console.log(this.dishesIds);
-                
+
             },
 
             removeDish: function(dish) {
                 this.dishesIds.pop(dish.dish.id);
                 console.log(this.dishesIds);
-                
+
                 if (dish.quantity > 1){
                     dish.quantity --
                 }else{
