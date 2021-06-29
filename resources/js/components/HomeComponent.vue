@@ -3,7 +3,7 @@
 
     <div id="jumbotron">
 
-        <div class="container">
+        <div class="container-jumbotron">
 
 
             <div v-for ="i in [sliderIndex]" class="slider-jumbotron">
