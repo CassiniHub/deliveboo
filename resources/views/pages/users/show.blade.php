@@ -15,12 +15,18 @@
         <li>
             <a href="{{ route('restaurants.protectedShow', $restaurant ->id) }}">
                 {{ $restaurant ->name }}
-            </a>    
+            </a>
         </li>
         @endforeach
     </ul>
 @endsection
 
 @section('main-content')
-    Seleziona un ristorante per inziare
+
+    <div class="protected-content-flex">
+
+        Seleziona un ristorante per iniziare
+
+    </div>
+
 @endsection

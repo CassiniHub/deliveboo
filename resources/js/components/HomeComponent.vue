@@ -45,7 +45,19 @@
 
     <div class="spacer-precarousel">
 
-       Scegli tra le catagorie più richieste
+        <!-- <div class="cool-image">
+
+            <img :src="`storage/images/jumbotron/deliveboo-img.jpg`" alt="">
+
+        </div> -->
+
+        <div class="spacer-disclaimer">
+
+            Scegli tra le catagorie più richieste
+
+        </div>
+
+
 
     </div>
 
