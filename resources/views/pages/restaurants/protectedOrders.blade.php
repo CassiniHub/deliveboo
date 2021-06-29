@@ -20,7 +20,7 @@
 
 @section('main-content')
     <ul>
-        @foreach ($ordersArr as $order)
+        @foreach ($orders as $order)
             <li>
                 {{ $order ->id }}
             </li>
