@@ -10,26 +10,27 @@
 
     background-color: white;
     height: 100px;
-    width: 80%;
+    width: 100%;
     margin: auto;
     border-bottom: 1px solid grey;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgb(2, 150, 241);
+    color: #1F8691;
 
 }
 
 .element-container{
 
-    background-color: lightskyblue;
+    background-color: #FABD12;
+    margin: 0px 0px 20px 0;
 
     .restaurant-menu-cointainer{
 
         min-height: 500px;
         width: 80%;
         margin: auto;
-        background-color: rgb(2, 150, 241);
+        background-color: #1F8691;
         display: flex;
         justify-content: space-between;
         position: relative;
@@ -168,7 +169,7 @@
 
                         .button-cart{
                             cursor: pointer;
-                            background-color: rgb(2, 150, 241);
+                            background-color: #FABD12;
                             color: white;
                             padding: 0 20px;
                             border-radius: 5px;
