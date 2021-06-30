@@ -144,7 +144,10 @@
                         </div>
 
                         <div v-if="dishesArray.length > 0" class="button-cart">
-                            <div v-on:click="changeView"><span class="checkout-link"><strong>Checkout carrello</strong></span></div>
+                            {{-- <div v-on:click="setSession"><span class="checkout-link"><strong>Checkout carrello</strong></span></div> --}}
+                            <form v-on:submit.prevent="setSession">
+                                <input type="submit" value="Checkout Carrello">
+                            </form>
                         </div>
 
                     </div>
@@ -189,7 +192,7 @@
                         </div>
 
                         <div class="cart-quantity">
-                            <span class="button-cart" v-on:click="removeDish(dish)" >-</span>
+                            <span class="button-cart" v-on:click="removeDish(dish)">-</span>
                                 <b class="dish-quantity">@{{ dish.quantity }}</b>
                             <span class="button-cart" v-on:click="addDish(dish)" >+</span>
                         </div>
@@ -208,15 +211,17 @@
                 </div>
 
                 <div class="payment-link">
-                    
-                    <form action="{{ route('checkouts.index') }}" method="POST">
+                    <div>
+                        <a href="{{ route('checkouts.index') }}">Cristo funziona ti prego</a>
+                    </div>
+                    {{-- <form action="{{ route('checkouts.session', dishesIds) }}" method="POST">
                         @csrf
                         @method('POST')
                         <input id="ids" name="ids" :value="stringifiedDishesIds" type="text" hidden style="display: none">
                         <button type="submit">
                             Vai al pagamento
                         </button>
-                    </form>
+                    </form> --}}
                 </div>
 
             </div>
@@ -286,6 +291,19 @@
                 changeView: function() {
                     this.showCheckout = !this.showCheckout;
                 },
+
+                setSession: function() {
+                    ids = JSON.stringify(this.dishesIds);
+                    axios.post('/checkouts/session/cart/', {ids: ids})
+                        .then(res => {
+                            console.log(res);;
+                        })
+                        .catch(err => console.log(err));
+
+                    this.showCheckout = !this.showCheckout;
+                },
+
+                
             },
 
             computed: {

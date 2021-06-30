@@ -8,6 +8,7 @@ use App\Order;
 use App\Library\Helpers\MyValidation;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CheckoutController extends Controller
 {
@@ -18,15 +19,27 @@ class CheckoutController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function setSession(Request $request) {
-
-        $ids_decoded = json_decode($request -> ids);
-        session(['ids' => $ids_decoded]);
+    public function setSession(Request $request, $dishesIds) {
+        dd(session() -> all());
+        // $ids_decoded = json_decode($request -> ids);
+        // session(['ids' => $ids_decoded]);
         return redirect() -> route('checkouts.index');
+    }
+
+    public function setCart(Request $request) {
+        $ids = json_decode($request -> ids);
+        Session::put('ids', $ids);
+        // $request->session()->put('ids', $ids);
+        // session() -> put('ids', $ids);
+        // session(['ids' => $ids]);
+
+        return response() -> json(session() -> get('ids'), 200);
     }
 
     public function index()
     {
+        session() -> forget('ids');
+        dd(session() -> all());
         $ids = session() -> get('ids');
         $ids_encoded = json_encode($ids);
         

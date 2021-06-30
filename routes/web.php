@@ -33,7 +33,10 @@ Route::post('/dishes/changeVisibility/{id}', 'DishController@changeVisibility')
 // PAYMENTS ROUTES
 Route::get('/checkouts', 'CheckoutController@index')
     ->name('checkouts.index');
-Route::post('/checkouts', 'CheckoutController@setSession')
+Route::post('/checkouts/session/cart', 'CheckoutController@setCart')
+    ->name('checkouts.setCart');
+    
+Route::post('/checkouts/{disheshIds}', 'CheckoutController@setSession')
     ->name('checkouts.session');
 Route::post('/checkouts/transaction/{totPrice}/{dishes_ids}', 'CheckoutController@transaction')
     ->name('checkouts.transaction');
