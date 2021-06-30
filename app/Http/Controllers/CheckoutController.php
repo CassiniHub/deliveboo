@@ -17,13 +17,22 @@ class CheckoutController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($dishesIds)
+
+    public function setSession(Request $request) {
+
+        $ids_decoded = json_decode($request -> ids);
+        session(['ids' => $ids_decoded]);
+        return redirect() -> route('checkouts.index');
+    }
+
+    public function index()
     {
-        dd($dishesIds);
-        $dishesIds_decoded = json_decode($dishesIds);
+        $ids = session() -> get('ids');
+        $ids_encoded = json_encode($ids);
+        
         $totPrice = 0;
 
-        foreach ($dishesIds_decoded as $id) {
+        foreach ($ids as $id) {
             $dish = Dish::findOrFail($id);
             $totPrice += $dish -> price;
         }
@@ -39,7 +48,7 @@ class CheckoutController extends Controller
         return view('pages.checkouts.index', [
             'token'    => $token,
             'totPrice' => $totPrice,
-            'dishes_ids' => $dishesIds
+            'dishes_ids' => $ids_encoded
         ]);
     }
 
@@ -79,12 +88,10 @@ class CheckoutController extends Controller
             foreach ($dishesIds_decoded as $id) {
                 $order -> dishes() -> attach($id);
             }
-            
-            return back() -> with('success_message', 'Transaction successful. The ID is:' . $transaction -> id);
+            // return back() -> with('success_message', 'Transaction successful. The ID is:' . $transaction -> id);
+            return redirect() -> route('checkouts.success');
         } else {
             $errorString = "";
-
-            dd('dioporco');
 
             foreach($result->errors->deepAll() as $error) {
                 $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
@@ -94,6 +101,16 @@ class CheckoutController extends Controller
             // header("Location: " . $baseUrl . "index.php");
             return back() -> withErrors('An error occurred with the message' . $result -> message);
         }
+    }
+
+    public function success() {
+        session() -> forget('ids');
+        session() -> save();
+        return view('pages.checkouts.success');
+    }
+
+    public function denied() {
+        return view('pages.checkouts.denied');
     }
 
     /**

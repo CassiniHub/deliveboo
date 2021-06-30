@@ -31,12 +31,16 @@ Route::post('/dishes/changeVisibility/{id}', 'DishController@changeVisibility')
     ->name('dishes.changeVisibility');
 
 // PAYMENTS ROUTES
-Route::post('/checkouts/{dishesIds}', 'CheckoutController@index')
+Route::get('/checkouts', 'CheckoutController@index')
     ->name('checkouts.index');
+Route::post('/checkouts', 'CheckoutController@setSession')
+    ->name('checkouts.session');
 Route::post('/checkouts/transaction/{totPrice}/{dishes_ids}', 'CheckoutController@transaction')
     ->name('checkouts.transaction');
-
-Route::view('/success', 'pages.orders.success');
+Route::get('/checkouts/payment/success', 'CheckoutController@success')
+    ->name('checkouts.success');
+Route::get('/checkouts/payment/denied', 'CheckoutController@denied')
+    ->name('checkouts.denied');
 
 // authentication routes
 Auth::routes();
