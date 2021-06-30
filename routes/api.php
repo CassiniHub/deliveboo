@@ -23,3 +23,9 @@ Route::get('filter/category/{id}', 'ApiController@index')
 
 Route::post('create/order/{dishesIds}', 'OrderController@createOrder')
     ->name('orders.createOrder');
+
+Route::get('chart/restaurant/{id}', 'RestaurantController@getOrders')
+    ->name('restaurants.getOrders');
+
+Route::get('chart/restaurant/year/{id}/{year}', 'RestaurantController@getOrdersYears')
+    ->name('restaurants.getOrdersYears');

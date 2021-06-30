@@ -14,6 +14,14 @@ class OrderController extends Controller
     {
         $this -> middleware('auth') -> except(['show']);
     }
+
+    public function changeStatus($id) {
+        $order = Order::findOrFail($id);
+        $order ->status = 0;
+        $order -> save();
+
+        return redirect() ->route('restaurants.protectedOrders', $order ->restaurant_id);
+    }
     /**
      * Display a listing of the resource.
      *
