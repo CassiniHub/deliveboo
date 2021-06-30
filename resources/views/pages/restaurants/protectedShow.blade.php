@@ -106,12 +106,6 @@
 
                             </div>
 
-                            <div class="discount">
-
-                                <b>Sconto: {{ $dish ->discount }}%</b>
-
-                            </div>
-
                             <div class="ingredients">
                                 <div>
                                     <b>Ingredienti:</b>
