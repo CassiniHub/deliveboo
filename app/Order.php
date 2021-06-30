@@ -13,7 +13,7 @@ class Order extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'tot_price', 'status', 'notes', 'delivery_address', 'order_datetime'
+        'tot_price', 'status', 'notes', 'delivery_address', 'order_datetime', 'email', 'telephone', 'doorbell_name'
     ];
 
     public function dishes() {

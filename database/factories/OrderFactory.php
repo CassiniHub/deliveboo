@@ -11,5 +11,8 @@ $factory->define(Order::class, function (Faker $faker) {
         'notes'            => $faker -> text($maxNbChars = 300),
         'delivery_address' => $faker -> address(),
         'order_datetime'   => $faker -> dateTimeBetween('-2 years', 'now'),
+        'email'            => $faker->unique()->safeEmail,
+        'telephone'        => $faker -> numerify('##########'), 
+        'doorbell_name'    => $faker -> lastName(),
     ];
 });
