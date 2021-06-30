@@ -102,8 +102,7 @@ class CheckoutController extends Controller
             Mail::to($mail)
                 ->send(new OrderConfirm($order, $restaurant));
 
-            // return back() -> with('success_message', 'Transaction successful. The ID is:' . $transaction -> id);
-            return redirect() -> route('checkouts.success');
+            return redirect() -> route('checkouts.success', $order ->id);
         } else {
             $errorString = "";
 
@@ -117,10 +116,11 @@ class CheckoutController extends Controller
         }
     }
 
-    public function success() {
+    public function success($id) {
+        $order = Order::findOrFail($id);
         session() -> forget('ids');
         session() -> save();
-        return view('pages.checkouts.success');
+        return view('pages.checkouts.success', compact('order'));
     }
 
     public function denied() {

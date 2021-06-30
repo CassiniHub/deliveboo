@@ -41,7 +41,7 @@ Route::post('/checkouts', 'CheckoutController@setSession')
     ->name('checkouts.session');
 Route::post('/checkouts/transaction/{totPrice}/{dishes_ids}', 'CheckoutController@transaction')
     ->name('checkouts.transaction');
-Route::get('/checkouts/payment/success', 'CheckoutController@success')
+Route::get('/checkouts/payment/success/{id}', 'CheckoutController@success')
     ->name('checkouts.success');
 Route::get('/checkouts/payment/denied', 'CheckoutController@denied')
     ->name('checkouts.denied');
