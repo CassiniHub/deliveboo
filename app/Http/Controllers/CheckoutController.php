@@ -7,7 +7,8 @@ use App\Order;
 use App\Restaurant;
 
 use App\Library\Helpers\MyValidation;
-
+use App\Mail\OrderConfirm;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
@@ -79,6 +80,7 @@ class CheckoutController extends Controller
             $transaction = $result->transaction;
             // header("Location: " . $baseUrl . "transaction.php?id=" . $transaction->id);
 
+            // create order element in DB
             $validatedData = $request -> validate(MyValidation::validateOrder());
             $order = Order::make($validatedData);
 
@@ -94,6 +96,12 @@ class CheckoutController extends Controller
             foreach ($dishesIds_decoded as $id) {
                 $order -> dishes() -> attach($id);
             }
+
+            // send mail
+            $mail = $order ->email;
+            Mail::to($mail)
+                ->send(new OrderConfirm($order, $restaurant));
+
             // return back() -> with('success_message', 'Transaction successful. The ID is:' . $transaction -> id);
             return redirect() -> route('checkouts.success');
         } else {

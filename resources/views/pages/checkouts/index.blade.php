@@ -87,12 +87,12 @@
 
                                 <div class="payment-ta">
 
-                                    <label for="note">
-                                        <span class="span-note">
+                                    <label for="notes">
+                                        <div class="text-center">
                                             Note:
-                                        </span>
+                                        </div>
 
-                                        <textarea name="note" id="note" cols="30" rows="3">
+                                        <textarea name="notes" id="notes" cols="30" rows="3">
 
                                         </textarea>
 
@@ -103,17 +103,50 @@
 
                                 <div class="payment-da">
 
-                                    <span>
+                                    <div class="text-center">
 
                                         Indirizzo di spedizione:
 
-                                    </span>
+                                    </div>
                                     <input name="delivery_address" id="delivery_address" type="text">
 
                                 </div>
 
 
+                                <div class="payment-da">
 
+                                    <div class="text-center">
+
+                                        Nome sul campanello:
+
+                                    </div>
+                                    <input name="doorbell_name" id="doorbell_name" type="text">
+
+                                </div>
+
+
+                                <div class="payment-da">
+
+                                    <div class="text-center">
+
+                                        email:
+
+                                    </div>
+                                    <input name="email" id="email" type="text">
+
+                                </div>
+
+
+                                <div class="payment-da">
+
+                                    <div class="text-center">
+
+                                        Telefono:
+
+                                    </div>
+                                    <input name="telephone" id="telephone" type="text">
+
+                                </div>
 
                             </div>
 
