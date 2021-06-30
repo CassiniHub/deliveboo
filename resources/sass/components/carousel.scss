@@ -19,7 +19,7 @@
     &::-webkit-scrollbar-thumb{
 
         border-radius: 10px;
-        background-color: gold
+        background-color: #FABD12;
     }
 }
 
@@ -33,8 +33,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: radial-gradient(#FE8F50, #FFC065);
-
+    background-color: #1F8691;
     .carousel-span{
         display: flex;
         justify-content: center;
@@ -54,7 +53,7 @@
         border-radius: 50%;
         left: 0;
         z-index: 1;
-        background: white;
+        background-color: #FABD12;
         }
 
         .right-arrow{
@@ -66,7 +65,7 @@
 
         .section-carousel{
 
-            width: 60%;
+            width: 96%;
             height: 150px;
             background: #f4f4f4;
             margin: 10px auto;
@@ -74,7 +73,7 @@
             justify-content: left;
             align-items: center;
             overflow-x: scroll;
-            background: radial-gradient(#FE8F50, #FFC065);
+            background-color: #1F8691;
             border-radius: 5px;
 
 
