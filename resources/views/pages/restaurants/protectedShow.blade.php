@@ -1,5 +1,5 @@
 @extends('layouts.dashboard-layout')
- 
+
 @section('sidebar-content')
     <div>
         <a href="{{ route('users.show', Auth::user() ->id) }}">
@@ -19,25 +19,31 @@
 @endsection
 
 @section('main-content')
-    <h1>
-        {{ $restaurant ->name }}
-    </h1>
 
-    <div class="restaurant-actions">
-        <form action="{{ route('restaurants.destroy', $restaurant ->id) }}" method="POST">
+<div class="main-content-container">
+
+    <div class="restaurant-delete-edit">
+
+        <div class="protected-company-name">
+            {{ $restaurant ->name }}
+        </div>
+
+        <div class="restaurant-actions">
+
+            <form action="{{ route('restaurants.destroy', $restaurant ->id) }}" method="POST">
             @csrf
             @method('DELETE')
             <button class="btn btn-danger" type="submit">Elimina ristorante</button>
-        </form>
-    
-        <form action=" {{ route('restaurants.edit', $restaurant ->id) }} " method="GET">
+            </form>
+
+            <form action=" {{ route('restaurants.edit', $restaurant ->id) }} " method="GET">
             @csrf
             @method('GET')
             <button class="btn btn-primary" type="submit">Modifica dati ristorante</button>
-        </form>
+            </form>
+        </div>
+
     </div>
-
-
 
     <div class="dishes-list">
         <h3>I tuoi piatti</h3>
@@ -61,7 +67,7 @@
                                 @method('DELETE')
                                 <button class="btn btn-danger" type="submit">Elimina piatto</button>
                             </form>
-                        
+
                             <form action="{{ route('dishes.edit', $dish) }}" method="GET">
                                 @csrf
                                 @method('GET')
@@ -72,27 +78,67 @@
                                 @csrf
                                 @method('POST')
                                 <button class="btn btn-warning" type="submit">
-                                    
+
                                     @if ($dish ->is_visible)
                                         Nascondi
                                     @else
                                         Mostra
                                     @endif
-                                    piatto
+                                        piatto
                                 </button>
                             </form>
                         </div>
                     </div>
-                    <div class="ingredients">
-                        <div>
-                            <b>Ingredienti:</b>
+
+                    <div class="dish-info-img">
+
+                        <div class="dish-info">
+
+                            <div class="price">
+
+                                <b>Prezzo: € {{ $dish ->price }}</b>
+
+                            </div>
+
+                            <div class="type">
+
+                                <b>Tipo di piatto: {{ $dish ->type }}</b>
+
+                            </div>
+
+                            <div class="discount">
+
+                                <b>Sconto: {{ $dish ->discount }}%</b>
+
+                            </div>
+
+                            <div class="ingredients">
+                                <div>
+                                    <b>Ingredienti:</b>
+                                </div>
+                                <p>
+                                    {{ $dish ->ingredients }}
+                                </p>
+                            </div>
                         </div>
-                        <p>
-                            {{ $dish ->ingredients }}
-                        </p>
+                        <div class="dish-img-info">
+
+                            <img src="{{ $dish ->img }}" alt="">
+
+                        </div>
                     </div>
+
                 </li>
             @endforeach
         </ul>
     </div>
+
+</div>
+
+
+
+
+
+
+
 @endsection

@@ -40,7 +40,9 @@
                             </div>
 
                             <div class="tempo-consegna">
-                                Consegna in <br> 30 minuti
+                                Consegna <br>
+                                in <br> 
+                                30 minuti
                             </div>
 
                             <div class="delivery-cost">
