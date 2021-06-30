@@ -180,13 +180,18 @@
 
         #chart{
     
+            h1{
+                margin-top: 40px;
+            }
+
             .chart-btns{
     
                 display: flex;
-                margin-bottom: 50px;
+                margin: 50px 20px;
                 align-items: center;
+                justify-content: center;
     
-                .all-restaurants-link{
+                .main-link{
         
                     margin-right: 30px;
         
@@ -195,6 +200,25 @@
                         width: 150px;
                         text-align: center;
                         background-color: lightcoral;
+                        color: #fff;
+                        border-radius: 5px;
+                        cursor: pointer;
+    
+                        &:hover{
+                            transform: scale(1.1);
+                        }
+                    }
+                }
+
+                .second-link{
+
+                    margin-right: 30px;
+        
+                    div{
+                        line-height: 40px;
+                        width: 150px;
+                        text-align: center;
+                        background-color: lightseagreen;
                         color: #fff;
                         border-radius: 5px;
                         cursor: pointer;
@@ -225,6 +249,11 @@
                             opacity: .5;
                         }
                     }
+                }
+
+                .inner-container{
+                    display: flex;
+
                 }
             }
         }
