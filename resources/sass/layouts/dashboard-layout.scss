@@ -109,9 +109,14 @@
 
                         .dish-name{
 
-                            h4{
+                            display: flex;
+                            align-items: center;
 
+                            h4{
+                                position: relative;
+                                top: 5px;
                                 text-transform: uppercase;
+                                margin-right: 15px;
                             }
                         }
 
@@ -154,7 +159,7 @@
 
                             width: 50%;
                             background-color: white;
-                            height: 231px;
+                            height: 188px;
                             border-radius: 0 0 5px 0;
                             display: flex;
                             align-items: center;
@@ -162,8 +167,8 @@
 
                             img{
 
-                                height: 200px;
-                                width: 200px;
+                                height: 150px;
+                                width: 150px;
                                 border-radius: 5px;
                             }
                         }

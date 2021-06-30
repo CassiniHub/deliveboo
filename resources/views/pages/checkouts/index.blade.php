@@ -5,80 +5,136 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Checkout</title>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 </head>
 <body>
-    @if (session('success_message'))
-        <div>
-            {{ session('success_message') }}
-        </div>
-    @endif
 
-    @if (count($errors) > 0)
-        <div>
-            <ul>
-                @foreach ($errors -> all() as $error)
-                    <li>
-                        {{ $error }}
-                    </li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    <div class="payment-container">
 
-    <div class="flex-center position-ref full-height">
-        @if (Route::has('login'))
-            <div class="top-right links">
-                @auth
-                    <a href="{{ url('/home') }}">Home</a>
-                @else
-                    <a href="{{ route('login') }}">Login</a>
-
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}">Register</a>
-                    @endif
-                @endauth
+        @if (session('success_message'))
+            <div>
+                {{ session('success_message') }}
             </div>
         @endif
 
-        <div class="content">
-            <form method="post" id="payment-form" action="{{ route('checkouts.transaction', [$totPrice, $dishes_ids]) }}">
-                @csrf
-                <section>
+        @if (count($errors) > 0)
+            <div>
+                <ul>
+                    @foreach ($errors -> all() as $error)
+                        <li>
+                            {{ $error }}
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-                    <label for="amount">
-                        <span class="input-label">Amount</span>
-                        <div class="input-wrapper amount-wrapper">
-                            <span>
-                                {{ $totPrice }}
-                            </span>
-                        </div>
-                    </label>
+        <div class="flex-center position-ref full-height">
 
-                    <label for="note">
-                        <span>
-                            Note:
-                        </span>
-                        <textarea name="note" id="note" cols="30" rows="10">
-    
-                        </textarea>
-                    </label>
+            <div class="payment-header">
 
-                    <label for="delivery_address">
-                        <span>
-                            Delivery address:
-                        </span>
-                        <input name="delivery_address" id="delivery_address" type="text">
-                    </label>
+                @if (Route::has('login'))
+                    <div class="top-right links">
+                        @auth
+                            <a href="{{ url('/home') }}">Torna alla Home</a>
+                        @else
+                            <a href="{{ route('login') }}">Login</a>
 
-                    <div class="bt-drop-in-wrapper">
-                        <div id="bt-dropin"></div>
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}">Register</a>
+                            @endif
+                        @endauth
                     </div>
-                </section>
+                @endif
 
-                <input id="nonce" name="payment_method_nonce" type="hidden" />
-                <button class="button" type="submit"><span>Test Transaction</span></button>
-            </form>
+            </div>
+
+
+            <div class="content">
+                <form method="post" id="payment-form" action="{{ route('checkouts.transaction', [$totPrice, $dishes_ids]) }}">
+                    @csrf
+                    <section>
+
+                        <div class="payment-recap">
+
+                            <div class="payment-title">
+
+                                Riepilogo ordine:
+
+                            </div>
+
+                            <div class="order-recap">
+
+                                <div class="input-label">
+                                    Totale da Pagare:
+                                </div>
+                                <div class="input-wrapper amount-wrapper">
+
+                                    {{ $totPrice }} €
+
+                                </div>
+
+                            </div>
+
+                            <div class="payment-info-rider">
+
+                                <div class="payment-ta">
+
+                                    <label for="note">
+                                        <span class="span-note">
+                                            Note:
+                                        </span>
+
+                                        <textarea name="note" id="note" cols="30" rows="3">
+
+                                        </textarea>
+
+
+                                    <label for="delivery_address">
+
+                                </div>
+
+                                <div class="payment-da">
+
+                                    <span>
+
+                                        Indirizzo di spedizione:
+
+                                    </span>
+                                    <input name="delivery_address" id="delivery_address" type="text">
+
+                                </div>
+
+
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="bt-drop-in-wrapper">
+                            <div id="bt-dropin" class="payment-credit-card"></div>
+                        </div>
+                    </section>
+
+                    <div class="hide-button">
+
+                        <input id="nonce" name="payment_method_nonce" type="hidden" />
+                        <button class="btn btn-primary paybutton" type="submit">Procedi al pagamento</button>
+
+                    </div>
+
+                </form>
+            </div>
         </div>
+
     </div>
 
     <script src="https://js.braintreegateway.com/web/dropin/1.30.1/js/dropin.min.js"></script>

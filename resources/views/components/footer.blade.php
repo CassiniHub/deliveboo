@@ -113,7 +113,7 @@
                     <ul>
 
                         <li class="footer-bolder">
-                            <span>Porta Deliveroo con te</span> 
+                            <span>Porta Deliveboo con te</span>
                         </li>
 
                         <li>
