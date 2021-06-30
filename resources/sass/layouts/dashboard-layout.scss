@@ -236,6 +236,16 @@
         ul{
             list-style: none;
 
+            .gone{
+                box-shadow: 0 0.125rem 0.25rem lightgreen!important;    
+                border: 1px solid lightgreen;        
+            }
+
+            .todo{
+                box-shadow: 0 0.125rem 0.25rem lightcoral !important;         
+                border: 1px solid lightcoral;        
+            } 
+
             .order-card{
                 width: 500px;
                 margin: 30px;
@@ -250,16 +260,6 @@
                     font-weight: 600;
                     font-size: 1.1em;
                 }
-
-                .gone{
-                    box-shadow: 0 0.125rem 0.25rem lightgreen!important;    
-                    border: 1px solid lightgreen;        
-                }
-
-                .todo{
-                    box-shadow: 0 0.125rem 0.25rem lightcoral !important;         
-                    border: 1px solid lightcoral;        
-                } 
             }
         }
     }
