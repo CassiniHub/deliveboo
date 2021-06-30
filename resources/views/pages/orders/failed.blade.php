@@ -27,7 +27,7 @@
 
             <a class="failed-home-button" href="">Torna alla Home</a>
 
-            <a class="failed-ctb-button" href="">Continua con gli acquisti</a>
+            <a class="failed-ctb-button" href="">Torna all'ordine</a>
 
         </div>
 

@@ -1,0 +1,143 @@
+.payment-container{
+
+    background-color: aquamarine;
+    height: 95vh;
+    width: 70%;
+    margin: 20px auto;
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .payment-header{
+
+        margin: 10px 20px;
+
+        .top-right{
+
+            text-align: center;
+            background-color: white;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            font-weight: bold;
+            padding: 10px 0;
+            border-radius: 5px;
+
+            a{
+
+                text-decoration: none;
+                border: 2px solid #FABD12;
+                padding: 5px 10px;
+                border-radius: 5px;
+                color: #007E8E;
+                &:hover{
+
+                    border: 2px solid #007E8E;
+                    color: #FABD12;
+                }
+            }
+
+        }
+    }
+
+    .content{
+
+        background-color: white;
+        height: 75vh;
+        padding: 20px;
+        margin: 20px;
+        border-radius: 5px;
+
+        .payment-recap{
+
+            display: flex;
+            flex-direction: column;
+
+            .payment-title{
+
+                height: 50px;
+                text-align: center;
+                font-size: 20px;
+                font-weight: bold;
+            }
+
+
+            .order-recap{
+
+                display: flex;
+                font-weight: bold;
+
+                .input-label{
+
+                    margin-right: 5px;
+                }
+
+            }
+
+            .payment-info-rider{
+
+                display: flex;
+                flex-direction: column;
+                padding: 20px 0;
+                font-weight: bold;
+
+                .span-note{
+
+                    position: relative;
+                    bottom: 35px;
+                }
+
+                textarea{
+
+                    border-radius: 5px;
+                    border: 1px solid #7D7D7D;
+                }
+
+                #delivery_address{
+
+                    border: none;
+                }
+            }
+
+        }
+
+        .payment-credit-card{
+
+            background-color: aquamarine;
+            min-height: 300px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+        }
+
+        .hide-button{
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 190px;
+
+            .paybutton{
+
+                font-weight: bold;
+                position: relative;
+                bottom: 40px;
+                transition: all 0.5 ease;
+                background-color: #007E8E;
+
+                &:hover{
+
+                    transform: scale(1.2);
+                    color: #FABD12;
+                }
+            }
+        }
+    }
+
+}

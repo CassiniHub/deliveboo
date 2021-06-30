@@ -19,11 +19,11 @@
                 </div>
 
                 <div class="searchbar-container">
-                <label for="searchbar">Dimmi... cosa desideri?</label>
-                <input
+                    <label for="searchbar">Dimmi... cosa desideri?</label>
+                    <input
                     v-model="search"
                     type="text" name="searchbar" placeholder="Inserisci qui la categoria">
-            </div>
+                </div>
 
             <div class="search-dropdown shadow-sm">
                 <ul v-if="search">
@@ -38,7 +38,7 @@
                 </ul>
             </div>
 
-            </div>
+        </div>
 
         </div>
     </div>
