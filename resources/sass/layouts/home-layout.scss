@@ -6,19 +6,56 @@
 
 @import '../components/jumbotron';
 
+.spacer-precarousel{
 
+    width: 100%;
+    margin: auto;
+    font-size: 25px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FABD12;
+
+/*     .cool-image{
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+
+        img{
+
+
+
+        }
+    } */
+
+    .spacer-disclaimer{
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+    }
+
+}
 
 .restaurants-container{
-    width: 70%;
+    width: 100%;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
+    background-color: #FABD12;
+
 
     .restaurant-card{
         width: 400px;
         flex-shrink: 0;
         margin: 20px auto;
         padding: 15px;
+        background-color: white;
+        border-radius: 5px;
 
         a{
             text-decoration: none;
@@ -47,6 +84,7 @@
             height: 80px;
             align-items: center;
             justify-content: center;
+            color: #007E8A;
         }
 
         .categories-type-list{
@@ -56,6 +94,7 @@
             display: flex;
             align-items: center;
             justify-content: space-around;
+            color: #007E8A;
         }
     }
 }

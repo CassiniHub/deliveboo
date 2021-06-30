@@ -3,8 +3,22 @@
 
     <div id="jumbotron">
 
-        <div class="container">
-            <div class="searchbar-container">
+        <div class="container-jumbotron">
+
+
+            <div v-for ="i in [sliderIndex]" class="slider-jumbotron">
+
+                <div class="prev" @click="prev">
+                  <i class="fas fa-angle-left"></i>
+                </div>
+
+                <img :src="currentImg" alt="">
+
+                <div class="next" @click = "next">
+                  <i class="fas fa-angle-right"></i>
+                </div>
+
+                <div class="searchbar-container">
                 <label for="searchbar">Dimmi... cosa desideri?</label>
                 <input
                     v-model="search"
@@ -24,24 +38,31 @@
                 </ul>
             </div>
 
-            <div class="jumbotron-video">
-
-                <video id="videoBG" autoplay muted loop>
-                <source :src="`storage/video/video-jumbo.mp4`" type="video/mp4">
-                </video>
-
             </div>
+
         </div>
     </div>
 
     <div class="spacer-precarousel">
 
-       Scegli tra le catagorie più richieste
+        <!-- <div class="cool-image">
+
+            <img :src="`storage/images/jumbotron/deliveboo-img.jpg`" alt="">
+
+        </div> -->
+
+        <div class="spacer-disclaimer">
+
+            Scegli tra le catagorie più richieste
+
+        </div>
+
+
 
     </div>
 
-    <div class="main-carousel color-gradient">
-        <div class="section-carousel color-gradient">
+    <div class="main-carousel">
+        <div class="section-carousel">
             <div v-for="category in carouselCategories" class="categories" :class="selectedIds.includes(category.id) ? 'active' : ''">
                 <img :src="`storage/images/categories/${category.img_cover}`">
                 <div @click="getCategoryId(category)" class="carousel-layover">
@@ -88,55 +109,6 @@
 </div>
 </template>
 
-<style scoped>
-
-.searchbar-container input{
-    text-align: center;
-    border: 3px solid #FABD12;
-}
-
-#jumbotron .container .jumbotron-video{
-
-    height: 100%;
-    width: 40%;
-}
-
-#videoBG{
-
-    height: 100%;
-    width: 100%;
-}
-
-.spacer-precarousel{
-
-    width: 100%;
-    height: 50px;
-    margin: auto;
-    text-align: center;
-    line-height: 50px;
-    font-size: 25px;
-
-}
-
-.color-gradient{
-
-    background: radial-gradient(#FE8F50, #FFC065);
-
-}
-
-.main-carousel{
-
-    height: 200px;
-}
-
-.test-prova{
-
-    height: 100px;
-    background-color: #FABD12;
-}
-
-</style>
-
 <script>
     export default {
         props: {
@@ -154,13 +126,46 @@
                 search: '',
                 isActive: false,
                 routeParam: null,
-                showedRestaurants: this.restaurants
+                showedRestaurants: this.restaurants,
+                images:[
+
+                    "storage/images/categories/barca-sushi.jpg",
+                    "storage/images/categories/dunkindonuts.jpg",
+                    "storage/images/categories/grom.png",
+                    "storage/images/categories/hamburger-patate.jpg",
+                    "storage/images/categories/healthy.jpeg",
+                    "storage/images/categories/italiano.jpeg",
+                    "storage/images/categories/kebab.jpeg",
+                    "storage/images/categories/pizza.jpeg",
+                    "storage/images/categories/poke.jpg",
+                    "storage/images/categories/roadhouse.jpg",
+                    "storage/images/categories/sandwich.jpeg"
+
+                ],
+                sliderTimer: null,
+                sliderIndex: 0,
             }
         },
         mounted() {
+
             console.log(this.restaurants);
+            this.startSlide();
         },
         methods: {
+
+            startSlide: function(){
+
+                this.sliderTimer = setInterval(this.next,5000)
+
+            },
+            next: function(){
+
+                this.sliderIndex += 1
+            },
+            prev: function(){
+
+                this.sliderIndex -= 1
+            },
 
             // Get the clicked carousel category ids and push them into an array
             // to make an API call which gives back restaurants of the selected categories
@@ -214,6 +219,12 @@
         },
 
         computed: {
+
+            currentImg: function(){
+
+                return this.images[Math.abs(this.sliderIndex) % this.images.length];
+            },
+
             // Get filtered categories based on link between carouselCategories and search bar
             filteredCategories: function() {
                 // create new array of filtered value
@@ -224,7 +235,7 @@
             },
             fullRoute() {
                 return this.route + '/' + this.routeParam;
-            }
+            },
         }
     }
 </script>
