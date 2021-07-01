@@ -212,7 +212,8 @@
                     <form action="{{ route('checkouts.session') }}" method="POST">
                         @csrf
                         @method('POST')
-                        <input id="ids" name="ids" :value="stringifiedDishesIds" type="text" hidden style="display: none">
+                        <input id="ids" name="ids" :value="stringifiedDishesIds" type="text">
+                        <input id="r_id" name="r_id" value="{{ $restaurant -> id }}" type="text">
                         <button type="submit">
                             Vai al pagamento
                         </button>

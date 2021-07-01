@@ -20,10 +20,33 @@ class CheckoutController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function setSession(Request $request) {
-
+    public function setSession(Request $request)
+    {
         $ids_decoded = json_decode($request -> ids);
-        session(['ids' => $ids_decoded]);
+
+        // Check that is an array of integer
+        if (is_array($ids_decoded)) {
+            foreach ($ids_decoded as $id_decoded) {
+                if (!is_int($id_decoded)) {
+                    return redirect() -> route('restaurants.index');
+                }
+            }
+        } else {
+            return redirect() -> route('restaurants.index');
+        }
+
+        $id_restaurant = json_decode($request -> r_id);
+
+        // Check if restaurant id is an integer
+        if (!is_int($id_restaurant)) {
+            return redirect() -> route('restaurants.index');
+        }
+        
+        session([
+            'ids' => $ids_decoded,
+            'id_restaurant' => $id_restaurant
+        ]);
+
         return redirect() -> route('checkouts.index');
     }
 
