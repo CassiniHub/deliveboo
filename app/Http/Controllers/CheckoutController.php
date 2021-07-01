@@ -149,6 +149,7 @@ class CheckoutController extends Controller
     public function success($id) {
         $order = Order::findOrFail($id);
         session() -> forget('ids');
+        session() -> forget('id_restaurant');
         session() -> save();
         return view('pages.checkouts.success', compact('order'));
     }
