@@ -12,10 +12,12 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    {{-- script --}}
+    <script src="{{asset('/js/showcart.js')}}"></script>
 </head>
 <body>
 
+<div id="payment">
     <div class="payment-container">
 
         @if (session('success_message'))
@@ -76,7 +78,7 @@
                                     Totale da Pagare:
                                 </div>
                                 <div class="input-wrapper amount-wrapper">
-
+                                    
                                     {{ $totPrice }} €
 
                                 </div>
@@ -167,8 +169,10 @@
                 </form>
             </div>
         </div>
-
     </div>
+</div>
+
+    
 
     <script src="https://js.braintreegateway.com/web/dropin/1.30.1/js/dropin.min.js"></script>
     <script>
@@ -200,6 +204,21 @@
                 form.submit();
                 });
             });
+        });
+    </script>
+    <script>
+        new Vue({
+            el: '#payment',
+
+            data: function() {
+                return {
+                    totStoragePrice: localStorage.getItem('totPrice'),
+                }
+            },
+
+            mounted() {
+                console.log({{$totPrice}} == this.totStoragePrice);
+            }
         });
     </script>
 </body>

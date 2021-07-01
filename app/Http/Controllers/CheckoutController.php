@@ -22,21 +22,49 @@ class CheckoutController extends Controller
 
     public function setSession(Request $request) {
 
+        // Get dishes id fron hidden input
         $ids_decoded = json_decode($request -> ids);
-        session(['ids' => $ids_decoded]);
+        
+        // Check that is an array of integer
+        if (is_array($ids_decoded)) {
+            foreach ($ids_decoded as $id_decoded) {
+                if (!is_int($id_decoded)) {
+                    return redirect() -> route('restaurants.index');
+                }
+            }
+        } else {
+            return redirect() -> route('restaurants.index');
+        }
+
+        $id_restaurant = json_decode($request -> r_id);
+        
+        // Check if restaurant id is an integer
+        if (!is_int($id_restaurant)) {
+            return redirect() -> route('restaurants.index');
+        }
+
+        session(['ids' => $ids_decoded,
+                 'id_restaurant' => $id_restaurant]);
+
         return redirect() -> route('checkouts.index');
     }
 
     public function index()
-    {
-        $ids = session() -> get('ids');
-        $ids_encoded = json_encode($ids);
+    {   
+        $ids           = session() -> get('ids');
+        $id_restaurant = session() -> get('id_restaurant');
         
         $totPrice = 0;
 
         foreach ($ids as $id) {
             $dish = Dish::findOrFail($id);
-            $totPrice += $dish -> price;
+            if ($dish -> restaurant_id == $id_restaurant){
+                
+                $totPrice += $dish -> price;
+            } else {
+
+                return redirect() -> route('restaurants.index');
+            }
         }
 
         $gateway = new \Braintree\Gateway([
@@ -45,6 +73,8 @@ class CheckoutController extends Controller
             'publicKey'   => config('services.braintree.publicKey'),
             'privateKey'  => config('services.braintree.privateKey')
         ]);
+
+        $ids_encoded = json_encode($ids);
     
         $token = $gateway->ClientToken()->generate();
         return view('pages.checkouts.index', [
@@ -85,9 +115,9 @@ class CheckoutController extends Controller
             $order = Order::make($validatedData);
 
             $order -> tot_price = $totPrice;
-            $order -> status = 1;
+            $order -> status    = 1;
 
-            $dish = Dish::findOrFail($dishesIds_decoded[0]);
+            $dish       = Dish::findOrFail($dishesIds_decoded[0]);
             $restaurant = Restaurant::findOrFail($dish ->restaurant_id);
             $order ->restaurant() ->associate($restaurant);
 

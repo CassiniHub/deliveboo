@@ -6,6 +6,9 @@
     :restaurant = "{{ $restaurant }}"
     :route="'{{ route('checkouts.index', [""]) }}'">
     ></showcart-component> --}}
+    @if (Session::has('message'))
+        <div class="alert alert-info">{{ Session::get('message') }}</div>
+    @endif
 
     <div id="showCartComponent">
         <div v-if="!showCheckout" class="show-restaurant" >
@@ -21,7 +24,6 @@
                             </div>
                         </div>
 
-                        <!-- why the score before the "address"? -->
                         <div class="restaurant-address">
                             <strong>Indirizzo:</strong> {{ $restaurant -> address}}
                         </div>
@@ -73,8 +75,6 @@
             <div class="spacer-type">
                 <h1>I nostri piatti</h1>
             </div>
-
-            {{-- - - - - - - - - - - - - - - - - - - - TRY TO WORK ON - - - - - - - - - - - - - - - - - - - - - - - - - - - - - --}}
 
             <div class="element-container">
                 <div class="restaurant-menu-cointainer">
@@ -152,8 +152,6 @@
             </div>
         </div>
 
-        {{-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - --}}
-
         <div v-else class="cart-checkout-container">
             <div class="cart-checkout">
 
@@ -209,10 +207,14 @@
 
                 <div v-if="dishesArray.length > 0" class="payment-link">
 
-                    <form action="{{ route('checkouts.index') }}" method="POST">
+                    <div v-on:click="setLocalStorage">
+                        Vai al pagamento
+                    </div>
+                    <form action="{{ route('checkouts.session') }}" method="POST">
                         @csrf
                         @method('POST')
-                        <input id="ids" name="ids" :value="stringifiedDishesIds" type="text" hidden style="display: none">
+                        <input id="ids" name="ids" :value="stringifiedDishesIds" type="text">
+                        <input id="r_id" name="r_id" value="{{ $restaurant -> id }}" type="text">
                         <button type="submit">
                             Vai al pagamento
                         </button>
@@ -286,6 +288,11 @@
                 changeView: function() {
                     this.showCheckout = !this.showCheckout;
                 },
+
+                setLocalStorage: function() {
+                    localStorage.setItem('totPrice', this.getTotPrice);
+                    console.log('working',localStorage.getItem('totPrice'));
+                }
             },
 
             computed: {
