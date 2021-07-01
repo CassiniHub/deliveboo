@@ -61,7 +61,7 @@
     </div>
 
     <div v-if="showedRestaurants && showedRestaurants.length > 0" class="restaurants-container">
-        <div v-for="restaurant in showedRestaurants" class="restaurant-card shadow-sm">
+        <div v-for="restaurant in showedRestaurants" v-if="restaurant.is_visible" class="restaurant-card shadow-sm">
             <a @click="getRouteId(restaurant)" :href="fullRoute">
 
                 <div class="image-cover">

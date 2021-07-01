@@ -28,12 +28,12 @@
                     <form method="POST" action="{{ route('dishes.storeDish', $restaurant ->id) }}" enctype="multipart/form-data">
                         @method('POST')
                         @csrf
-                        
+
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control"  name="name"  required autofocus>
+                                <input id="name" type="text" class="form-control"  name="name" minlength="2" maxlength="255" required autofocus>
                             </div>
                         </div>
 
@@ -41,7 +41,7 @@
                             <label for="ingredients" class="col-md-4 col-form-label text-md-right">Ingredients</label>
 
                             <div class="col-md-6">
-                                <textarea id="ingredients" type="text" class="form-control"  name="ingredients" placeholder="Inserisci gli ingredienti separati da una virgola"  required></textarea>
+                                <textarea id="ingredients" type="text" class="form-control" minlength="2" name="ingredients" placeholder="Inserisci gli ingredienti separati da una virgola"  required></textarea>
                             </div>
                         </div>
 
@@ -49,7 +49,7 @@
                             <label for="price" class="col-md-4 col-form-label text-md-right">Price</label>
 
                             <div class="col-md-6">
-                                <input id="price" type="number" value='0.00' step=".01" class="form-control"  name="price"  required>
+                                <input id="price" type="number" value='0.00' step=".01" min="0.01" class="form-control"  name="price"  required>
                             </div>
                         </div>
 

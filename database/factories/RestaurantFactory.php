@@ -16,5 +16,6 @@ $factory->define(Restaurant::class, function (Faker $faker) {
         'logo'          => $faker -> imageUrl($width = 300, $height = 300),
         'allow_cash'    => $faker -> boolean($chanceOfGettingTrue = 50),
         'delivery_cost' => $faker -> numberBetween(5, 10),
+        'is_visible'    => true,
     ];
 });

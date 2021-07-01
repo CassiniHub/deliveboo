@@ -116,6 +116,7 @@ class CheckoutController extends Controller
 
             $order -> tot_price = $totPrice;
             $order -> status = 1;
+            $order ->order_datetime = now();
 
             $dish = Dish::findOrFail($dishesIds_decoded[0]);
             $restaurant = Restaurant::findOrFail($dish ->restaurant_id);
