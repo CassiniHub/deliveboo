@@ -20,7 +20,7 @@ class RestaurantController extends Controller
 {
     public function __construct()
     {
-        $this -> middleware('auth') -> except(['index', 'show', 'getOrders', 'getOrdersYears']);
+        $this -> middleware('auth') -> except(['index', 'show', 'getOrders', 'getOrdersYears', 'getOrderDishes']);
     }
     /**
      * Display a listing of the resource.
@@ -229,5 +229,21 @@ class RestaurantController extends Controller
                               ->get();
         
         return response() ->json($orders);
+    }
+
+    public function getOrderDishes($id) {
+
+        $restaurant = Restaurant::findOrFail($id);
+        $orders = $restaurant ->orders() ->get();
+
+        $dishes = [];
+
+        foreach ($orders as $order) {
+            foreach ($order ->dishes as $dish) {
+            $dishes[] = $dish;
+            }
+        }
+
+        return response() ->json($dishes);
     }
 }
