@@ -207,7 +207,7 @@
                     </div>
                 </div>
 
-                <div class="payment-link">
+                <div v-if="dishesArray.length > 0" class="payment-link">
 
                     <form action="{{ route('checkouts.index') }}" method="POST">
                         @csrf
