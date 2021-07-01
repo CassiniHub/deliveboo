@@ -105,18 +105,6 @@
                         </div>
                         {{ $order ->notes }}
                     </div>
-
-                    {{-- @if ($order ->status == 1)
-                        <div class="btn btn-warning">
-                            <form action="{{ route('orders.changeStatus', $order ->id) }}" method="post">
-                                @csrf
-                                @method('POST')
-                                <button class="btn btn-warning" type="submit">
-                                    Pronto!
-                                </button>
-                            </form>
-                        </div>    
-                    @endif --}}
                 </li>
             @endif
         @endforeach
