@@ -20,37 +20,43 @@
 
 @section('main-content')
 <div id="orders-history">
+
+    <h1>Storico ordini: {{$restaurant ->name }} </h1>
+
+    @foreach ($orders as $order)
+        @if ($order ->status == 1)
+            <h2>
+                Ordini in preparazione
+            </h2>
+            @break
+        @endif
+    @endforeach
+
     <ul>
         @foreach ($orders as $order)
-            <li class=" order-card {{ $order ->status == 0 ? 'gone' : 'todo' }}">
-                <div class="timestamp">
-                    {{ $order ->order_datetime}}
-                </div>
-                <div class="price">
-                    <div class="title">
-                        Importo:
+            @if ($order ->status == 1)
+                <li class=" order-card">
+                    <div class="timestamp">
+                        {{ $order ->order_datetime}}
                     </div>
-                    {{ $order ->tot_price }}
-                </div>
-                <div class="dishes">
-                    <div class="title">
-                        Piatti ordinati:
+                    <div class="dishes">
+                        <div class="title">
+                            Piatti ordinati:
+                        </div>
+                        @foreach ($order ->dishes as $dish)
+                            {{ $dish ->name }} 
+                            @if ($loop ->index < $loop ->count - 1)
+                                -
+                            @endif
+                        @endforeach
                     </div>
-                    @foreach ($order ->dishes as $dish)
-                        {{ $dish ->name }} 
-                        @if ($loop ->index < $loop ->count - 1)
-                            -
-                        @endif
-                    @endforeach
-                </div>
-                <div class="notes">
-                    <div class="title">
-                        Note:
+                    <div class="notes">
+                        <div class="title">
+                            Note:
+                        </div>
+                        {{ $order ->notes }}
                     </div>
-                    {{ $order ->notes }}
-                </div>
 
-                @if ($order ->status == 1)
                     <div class="btn btn-warning">
                         <form action="{{ route('orders.changeStatus', $order ->id) }}" method="post">
                             @csrf
@@ -60,8 +66,47 @@
                             </button>
                         </form>
                     </div>    
-                @endif
-            </li>
+                </li>
+            @endif
+        @endforeach
+    </ul>
+
+    <h2>
+        Oridini evacuati
+    </h2>
+    <ul>
+        @foreach ($orders as $order)
+            @if ($order ->status != 1)
+                
+                <li class=" order-card">
+                    <div class="timestamp">
+                        {{ $order ->order_datetime}}
+                    </div>
+                    <div class="price">
+                        <div class="title">
+                            Importo:
+                        </div>
+                        {{ $order ->tot_price }}
+                    </div>
+                    <div class="dishes">
+                        <div class="title">
+                            Piatti ordinati:
+                        </div>
+                        @foreach ($order ->dishes as $dish)
+                                {{ $dish ->name }} 
+                            @if ($loop ->index < $loop ->count - 1)
+                                -
+                            @endif
+                        @endforeach
+                    </div>
+                    <div class="notes">
+                        <div class="title">
+                            Note:
+                        </div>
+                        {{ $order ->notes }}
+                    </div>
+                </li>
+            @endif
         @endforeach
     </ul>
 </div>
@@ -71,10 +116,6 @@
     <script>
         new Vue({
             el: '#orders-history',
-            data: function() {
-                return{
-                }
-            },
         })
     </script>
 @endsection

@@ -95,7 +95,21 @@ class RestaurantController extends Controller
     public function show($id)
     {
         $restaurant = Restaurant::findOrFail($id);
-        return view('pages.restaurants.show', compact('restaurant'));
+        $dishes = $restaurant ->dishes() ->get();
+        $getTypes = [];
+        $allTypes = ['contorni', 'insalate', 'primi', 'secondi', 'pizze', 'panini', 'dolci'];
+
+        foreach ($dishes as $dish) {
+            if(!in_array($dish ->type, $getTypes)){
+                $getTypes[] = $dish ->type;
+            }
+        }
+
+        // sort array to always get same types order
+        $missingTypes = array_diff($allTypes, $getTypes);
+        $types = array_diff($allTypes, $missingTypes);
+        
+        return view('pages.restaurants.show', compact('restaurant', 'dishes', 'types'));
     }
 
     public function protectedShow($id)

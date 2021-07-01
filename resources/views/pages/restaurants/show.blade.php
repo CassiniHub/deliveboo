@@ -79,8 +79,43 @@
             <div class="element-container">
                 <div class="restaurant-menu-cointainer">
 
-                    <div class="dishes-list">
-                        @foreach ($restaurant -> dishes as $dish)
+                    <ul>
+                        @foreach ($types as $type)
+                            <li>    
+                                {{ $type }}
+                                <div class="dishes-list">
+                                    @foreach ($dishes as $dish)
+                                        @if ($dish ->type == $type && $dish ->is_visible)
+                                            <div class="dish-card my-3">
+                                                <div class="dish-card-container" v-on:click="getDish({{ $dish }})"> 
+                                                    <div class="dish-name-price">
+                                                        <div class="dish-name">
+                                                            <b>{{ $dish -> name }}</b>
+                                                        </div>
+                
+                                                        <div class="dish-ingr">
+                                                            {{ $dish -> ingredients }}
+                                                        </div>
+                
+                                                        <div class="dish-price">
+                                                            {{ $dish -> price }} €
+                                                        </div>
+                                                    </div>
+                
+                                                    <div class="dish-img">
+                                                        <img src="{{ $dish -> img }}" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </li>                 
+                        @endforeach
+                    </ul>
+
+                    {{-- <div class="dishes-list">
+                        @foreach ($dishes as $dish)
                             @if ($dish -> is_visible)
                             <div class="dish-card my-3">
                                 <div class="dish-card-container" v-on:click="getDish({{ $dish }})">
@@ -105,7 +140,7 @@
                             </div>
                             @endif
                         @endforeach
-                    </div>
+                    </div> --}}
 
                     <div class="container-cart">
                         <h3> &#128722; Anteprima Carrello</h3>
