@@ -180,7 +180,7 @@
         }
 
         #chart{
-    
+
             h1{
                 margin-top: 40px;
             }
@@ -191,9 +191,9 @@
                 margin: 50px 20px;
                 align-items: center;
                 justify-content: center;
-    
+
                 .main-link{
-        
+
                     margin-right: 30px;
 
                     div{
@@ -214,7 +214,7 @@
                 .second-link{
 
                     margin-right: 30px;
-        
+
                     div{
                         line-height: 40px;
                         width: 150px;
@@ -223,13 +223,13 @@
                         color: #fff;
                         border-radius: 5px;
                         cursor: pointer;
-    
+
                         &:hover{
                             transform: scale(1.1);
                         }
                     }
                 }
-        
+
                 .year-restaurant{
 
                     select{
@@ -296,7 +296,21 @@
 }
 
 
+.card-body{
 
+    input{
+
+        &:valid{
+
+            border: 2px solid green;
+        }
+
+        &:invalid{
+
+            border: 2px solid red;
+        }
+    }
+}
 
 
 
