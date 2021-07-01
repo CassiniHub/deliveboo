@@ -93,7 +93,7 @@
                             Piatti ordinati:
                         </div>
                         @foreach ($order ->dishes as $dish)
-                            {{ $dish ->name }} 
+                                {{ $dish ->name }} 
                             @if ($loop ->index < $loop ->count - 1)
                                 -
                             @endif
@@ -116,10 +116,6 @@
     <script>
         new Vue({
             el: '#orders-history',
-            data: function() {
-                return{
-                }
-            },
         })
     </script>
 @endsection
