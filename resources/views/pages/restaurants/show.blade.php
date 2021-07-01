@@ -209,7 +209,7 @@
 
                 <div v-if="dishesArray.length > 0" class="payment-link">
 
-                    <form action="{{ route('checkouts.index') }}" method="POST">
+                    <form action="{{ route('checkouts.session') }}" method="POST">
                         @csrf
                         @method('POST')
                         <input id="ids" name="ids" :value="stringifiedDishesIds" type="text" hidden style="display: none">
