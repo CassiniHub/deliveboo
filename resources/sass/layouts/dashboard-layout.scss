@@ -1,72 +1,88 @@
 #dashboard{
     display: flex;
     height: 100vh;
-}
 
-#dashboard-nav{
+    #dashboard-nav{
 
-    width: 15%;
-    height: 100%;
-    padding: 0 30px;
-    border-right: 1px solid black;
-    display: flex;
-    flex-direction: column;
+        width: 15%;
+        height: 100%;
+        padding: 0 30px;
+        border-right: 1px solid black;
+        display: flex;
+        flex-direction: column;
 
-    & > div{
-        margin-top: 20px;
+        & > div{
+            margin-top: 20px;
+        }
+
+        & > div:not(.restaurants){
+            flex: 0 0 auto;
+        }
+
+        .restaurants{
+            flex: 1 1 auto;
+            min-height: 100px;
+            overflow-y: auto;
+
+        }
     }
 
-    & > div:not(.restaurants){
-        flex: 0 0 auto;
-    }
+    #dashboard-main{
 
-    .restaurants{
-        flex: 1 1 auto;
-        min-height: 100px;
+        width: 85%;
         overflow-y: auto;
 
-        .restaurants-list{
+        .protected-content-flex{
 
-        }
-    }
-}
-
-#dashboard-main{
-
-
-    width: 100%;
-    overflow-y: auto;
-
-    .main-content-container{
-
-        background: linear-gradient(45deg,rgb(87, 243, 230), #1F8691);
-        padding: 30px 50px;
-
-        .restaurant-delete-edit{
-
+            font-size: 30px;
+            font-weight: bold;
             display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #1F8691;
+        }
 
-            .protected-company-name{
+        .main-content-container{
+
+            background: linear-gradient(45deg,rgb(87, 243, 230), #1F8691);
+            padding: 30px 50px;
+
+            .restaurant-delete-edit{
 
                 display: flex;
-                align-items: center;
-                font-size: 20px;
-                font-weight: bold;
 
-            }
+                .protected-company-name{
 
-            .restaurant-actions{
+                    display: flex;
+                    align-items: center;
+                    font-size: 20px;
+                    font-weight: bold;
 
-                display: flex;
-
-                form {
-
-                    margin: 10px 30px;
                 }
 
+                .restaurant-actions{
+
+                    display: flex;
+
+                    form {
+
+                        margin: 10px 30px;
+                    }
+
+                }
             }
         }
 
+
+
+        .restaurant-actions{
+            display: flex;
+
+            form {
+                margin: 10px 30px;
+            }
+        }
 
         .dishes-list{
 
@@ -94,9 +110,14 @@
 
                         .dish-name{
 
-                            h4{
+                            display: flex;
+                            align-items: center;
 
+                            h4{
+                                position: relative;
+                                top: 5px;
                                 text-transform: uppercase;
+                                margin-right: 15px;
                             }
                         }
 
@@ -139,7 +160,7 @@
 
                             width: 50%;
                             background-color: white;
-                            height: 231px;
+                            height: 188px;
                             border-radius: 0 0 5px 0;
                             display: flex;
                             align-items: center;
@@ -147,38 +168,136 @@
 
                             img{
 
-                                height: 200px;
-                                width: 200px;
+                                height: 150px;
+                                width: 150px;
                                 border-radius: 5px;
                             }
                         }
 
                     }
-
-
-
-
                 }
             }
         }
 
+        #chart{
+    
+            h1{
+                margin-top: 40px;
+            }
+
+            .chart-btns{
+
+                display: flex;
+                margin: 50px 20px;
+                align-items: center;
+                justify-content: center;
+    
+                .main-link{
+        
+                    margin-right: 30px;
+
+                    div{
+                        line-height: 40px;
+                        width: 150px;
+                        text-align: center;
+                        background-color: lightcoral;
+                        color: #fff;
+                        border-radius: 5px;
+                        cursor: pointer;
+
+                        &:hover{
+                            transform: scale(1.1);
+                        }
+                    }
+                }
+
+                .second-link{
+
+                    margin-right: 30px;
+        
+                    div{
+                        line-height: 40px;
+                        width: 150px;
+                        text-align: center;
+                        background-color: lightseagreen;
+                        color: #fff;
+                        border-radius: 5px;
+                        cursor: pointer;
+    
+                        &:hover{
+                            transform: scale(1.1);
+                        }
+                    }
+                }
+        
+                .year-restaurant{
+
+                    select{
+                        height: 40px;
+                        width: 150px;
+                        text-align: center;
+                        cursor: pointer;
+                        background-color: lightseagreen;
+                        -webkit-appearance: none;
+                        -moz-appearance: none;
+                        text-indent: 1px;
+                        text-overflow: '';
+                        border: none;
+                        border-radius: 5px;
+                        color: #fff;
+
+                        &:hover{
+                            opacity: .5;
+                        }
+                    }
+                }
+
+                .inner-container{
+                    display: flex;
+
+                }
+            }
+        }
     }
 
+
+    #orders-history{
+
+        ul{
+            list-style: none;
+
+            .gone{
+                box-shadow: 0 0.125rem 0.25rem lightgreen!important;
+                border: 1px solid lightgreen;
+            }
+
+            .todo{
+                box-shadow: 0 0.125rem 0.25rem lightcoral !important;
+                border: 1px solid lightcoral;
+            }
+
+            .order-card{
+                width: 500px;
+                margin: 30px;
+                box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+
+                &>div{
+
+                    padding: 10px 5px;
+                }
+
+                .title{
+                    font-weight: 600;
+                    font-size: 1.1em;
+                }
+            }
+        }
+    }
 }
 
-.not-visible{
-    opacity: .5;
-}
 
-.protected-content-flex{
 
-    font-size: 30px;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    color: #1F8691;
-}
+
+
 
 

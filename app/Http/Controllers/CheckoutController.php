@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Dish;
 use App\Order;
+use App\Restaurant;
 
 use App\Library\Helpers\MyValidation;
-
+use App\Mail\OrderConfirm;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
@@ -17,13 +19,22 @@ class CheckoutController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($dishesIds)
+
+    public function setSession(Request $request) {
+
+        $ids_decoded = json_decode($request -> ids);
+        session(['ids' => $ids_decoded]);
+        return redirect() -> route('checkouts.index');
+    }
+
+    public function index()
     {
-        dd($dishesIds);
-        $dishesIds_decoded = json_decode($dishesIds);
+        $ids = session() -> get('ids');
+        $ids_encoded = json_encode($ids);
+        
         $totPrice = 0;
 
-        foreach ($dishesIds_decoded as $id) {
+        foreach ($ids as $id) {
             $dish = Dish::findOrFail($id);
             $totPrice += $dish -> price;
         }
@@ -39,7 +50,7 @@ class CheckoutController extends Controller
         return view('pages.checkouts.index', [
             'token'    => $token,
             'totPrice' => $totPrice,
-            'dishes_ids' => $dishesIds
+            'dishes_ids' => $ids_encoded
         ]);
     }
 
@@ -69,22 +80,31 @@ class CheckoutController extends Controller
             $transaction = $result->transaction;
             // header("Location: " . $baseUrl . "transaction.php?id=" . $transaction->id);
 
+            // create order element in DB
             $validatedData = $request -> validate(MyValidation::validateOrder());
             $order = Order::make($validatedData);
 
             $order -> tot_price = $totPrice;
-            $order -> status = 0;
+            $order -> status = 1;
+
+            $dish = Dish::findOrFail($dishesIds_decoded[0]);
+            $restaurant = Restaurant::findOrFail($dish ->restaurant_id);
+            $order ->restaurant() ->associate($restaurant);
+
             $order -> save();
 
             foreach ($dishesIds_decoded as $id) {
                 $order -> dishes() -> attach($id);
             }
-            
-            return back() -> with('success_message', 'Transaction successful. The ID is:' . $transaction -> id);
+
+            // send mail
+            $mail = $order ->email;
+            Mail::to($mail)
+                ->send(new OrderConfirm($order, $restaurant));
+
+            return redirect() -> route('checkouts.success', $order ->id);
         } else {
             $errorString = "";
-
-            dd('dioporco');
 
             foreach($result->errors->deepAll() as $error) {
                 $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
@@ -94,6 +114,17 @@ class CheckoutController extends Controller
             // header("Location: " . $baseUrl . "index.php");
             return back() -> withErrors('An error occurred with the message' . $result -> message);
         }
+    }
+
+    public function success($id) {
+        $order = Order::findOrFail($id);
+        session() -> forget('ids');
+        session() -> save();
+        return view('pages.checkouts.success', compact('order'));
+    }
+
+    public function denied() {
+        return view('pages.checkouts.denied');
     }
 
     /**

@@ -20,7 +20,7 @@ class RestaurantController extends Controller
 {
     public function __construct()
     {
-        $this -> middleware('auth') -> except(['index', 'show']);
+        $this -> middleware('auth') -> except(['index', 'show', 'getOrders', 'getOrdersYears', 'getOrderDishes']);
     }
     /**
      * Display a listing of the resource.
@@ -200,29 +200,50 @@ class RestaurantController extends Controller
     public function protectedOrders($id) {
 
         $restaurant = Restaurant::findOrFail($id);
-        $dishes = Dish::all() ->where('restaurant_id', $restaurant->id);
-        $ordersArr = [];
-        // DA SISTEMARE -> PUSHA ORDINI DOPPI   
-        // foreach ($dishes as $dish) {
-        //     foreach ($dish ->orders as $key => $order) {
-        //         if (count($ordersArr) > 0) {
-
-        //             for($i=0;$i<count($ordersArr);$i++)
-        //                 if($order ->id == $ordersArr[$i] ->id){
-        //                     $ordersArr[] = $order;
-        //                 }
-        //         }else{
-        //             $ordersArr[] = $order;
-        //         }
-        //     }
-        // }
-        return view('pages.restaurants.protectedOrders', compact('restaurant', 'ordersArr'));
+        $orders = $restaurant -> orders() ->orderBy('order_datetime', 'DESC') -> get();
+        return view('pages.restaurants.protectedOrders', compact('restaurant', 'orders'));
     }
 
     public function protectedStatistics($id) {
 
         $restaurant = Restaurant::findOrFail($id);
+        $orders = $restaurant -> orders() -> get();
 
-        return view('pages.restaurants.protectedStatistics', compact('restaurant'));
+        return view('pages.restaurants.protectedStatistics', compact('restaurant', 'orders'));
+    }
+
+    public function getOrders($id) {
+
+        $restaurant = Restaurant::findOrFail($id);
+        $orders = $restaurant ->orders() -> orderBy('order_datetime', 'ASC') ->get();
+
+        return response() ->json($orders);
+    }
+
+    public function getOrdersYears($id, $year){
+
+        $restaurant = Restaurant::findOrFail($id);
+        $orders = $restaurant ->orders() 
+                              ->whereYear('order_datetime', $year)
+                              ->orderBy('order_datetime','ASC')
+                              ->get();
+        
+        return response() ->json($orders);
+    }
+
+    public function getOrderDishes($id) {
+
+        $restaurant = Restaurant::findOrFail($id);
+        $orders = $restaurant ->orders() ->get();
+
+        $dishes = [];
+
+        foreach ($orders as $order) {
+            foreach ($order ->dishes as $dish) {
+            $dishes[] = $dish;
+            }
+        }
+
+        return response() ->json($dishes);
     }
 }

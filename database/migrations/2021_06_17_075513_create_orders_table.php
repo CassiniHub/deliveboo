@@ -20,8 +20,13 @@ class CreateOrdersTable extends Migration
             $table -> integer('status');
             $table -> text('notes') -> nullable();
             $table -> string('delivery_address');
+            $table -> dateTime('order_datetime') ->default(now());
+            $table -> string('email', 128) -> unique();
+            $table -> string('doorbell_name');
+            $table -> string('telephone', 32);
 
             $table -> softDeletes();
+            $table -> bigInteger('restaurant_id') -> unsigned() -> index();
 
             $table -> timestamps();
         });
