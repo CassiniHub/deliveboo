@@ -260,4 +260,17 @@ class RestaurantController extends Controller
 
         return response() ->json($dishes);
     }
+
+    public function changeVisibility($id) {
+        $restaurant = Restaurant::findOrFail($id);
+        if ($restaurant ->is_visible){
+            $restaurant ->is_visible = false;
+            $restaurant ->save();
+        }else{
+            $restaurant ->is_visible = true;
+            $restaurant ->save();
+        }
+
+        return redirect() ->route('restaurants.protectedShow', $restaurant ->id);
+    }
 }
