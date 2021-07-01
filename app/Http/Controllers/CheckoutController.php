@@ -20,15 +20,39 @@ class CheckoutController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function setSession(Request $request) {
-
+    public function setSession(Request $request)
+    {
         $ids_decoded = json_decode($request -> ids);
-        session(['ids' => $ids_decoded]);
+
+        // Check that is an array of integer
+        if (is_array($ids_decoded)) {
+            foreach ($ids_decoded as $id_decoded) {
+                if (!is_int($id_decoded)) {
+                    return redirect() -> route('restaurants.index');
+                }
+            }
+        } else {
+            return redirect() -> route('restaurants.index');
+        }
+
+        $id_restaurant = json_decode($request -> r_id);
+
+        // Check if restaurant id is an integer
+        if (!is_int($id_restaurant)) {
+            return redirect() -> route('restaurants.index');
+        }
+
+        session([
+            'ids' => $ids_decoded,
+            'id_restaurant' => $id_restaurant
+        ]);
+
         return redirect() -> route('checkouts.index');
     }
 
     public function index()
     {
+        $id_restaurant = session() -> get('id_restaurant');
         $ids = session() -> get('ids');
         $ids_encoded = json_encode($ids);
         
@@ -36,7 +60,13 @@ class CheckoutController extends Controller
 
         foreach ($ids as $id) {
             $dish = Dish::findOrFail($id);
-            $totPrice += $dish -> price;
+            if ($dish -> restaurant_id == $id_restaurant) {
+                
+                $totPrice += $dish -> price;
+            } else {
+
+                return redirect() -> route('restaurants.index');
+            }
         }
 
         $gateway = new \Braintree\Gateway([
@@ -119,6 +149,7 @@ class CheckoutController extends Controller
     public function success($id) {
         $order = Order::findOrFail($id);
         session() -> forget('ids');
+        session() -> forget('id_restaurant');
         session() -> save();
         return view('pages.checkouts.success', compact('order'));
     }
