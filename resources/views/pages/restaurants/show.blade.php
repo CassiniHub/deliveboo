@@ -47,7 +47,7 @@
                             </div>
 
                             <div class="tempo-consegna">
-                                Consegna in <br> 30 minuti
+                                <span>CONSEGNA: <br> 30 MIN</span>
                             </div>
 
                             <div class="delivery-cost">
@@ -71,7 +71,7 @@
             </div> <!-- protected-restaurant-show-top-container -->
 
             <div class="spacer-type">
-                <h1>I nostri piatti</h1>
+                <h1>Menù</h1>
             </div>
 
             {{-- - - - - - - - - - - - - - - - - - - - TRY TO WORK ON - - - - - - - - - - - - - - - - - - - - - - - - - - - - - --}}
@@ -108,7 +108,7 @@
                     </div>
 
                     <div class="container-cart">
-                        <h3>Anteprima Carrello</h3>
+                        <h3> &#128722; Anteprima Carrello</h3>
 
                         <div class="cart">
                             <div class="cart-list" v-for="dish in dishesArray">
@@ -134,6 +134,7 @@
 
                         <div class="cart-totprice">
                             <!-- Div with no class? -->
+
                             <div>
                                 <strong>Totale:</strong>
                             </div>
@@ -143,7 +144,7 @@
                             </div>
                         </div>
 
-                        <div v-if="dishesArray.length > 0" class="button-cart">
+                        <div v-if="dishesArray.length > 0" class="checkout-button-cart">
                             <div v-on:click="changeView"><span class="checkout-link"><strong>Checkout carrello</strong></span></div>
                         </div>
 

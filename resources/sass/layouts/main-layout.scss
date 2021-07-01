@@ -16,14 +16,16 @@
     align-items: center;
     justify-content: center;
     color: white;
-    border-bottom: 1px solid #FABD12;
     font-size: 25px;
+    border-radius: 5px;
 
 }
 
 .element-container{
 
     background-color: #FABD12;
+    padding: 20px 0;
+
 
     .restaurant-menu-cointainer{
 
@@ -34,6 +36,7 @@
         display: flex;
         justify-content: space-between;
         position: relative;
+        border-radius: 5px;
 
         .dishes-list{
 
@@ -110,6 +113,7 @@
 
             margin-top: 55px;
             margin-right: 40px;
+            margin-bottom: 30px;
             height: 50%;
             width: 30%;
             background: white;
@@ -151,12 +155,11 @@
 
                         .cart-dish-img{
 
-                            width: 50%;
-                            height: 70px;
+                            width: 100%;
+                            height: 100px;
                             margin: auto;
                             display: flex;
                             align-items: center;
-                            justify-content: flex-end;
 
                             img{
 
@@ -212,7 +215,7 @@
                 display: flex;
                 margin: 20px 0;
                 justify-content: flex-end;
-                font-size: 25px;
+                font-size: 30px;
                 font-weight: 600;
 
                 .totprice{
