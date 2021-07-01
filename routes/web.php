@@ -21,6 +21,8 @@ Route::get('/restaurants/protectedStatistics/{id}', 'RestaurantController@protec
     ->name('restaurants.protectedStatistics');
 Route::get('/restaurants/protectedShow/{id}', 'RestaurantController@protectedShow')
     ->name('restaurants.protectedShow');
+Route::post('/restaurants/changeVisibility/{id}', 'RestaurantController@changeVisibility')
+    ->name('restaurants.changeVisibility');
 
 // CUSTOM DISHES ROUTES
 Route::get('/dishes/createDish/{id}', 'DishController@createDish')

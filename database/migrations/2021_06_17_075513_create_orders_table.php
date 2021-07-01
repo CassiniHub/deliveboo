@@ -21,7 +21,7 @@ class CreateOrdersTable extends Migration
             $table -> text('notes') -> nullable();
             $table -> string('delivery_address');
             $table -> dateTime('order_datetime') ->nullable();
-            $table -> string('email', 128) -> unique();
+            $table -> string('email', 128);
             $table -> string('doorbell_name');
             $table -> string('telephone', 32);
 

@@ -30,7 +30,7 @@
 
         <div class="restaurant-actions">
 
-            <form action="{{ route('restaurants.destroy', $restaurant ->id) }}" method="POST">
+            <form onsubmit="return confirm('Vuoi davvero eliminare questo ristorante?' );" action="{{ route('restaurants.destroy', $restaurant ->id) }}" method="POST">
             @csrf
             @method('DELETE')
             <button class="btn btn-danger" type="submit">Elimina ristorante</button>
@@ -41,6 +41,20 @@
             @method('GET')
             <button class="btn btn-primary" type="submit">Modifica dati ristorante</button>
             </form>
+
+            <form action="{{ route('restaurants.changeVisibility', $restaurant ->id) }}" method="post">
+                @csrf
+                @method('POST')
+                <button class="btn btn-warning" type="submit">
+
+                    @if ($restaurant ->is_visible)
+                        Nascondi
+                    @else
+                        Mostra
+                    @endif
+                        ristorante
+                </button>
+            </form>            
         </div>
 
     </div>
@@ -62,7 +76,7 @@
                             </h4>
                         </div>
                         <div class="dish-actions">
-                            <form action="{{ route('dishes.destroy', $dish) }}" method="POST">
+                            <form  onsubmit="return confirm('Vuoi davvero eliminare questo piatto?');" action="{{ route('dishes.destroy', $dish) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger" type="submit">Elimina piatto</button>

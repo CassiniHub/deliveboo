@@ -14,8 +14,11 @@
         @foreach ($restaurants as $restaurant)
         <li>
             <a href="{{ route('restaurants.protectedShow', $restaurant ->id) }}">
-                {{ $restaurant ->name }}
+                {{ $restaurant ->name }} 
             </a>
+            @if ($restaurant ->is_visible == 0)
+                CHIUSO
+            @endif
         </li>
         @endforeach
     </ul>
