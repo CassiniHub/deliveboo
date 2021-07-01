@@ -8,15 +8,7 @@
 
             <div v-for ="i in [sliderIndex]" class="slider-jumbotron">
 
-                <div class="prev" @click="prev">
-                  <i class="fas fa-angle-left"></i>
-                </div>
-
                 <img :src="currentImg" alt="">
-
-                <div class="next" @click = "next">
-                  <i class="fas fa-angle-right"></i>
-                </div>
 
                 <div class="searchbar-container">
                     <label for="searchbar">Dimmi... cosa desideri?</label>
@@ -44,12 +36,6 @@
     </div>
 
     <div class="spacer-precarousel">
-
-        <!-- <div class="cool-image">
-
-            <img :src="`storage/images/jumbotron/deliveboo-img.jpg`" alt="">
-
-        </div> -->
 
         <div class="spacer-disclaimer">
 
@@ -162,10 +148,6 @@
 
                 this.sliderIndex += 1
             },
-            prev: function(){
-
-                this.sliderIndex -= 1
-            },
 
             // Get the clicked carousel category ids and push them into an array
             // to make an API call which gives back restaurants of the selected categories
@@ -212,6 +194,7 @@
                 }
 
                 console.log(this.showedRestaurants);
+                window.scrollTo(0, 700);
             },
             getRouteId: function(restaurant) {
                 this.routeParam = restaurant.id;

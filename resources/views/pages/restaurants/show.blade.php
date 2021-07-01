@@ -22,7 +22,7 @@
                         </div>
 
                         <!-- why the score before the "address"? -->
-                        <div class="-address">
+                        <div class="restaurant-address">
                             <strong>Indirizzo:</strong> {{ $restaurant -> address}}
                         </div>
 
@@ -208,7 +208,7 @@
                 </div>
 
                 <div class="payment-link">
-                    
+
                     <form action="{{ route('checkouts.index') }}" method="POST">
                         @csrf
                         @method('POST')
@@ -222,7 +222,7 @@
             </div>
         </div>  <!-- cart-checkout-container -->
     </div> <!-- single root component -->
-    
+
     <script>
         new Vue({
             el: '#showCartComponent',
@@ -250,10 +250,10 @@
                         console.log(this.dishesArray);
                     }else{
                         let check = false;
-                        
+
 
                         for (let i=0; i < this.dishesArray.length; i++){
-                            
+
                             if (this.dishesArray[i].dish.name == dish.name) {
                                 this.dishesArray[i].quantity += 1
                                 check = true;
