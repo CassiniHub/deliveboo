@@ -53,6 +53,11 @@ class CheckoutController extends Controller
     public function index()
     {
         $id_restaurant = session() -> get('id_restaurant');
+
+        if (!session()->has('ids')) {
+            return redirect() -> route('restaurants.index');
+        }
+        
         $ids = session() -> get('ids');
         $ids_encoded = json_encode($ids);
         
