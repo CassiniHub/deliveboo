@@ -41,7 +41,7 @@ class CheckoutController extends Controller
         if (!is_int($id_restaurant)) {
             return redirect() -> route('restaurants.index');
         }
-        
+
         session([
             'ids' => $ids_decoded,
             'id_restaurant' => $id_restaurant
@@ -52,6 +52,7 @@ class CheckoutController extends Controller
 
     public function index()
     {
+        $id_restaurant = session() -> get('id_restaurant');
         $ids = session() -> get('ids');
         $ids_encoded = json_encode($ids);
         
@@ -59,7 +60,13 @@ class CheckoutController extends Controller
 
         foreach ($ids as $id) {
             $dish = Dish::findOrFail($id);
-            $totPrice += $dish -> price;
+            if ($dish -> restaurant_id == $id_restaurant) {
+                
+                $totPrice += $dish -> price;
+            } else {
+
+                return redirect() -> route('restaurants.index');
+            }
         }
 
         $gateway = new \Braintree\Gateway([
