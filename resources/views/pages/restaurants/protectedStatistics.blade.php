@@ -8,7 +8,7 @@
     </div>
     <div>
         <a href=" {{ route('restaurants.protectedOrders', $restaurant ->id) }} ">
-            Sotrico ordini
+            Storico ordini
         </a>
     </div>
     <div>

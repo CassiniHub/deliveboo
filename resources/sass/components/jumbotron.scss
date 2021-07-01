@@ -1,9 +1,7 @@
 #jumbotron{
     height: 550px;
     display: flex;
-    /* justify-content: center; */
     align-items: center;
-    padding: 20px 0;
     background-color: #1F8691;
 
     .container-jumbotron{
@@ -11,7 +9,6 @@
         height: 100%;
         width: 100%;
         display: flex;
-        /* justify-content: center; */
         align-items: center;
 
 
@@ -26,7 +23,7 @@
             img{
 
                 height: 100%;
-                width: 98vw;
+                width: 100vw;
                 object-fit: cover;
                 border-radius: 5px;
             }
