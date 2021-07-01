@@ -214,7 +214,7 @@
                         @method('POST')
                         <input id="ids" name="ids" :value="stringifiedDishesIds" type="text">
                         <input id="r_id" name="r_id" value="{{ $restaurant -> id }}" type="text">
-                        <button type="submit">
+                        <button v-on:click="setLocalStorage" type="submit">
                             Vai al pagamento
                         </button>
                     </form>
@@ -287,6 +287,10 @@
                 changeView: function() {
                     this.showCheckout = !this.showCheckout;
                 },
+
+                setLocalStorage: function() {
+                    localStorage.setItem('totSessionPrice', this.getTotPrice);
+                }
             },
 
             computed: {
