@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Order;
 
 use Illuminate\Http\Request;
-
+use App\Mail\OrderSent;
+use Illuminate\Support\Facades\Mail;
 Use App\Library\Helpers\MyValidation;
 
 class OrderController extends Controller
@@ -19,6 +20,10 @@ class OrderController extends Controller
         $order = Order::findOrFail($id);
         $order ->status = 0;
         $order -> save();
+
+        $mail = $order ->email;
+        Mail::to($mail)
+                ->send(new OrderSent);
 
         return redirect() ->route('restaurants.protectedOrders', $order ->restaurant_id);
     }
