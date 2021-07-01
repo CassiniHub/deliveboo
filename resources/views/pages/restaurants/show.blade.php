@@ -65,6 +65,11 @@
                                     </span>
                                 @endif
                             </div>
+                            <div class="delivery-logo">
+
+                                <img src="{{asset('storage/images/header/logo.png')}}" alt="">
+
+                            </div>
                         </div> <!-- card-restaurant -->
                     </div> <!-- description-right -->
                 </div> <!-- restaurant-show-info-container -->
@@ -81,8 +86,8 @@
 
                     <ul>
                         @foreach ($types as $type)
-                            <li>    
-                                {{ $type }}
+                            <li class="menu-type">
+                                <span class="type-span">{{ $type }}</span>    
                                 <div class="dishes-list">
                                     @foreach ($dishes as $dish)
                                         @if ($dish ->type == $type && $dish ->is_visible)
