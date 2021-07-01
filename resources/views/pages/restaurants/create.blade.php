@@ -29,12 +29,12 @@
                     <form method="POST" action="{{ route('restaurants.store') }}" enctype="multipart/form-data">
                         @method('POST')
                         @csrf
-                        
+
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control"  name="name"  required autofocus>
+                                <input id="name" type="text" class="form-control"  name="name" minlength="2" maxlength="255" required autofocus>
                             </div>
                         </div>
 
@@ -42,7 +42,7 @@
                             <label for="address" class="col-md-4 col-form-label text-md-right">Address</label>
 
                             <div class="col-md-6">
-                                <input id="address" type="text" class="form-control"  name="address"  required>
+                                <input id="address" type="text" class="form-control"  name="address" minlength="6" maxlength="255" required>
                             </div>
                         </div>
 
@@ -50,7 +50,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">E-mail</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="text" class="form-control"  name="email"  required>
+                                <input id="email" type="email" class="form-control"  name="email" maxlength="128" required>
                             </div>
                         </div>
 
@@ -58,7 +58,7 @@
                             <label for="telephone" class="col-md-4 col-form-label text-md-right">Phone number</label>
 
                             <div class="col-md-6">
-                                <input id="telephone" type="text" class="form-control"  name="telephone"  required>
+                                <input id="telephone" type="text" class="form-control"  name="telephone" maxlength="32" required>
                             </div>
                         </div>
 
@@ -100,7 +100,7 @@
                             <label for="delivery_cost" class="col-md-4 col-form-label text-md-right">Delivery cost</label>
 
                             <div class="col-md-6">
-                                <input id="delivery_cost" type="number" value='0.00' step=".01" min="0" class="form-control"  name="delivery_cost"  required>
+                                <input id="delivery_cost" type="number" value='' step=".01" min="0" class="form-control"  name="delivery_cost"  required>
                             </div>
                         </div>
 

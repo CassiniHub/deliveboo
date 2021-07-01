@@ -28,12 +28,12 @@
                     <form method="POST" action="{{ route('restaurants.update', $restaurant) }}" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
-                        
+
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control"  name="name" value="{{ $restaurant ->name }}" required autofocus>
+                                <input id="name" type="text" class="form-control"  name="name" minlength="2" maxlength="255" value="{{ $restaurant ->name }}" required autofocus>
                             </div>
                         </div>
 
@@ -41,7 +41,7 @@
                             <label for="address" class="col-md-4 col-form-label text-md-right">Address</label>
 
                             <div class="col-md-6">
-                                <input id="address" type="text" class="form-control"  name="address" value="{{ $restaurant ->address }}" required>
+                                <input id="address" type="text" class="form-control"  name="address" minlength="6" maxlength="255" value="{{ $restaurant ->address }}" required>
                             </div>
                         </div>
 
@@ -49,7 +49,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">E-mail</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="text" class="form-control"  name="email" value="{{ $restaurant ->email }}" required>
+                                <input id="email" type="text" class="form-control"  name="email" maxlength="128" value="{{ $restaurant ->email }}" required>
                             </div>
                         </div>
 
@@ -57,7 +57,7 @@
                             <label for="telephone" class="col-md-4 col-form-label text-md-right">Phone number</label>
 
                             <div class="col-md-6">
-                                <input id="telephone" type="text" class="form-control"  name="telephone" value="{{ $restaurant ->telephone }}" required>
+                                <input id="telephone" type="text" class="form-control"  name="telephone" maxlength="32" value="{{ $restaurant ->telephone }}" required>
                             </div>
                         </div>
 
@@ -82,7 +82,7 @@
                             <label for="form-check" class="col-md-4 col-form-label text-md-right">Allow cash</label>
 
                             <div class="form-check my-2 mx-5">
-                                <input class="form-check-input" type="radio" name="allow_cash" id="allow_cash" value="1" 
+                                <input class="form-check-input" type="radio" name="allow_cash" id="allow_cash" value="1"
                                 @if ($restaurant ->allow_cash == 1)
                                     checked
                                 @endif>
