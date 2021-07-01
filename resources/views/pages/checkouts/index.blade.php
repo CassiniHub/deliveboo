@@ -108,7 +108,7 @@
                                         Indirizzo di spedizione:
 
                                     </div>
-                                    <input name="delivery_address" id="delivery_address" type="text">
+                                    <input name="delivery_address" id="delivery_address" required type="text">
 
                                 </div>
 
@@ -120,7 +120,7 @@
                                         Nome sul campanello:
 
                                     </div>
-                                    <input name="doorbell_name" id="doorbell_name" type="text">
+                                    <input name="doorbell_name" id="doorbell_name" required type="text">
 
                                 </div>
 
@@ -132,7 +132,7 @@
                                         email:
 
                                     </div>
-                                    <input name="email" id="email" type="text">
+                                    <input name="email" id="email" required maxlength="128" type="email" >
 
                                 </div>
 
@@ -144,7 +144,7 @@
                                         Telefono:
 
                                     </div>
-                                    <input name="telephone" id="telephone" type="text">
+                                    <input name="telephone" id="telephone" maxlength="32" required type="text">
 
                                 </div>
 
