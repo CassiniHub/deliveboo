@@ -29,12 +29,12 @@
 
             <h4>Saremo da te in circa 30 minuti!</h4>
 
-            <div class="scooter-animation">
+{{--             <div class="scooter-animation">
 
 
 
             </div>
-
+ --}}
         </div>
         <div class="success-action">
 
