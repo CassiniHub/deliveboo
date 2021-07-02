@@ -45,8 +45,10 @@ Route::post('/checkouts/transaction/{totPrice}/{dishes_ids}', 'CheckoutControlle
     ->name('checkouts.transaction');
 Route::get('/checkouts/payment/success/{id}', 'CheckoutController@success')
     ->name('checkouts.success');
-Route::get('/checkouts/payment/denied', 'CheckoutController@denied')
-    ->name('checkouts.denied');
+Route::get('/checkouts/payment/denied', 'CheckoutController@failed')
+    ->name('checkouts.failed');
+Route::get('/checkouts/payment/restore', 'CheckoutController@restoreSession')
+    ->name('checkouts.restore');
 
 // authentication routes
 Auth::routes();

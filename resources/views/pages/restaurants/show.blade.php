@@ -173,14 +173,34 @@
                         </div>
 
                         <div class="cart-totprice">
-                            <!-- Div with no class? -->
+                            <div>
+                                <strong>Subtotale:</strong>
+                            </div>
+                            <div class="totprice">
+                                <b>@{{ getTotPrice }} €</b>
+                            </div>
+                        </div>
 
+                        <div v-if="deliveryCostFixed > 0" class="cart-totprice">
+                            <div>
+                                <strong>Costo consegna:</strong>
+                            </div>
+                            <div class="totprice">
+                                <b>@{{ deliveryCostFixed }} €</b>
+                            </div>
+                        </div>
+                        <div v-else>
+                            <p>
+                                Consegna gratuita
+                            </p>
+                        </div>
+                        
+                        <div class="cart-totprice">
                             <div>
                                 <strong>Totale:</strong>
                             </div>
-
                             <div class="totprice">
-                                <b>@{{ getTotPrice }} €</b>
+                                <b>@{{ getFinalPrice }} €</b>
                             </div>
                         </div>
 
@@ -238,13 +258,28 @@
                     </div>
                 </div> <!-- cart -->
 
-                <div class="checkout-cart-totprice">
+                <div class="cart-totprice">
                     <div>
-                        <b>Totale:</b>
+                        <strong>Subtotale:</strong>
                     </div>
-
-                    <div class="checkout-totprice">
+                    <div class="totprice">
                         <b>@{{ getTotPrice }} €</b>
+                    </div>
+                </div>
+                <div class="cart-totprice">
+                    <div>
+                        <strong>Costo consegna:</strong>
+                    </div>
+                    <div class="totprice">
+                        <b>@{{ deliveryCostFixed }} €</b>
+                    </div>
+                </div>
+                <div class="cart-totprice">
+                    <div>
+                        <strong>Totale:</strong>
+                    </div>
+                    <div class="totprice">
+                        <b>@{{ getFinalPrice }} €</b>
                     </div>
                 </div>
 
@@ -274,11 +309,12 @@
                     dishesArray: [],
                     showCheckout: false,
                     dishesIds: [],
+                    deliveryCost: {{$restaurant -> delivery_cost}},
                 }
             },
 
             mounted() {
-                console.log('working');
+                
             },
 
             methods: {
@@ -344,9 +380,22 @@
                     return sum.toFixed(2);
                 },
 
+                deliveryCostFixed: function() {
+                    return this.deliveryCost.toFixed(2);
+                },
+
+                getFinalPrice: function() {
+                    let deliveryCostParse = parseFloat(this.deliveryCost);
+                    let subTotal          = parseFloat(this.getTotPrice);
+                    let finalPrice = deliveryCostParse + subTotal;
+                    
+                    return finalPrice.toFixed(2);
+                },
+
                 stringifiedDishesIds () {
                     return JSON.stringify(this.dishesIds);
                 },
+
                 fullRoute () {
                     return this.route + '/' + JSON.stringify(this.dishesIds);
                 },
