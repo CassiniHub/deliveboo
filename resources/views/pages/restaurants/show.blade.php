@@ -180,7 +180,8 @@
                                 <b>@{{ getTotPrice }} €</b>
                             </div>
                         </div>
-                        <div class="cart-totprice">
+
+                        <div v-if="deliveryCostFixed > 0" class="cart-totprice">
                             <div>
                                 <strong>Costo consegna:</strong>
                             </div>
@@ -188,6 +189,12 @@
                                 <b>@{{ deliveryCostFixed }} €</b>
                             </div>
                         </div>
+                        <div v-else>
+                            <p>
+                                Consegna gratuita
+                            </p>
+                        </div>
+                        
                         <div class="cart-totprice">
                             <div>
                                 <strong>Totale:</strong>
@@ -251,13 +258,28 @@
                     </div>
                 </div> <!-- cart -->
 
-                <div class="checkout-cart-totprice">
+                <div class="cart-totprice">
                     <div>
-                        <b>Totale:</b>
+                        <strong>Subtotale:</strong>
                     </div>
-
-                    <div class="checkout-totprice">
+                    <div class="totprice">
                         <b>@{{ getTotPrice }} €</b>
+                    </div>
+                </div>
+                <div class="cart-totprice">
+                    <div>
+                        <strong>Costo consegna:</strong>
+                    </div>
+                    <div class="totprice">
+                        <b>@{{ deliveryCostFixed }} €</b>
+                    </div>
+                </div>
+                <div class="cart-totprice">
+                    <div>
+                        <strong>Totale:</strong>
+                    </div>
+                    <div class="totprice">
+                        <b>@{{ getFinalPrice }} €</b>
                     </div>
                 </div>
 
