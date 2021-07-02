@@ -38,7 +38,7 @@ class MyValidation {
 
     static function validateOrder() {
         return [
-            'notes'             => 'nullable|string',
+            'notes'            => 'nullable|string',
             'delivery_address' => 'required|string',
             'email'            => 'required|string|max:128|email',
             'telephone'        => 'required|string|max:32',
