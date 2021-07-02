@@ -374,20 +374,31 @@
                             let names = [];
                             let quantities = [];
                             let money = [];
+                            let limit = 6;
 
                             joinDishes.forEach(dish => {
                                 names.push(dish.dish.name);
                                 quantities.push(dish.nof_dishes);
                                 money.push(dish.money);
                             });
-
-                            this.dishesNames = names;
-                            this.dishesQuantity = quantities;
-                            this.dishesMoney =  money;
+                            
+                            this.dishesNames = this.cutArray(names, limit);
+                            this.dishesQuantity = this.cutArray(quantities, limit);
+                            this.dishesMoney =  this.cutArray(money, limit);
 
                             this.showDishesOrdersCharts()
 
                         }).catch(err => console.log(err));
+                },
+                cutArray: function(array, limit) {
+
+                    if (array.length > limit){
+                        return array.slice(0, limit);
+                    }else{
+                        return array;
+                    }
+
+
                 },
                 createDishesOrdersChart: function() {
                     const ctx = document.getElementById('myChart2');
