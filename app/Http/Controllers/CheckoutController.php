@@ -148,7 +148,8 @@ class CheckoutController extends Controller
     
             // $_SESSION["errors"] = $errorString;
             // header("Location: " . $baseUrl . "index.php");
-            return back() -> withErrors('An error occurred with the message' . $result -> message);
+
+            return redirect() -> route('checkouts.failed') -> withErrors('An error occurred with the message' . $result -> message);
         }
     }
 
@@ -157,11 +158,14 @@ class CheckoutController extends Controller
         session() -> forget('ids');
         session() -> forget('id_restaurant');
         session() -> save();
+        
         return view('pages.checkouts.success', compact('order'));
     }
 
-    public function denied() {
-        return view('pages.checkouts.denied');
+    public function failed($id) {
+        $order = Order::findOrFail($id);
+
+        return view('pages.checkouts.failed', compact('order'));
     }
 
     /**
