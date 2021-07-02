@@ -85,6 +85,18 @@
                     padding: 5px;
 
                 }
+
+                .restaurant-description{
+
+                    @media screen and (max-width: 375px){
+
+                        overflow-y: auto;
+
+                    }
+
+
+
+                }
             }
             .description-right{
 
