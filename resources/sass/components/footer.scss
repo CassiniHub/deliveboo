@@ -8,7 +8,6 @@
 
 .footer-bg{
     background-color: #1F8691;
-
     min-height: 300px;
     width: 100%;
 
@@ -83,10 +82,10 @@
                 &:focus,
                 &:active {
                     color: #2a20b8;
-                }  
-                
+                }
+
             }
-                            
+
             .twitter{
 
             color: white;
@@ -109,12 +108,12 @@
                 &:hover,
                 &:focus,
                 &:active {
-                    
+
                     background: -webkit-linear-gradient(rgb(228, 27, 201), rgb(243, 175, 29));
                     -webkit-background-clip: text;
                     -webkit-text-fill-color: transparent;
                 }
-            
+
             }
             .copyright-footer{
 
@@ -122,5 +121,27 @@
             }
     }
 
+
+}
+
+/* ---------------media query---------------------- */
+
+$breakpoint-phone: 375px;
+
+@media (max-width: $breakpoint-phone ) {
+
+    .footer-card-container{
+
+        width: 100%;
+        margin: auto;
+        display: block;
+
+        .footer-card{
+
+            width: 100%;
+            background-color: red;
+        }
+
+    }
 
 }
