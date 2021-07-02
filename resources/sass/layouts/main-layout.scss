@@ -24,7 +24,8 @@
 .element-container{
 
     background-color: #FABD12;
-    padding: 20px 0;
+    padding-top: 20px;
+    padding-bottom: 50px;
 
 
     .restaurant-menu-cointainer{
@@ -411,12 +412,11 @@
 
             width: 100%;
             margin: auto;
-            background-color: red;
             display: flex;
             justify-content: center;
             margin: 30px 0px;
 
-            a{
+            .button-payment{
 
                 margin: auto;
                 border-radius: 5px;
