@@ -34,6 +34,12 @@
     justify-content: center;
     align-items: center;
     background-color: #1F8691;
+
+    @media screen and (max-width: 375px){
+
+        height: 100%;
+    }
+
     .carousel-span{
         display: flex;
         justify-content: center;
@@ -75,6 +81,11 @@
             overflow-x: scroll;
             background-color: #1F8691;
             border-radius: 5px;
+
+             @media screen and (max-width: 375px){
+
+                height: 100%;
+            }
 
 
             .categories{
