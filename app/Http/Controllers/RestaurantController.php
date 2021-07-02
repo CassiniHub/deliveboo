@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Auth;
 Use App\Library\Helpers\MyValidation;
 Use App\Library\Helpers\Images;
 use Illuminate\Support\Facades\Storage;
+use App\Mail\RestaurantCreated;
+use App\Mail\RestaurantRemoved;
+use Illuminate\Support\Facades\Mail;
 use File;
 
 
@@ -83,6 +86,12 @@ class RestaurantController extends Controller
         $restaurant ->user() ->associate(Auth::user() ->id);
         $restaurant ->save();
         $restaurant ->categories() ->attach($categories);
+
+        // send confirmation mail
+        $mail = Auth::user() ->email;
+        Mail::to($mail)
+        ->send(new RestaurantCreated($restaurant));
+
         return redirect() ->route('users.show', Auth::user() -> id);
     }
 
@@ -194,6 +203,7 @@ class RestaurantController extends Controller
     public function destroy($id)
     {
         $restaurant = Restaurant::findOrFail($id);
+        $removedRestaurant = $restaurant;
 
         if ($restaurant ->img_cover) {
             $delete = new Images;
@@ -208,6 +218,12 @@ class RestaurantController extends Controller
         }
 
         $restaurant ->delete();
+
+        // send confirmation mail
+        $mail = Auth::user() ->email;
+        Mail::to($mail)
+        ->send(new RestaurantRemoved($removedRestaurant));
+
         return redirect() -> route('users.show', Auth::user() -> id);
     }
 
