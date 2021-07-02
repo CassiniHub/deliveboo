@@ -223,12 +223,10 @@
 
                         select{
 
-                            padding-left: 25px;
                             font-weight: bold;
 
                             &:hover{
 
-                                transform: scale(1.1);
                                 color: #FABD12;
                             }
 
@@ -354,7 +352,7 @@
                     border: 1px solid lightcoral;
                 }
 
-                .order-card1,{
+                .order-card1{
 
                     width: 400px;
                     margin: 30px;
