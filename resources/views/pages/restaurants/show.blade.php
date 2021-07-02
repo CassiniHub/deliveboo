@@ -254,7 +254,7 @@
                         @csrf
                         @method('POST')
                         <input id="ids" name="ids" :value="stringifiedDishesIds" type="text" hidden style="display: none">
-                        <button type="submit">
+                        <button class="button-payment" type="submit">
                             Vai al pagamento
                         </button>
                     </form>
