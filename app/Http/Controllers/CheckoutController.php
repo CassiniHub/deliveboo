@@ -8,6 +8,7 @@ use App\Restaurant;
 
 use App\Library\Helpers\MyValidation;
 use App\Mail\OrderConfirm;
+use App\Mail\OrderFailed;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 
@@ -73,6 +74,10 @@ class CheckoutController extends Controller
                 return redirect() -> route('restaurants.index');
             }
         }
+
+        $restaurant     = Restaurant::findOrFail($id_restaurant);
+        $delivery_cost  = $restaurant -> delivery_cost;
+        $totPrice      += $delivery_cost;
 
         $gateway = new \Braintree\Gateway([
             'environment' => config('services.braintree.environment'),
@@ -140,6 +145,16 @@ class CheckoutController extends Controller
 
             return redirect() -> route('checkouts.success', $order ->id);
         } else {
+
+            $dish = Dish::findOrFail($dishesIds_decoded[0]);
+            $restaurant = Restaurant::findOrFail($dish ->restaurant_id);
+
+            // send mail
+            $mail = $request ->email;
+            Mail::to($mail)
+                ->send(new OrderFailed($restaurant));
+            
+            // Create error string to display
             $errorString = "";
 
             foreach($result->errors->deepAll() as $error) {
@@ -162,10 +177,17 @@ class CheckoutController extends Controller
         return view('pages.checkouts.success', compact('order'));
     }
 
-    public function failed($id) {
-        $order = Order::findOrFail($id);
+    public function failed() {
 
-        return view('pages.checkouts.failed', compact('order'));
+        return view('pages.checkouts.failed');
+    }
+
+    public function restoreSession() {
+        session() -> forget('ids');
+        session() -> forget('id_restaurant');
+        session() -> save();
+
+        return route('hoempage');
     }
 
     /**
