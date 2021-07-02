@@ -87,26 +87,26 @@
                     <ul>
                         @foreach ($types as $type)
                             <li class="menu-type">
-                                <span class="type-span">{{ $type }}</span>    
+                                <span class="type-span">{{ $type }}</span>
                                 <div class="dishes-list">
                                     @foreach ($dishes as $dish)
                                         @if ($dish ->type == $type && $dish ->is_visible)
                                             <div class="dish-card my-3">
-                                                <div class="dish-card-container" v-on:click="getDish({{ $dish }})"> 
+                                                <div class="dish-card-container" v-on:click="getDish({{ $dish }})">
                                                     <div class="dish-name-price">
                                                         <div class="dish-name">
                                                             <b>{{ $dish -> name }}</b>
                                                         </div>
-                
+
                                                         <div class="dish-ingr">
                                                             {{ $dish -> ingredients }}
                                                         </div>
-                
+
                                                         <div class="dish-price">
                                                             {{ $dish -> price }} €
                                                         </div>
                                                     </div>
-                
+
                                                     <div class="dish-img">
                                                         <img src="{{ $dish -> img }}" alt="">
                                                     </div>
@@ -115,7 +115,7 @@
                                         @endif
                                     @endforeach
                                 </div>
-                            </li>                 
+                            </li>
                         @endforeach
                     </ul>
 
@@ -172,18 +172,21 @@
                             </div>
                         </div>
 
-                        <div class="cart-totprice">
+                        <div class="cart-subtotprice">
                             <div>
-                                <strong>Subtotale:</strong>
+                                Subtotale:
                             </div>
                             <div class="totprice">
-                                <b>@{{ getTotPrice }} €</b>
+
+                                {{-- subtotale --}}
+
+                                @{{ getTotPrice }} €
                             </div>
                         </div>
 
-                        <div v-if="deliveryCostFixed > 0" class="cart-totprice">
+                        <div v-if="deliveryCostFixed > 0" class="cart-subtotprice">
                             <div>
-                                <strong>Costo consegna:</strong>
+                                Spese di consegna:
                             </div>
                             <div class="totprice">
                                 <b>@{{ deliveryCostFixed }} €</b>
@@ -194,7 +197,7 @@
                                 Consegna gratuita
                             </p>
                         </div>
-                        
+
                         <div class="cart-totprice">
                             <div>
                                 <strong>Totale:</strong>
@@ -258,28 +261,28 @@
                     </div>
                 </div> <!-- cart -->
 
-                <div class="cart-totprice">
+                <div class="cart-subtotprice">
                     <div>
                         <strong>Subtotale:</strong>
                     </div>
-                    <div class="totprice">
+                    <div class="">
                         <b>@{{ getTotPrice }} €</b>
                     </div>
                 </div>
-                <div class="cart-totprice">
+                <div class="cart-subtotprice">
                     <div>
                         <strong>Costo consegna:</strong>
                     </div>
-                    <div class="totprice">
+                    <div>
                         <b>@{{ deliveryCostFixed }} €</b>
                     </div>
                 </div>
                 <div class="cart-totprice">
-                    <div>
+                    <div class="totalspace">
                         <strong>Totale:</strong>
                     </div>
                     <div class="totprice">
-                        <b>@{{ getFinalPrice }} €</b>
+                        <strong>@{{ getFinalPrice }} €</strong>
                     </div>
                 </div>
 
@@ -314,7 +317,7 @@
             },
 
             mounted() {
-                
+
             },
 
             methods: {
@@ -388,7 +391,7 @@
                     let deliveryCostParse = parseFloat(this.deliveryCost);
                     let subTotal          = parseFloat(this.getTotPrice);
                     let finalPrice = deliveryCostParse + subTotal;
-                    
+
                     return finalPrice.toFixed(2);
                 },
 
