@@ -61,13 +61,46 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
+        // check telephone
+        $telephone = $request ->telephone;
+        $telephone_num = intval($telephone);
+        $telephone_str = strval($telephone_num);
+        
+        if (!$telephone_str == $telephone) {
+            
+            return back() ->withErrors('Il numero di telefono inserito non è valido');
+        }
+        
+        // check categories array
+        $categories = $request ->category_id;
+        $allCateogories = Category::all();
+        if(!$categories){
+            
+            return back() ->withErrors('Devi selezionare almeno una cateogoria per il tuo ristorante');
+        }else{
+            foreach ($categories as $category) {
+                if ($category > count($allCateogories)){
+                    return back() ->withErrors('Devi selezionare almeno una cateogoria per il tuo ristorante');
+                }
+            }
+        }
+
+        // check textarea
+        $dangerChars = ['{', '}', '>', '<', '[', ']', '=', '+', '&', '$', '#'];
+        $checkStr = $request ->description;
+        foreach ($dangerChars as $char) {
+            if (strpos($checkStr, $char)){
+                return back() ->withErrors('La descrizione non può contenere i seguenti caratteri: { } > < [ ] = + & $ #');
+            }
+        }
+
         $validateData = $request ->validate(MyValidation::validateRestaurant());
         $restaurant = Restaurant::make($validateData);
         $categories = $request ->get('category_id');
         
         if ($request ->file('img_cover')) {
             $image = new Images;
-            $coverImgNewName = $image->getImgName($request, 'img_cover');
+            $coverImgNewName = $image->getImgName($request - 'img_cover');
             $folderPath = '/images/restaurants/cover';
             $storedImg = ($request ->file('img_cover')) 
                 ->storeAs($folderPath, $coverImgNewName, 'public');
@@ -154,6 +187,31 @@ class RestaurantController extends Controller
      */
     public function update(Request $request, Restaurant $restaurant)
     {
+
+        // check telephone
+        $telephone = $request ->telephone;
+        $telephone_num = intval($telephone);
+        $telephone_str = strval($telephone_num);
+        
+        if (!$telephone_str == $telephone) {
+            
+            return back() ->withErrors('Il numero di telefono inserito non è valido');
+        }
+        
+        // check categories array
+        $categories = $request ->category_id;
+        $allCateogories = Category::all();
+        if(!$categories){
+            
+            return back() ->withErrors('Devi selezionare almeno una cateogoria per il tuo ristorante');
+        }else{
+            foreach ($categories as $category) {
+                if ($category > count($allCateogories)){
+                    return back() ->withErrors('Devi selezionare almeno una cateogoria per il tuo ristorante');
+                }
+            }
+        }
+
         $validateData = $request -> validate(MyValidation::validateRestaurant());
         $categories = $request ->get('category_id');
 
