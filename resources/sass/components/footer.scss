@@ -19,6 +19,13 @@
         justify-content: space-between;
         padding: 25px 0;
 
+        @media screen and (max-width: 375px){
+
+            width: 90%;
+            display: block;
+
+        }
+
        .footer-card{
 
             background-color: #FABD12;
@@ -27,6 +34,15 @@
             height: 430px;
             color: #1F8691;
             border-radius: 5px;
+
+             @media screen and (max-width: 375px){
+
+                width: 90%;
+                margin: auto;
+                display: block;
+                margin-bottom: 10px;
+                height: 100%;
+            }
 
             li{
 
@@ -124,24 +140,6 @@
 
 }
 
-/* ---------------media query---------------------- */
 
-$breakpoint-phone: 375px;
 
-@media (max-width: $breakpoint-phone ) {
 
-    .footer-card-container{
-
-        width: 100%;
-        margin: auto;
-        display: block;
-
-        .footer-card{
-
-            width: 100%;
-            background-color: red;
-        }
-
-    }
-
-}
