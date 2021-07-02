@@ -56,6 +56,29 @@ class DishController extends Controller
     }
 
     public function storeDish(Request $request, $id) {
+
+        // check textarea
+        $dangerChars = ['{', '}', '>', '<', '[', ']', '=', '+', '&', '$', '#'];
+        $checkStr = $request ->ingredients;
+        foreach ($dangerChars as $char) {
+            if (strpos($checkStr, $char)){
+                return back() ->withErrors('La lista di ingredienti non può contenere i seguenti caratteri: { } > < [ ] = + & $ #');
+            }
+        }
+
+        // test dish type
+        $acceptedTypes = ['contorni', 'insalate', 'primi', 'secondi', 'pizze', 'panini', 'dolci']; 
+        $selType = $request ->type;
+        $found = false;
+        foreach ($acceptedTypes as $type) {
+            if ($type == $selType){
+                $found = true;
+            }
+        }
+        if (!$found || !$selType) {
+            return back() ->withErrors('Devi selezionare una tipologia tra quelle proposte');
+        }
+
         $validateData = $request -> validate(MyValidation::validateDish());
         $dish         = Dish::make($validateData);
         
@@ -109,6 +132,28 @@ class DishController extends Controller
      */
     public function update(Request $request, Dish $dish)
     {
+        // check textarea
+        $dangerChars = ['{', '}', '>', '<', '[', ']', '=', '+', '&', '$', '#'];
+        $checkStr = $request ->ingredients;
+        foreach ($dangerChars as $char) {
+            if (strpos($checkStr, $char)){
+                return back() ->withErrors('La lista di ingredienti non può contenere i seguenti caratteri: { } > < [ ] = + & $ #');
+            }
+        }
+
+        // test dish type
+        $acceptedTypes = ['contorni', 'insalate', 'primi', 'secondi', 'pizze', 'panini', 'dolci']; 
+        $selType = $request ->type;
+        $found = false;
+        foreach ($acceptedTypes as $type) {
+            if ($type == $selType){
+                $found = true;
+            }
+        }
+        if (!$found || !$selType) {
+            return back() ->withErrors('Devi selezionare una tipologia tra quelle proposte');
+        }
+
         $validateData = $request -> validate(MyValidation::validateDish());
 
         if ($request -> file('img')) {

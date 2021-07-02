@@ -369,7 +369,7 @@
                 },
 
                 setLocalStorage: function() {
-                    localStorage.setItem('totSessionPrice', this.getTotPrice);
+                    localStorage.setItem('totSessionPrice', this.getFinalPrice);
                 }
             },
 
