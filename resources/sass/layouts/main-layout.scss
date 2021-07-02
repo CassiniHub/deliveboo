@@ -19,6 +19,12 @@
     font-size: 25px;
     border-radius: 5px;
 
+     @media screen and (max-width: 375px){
+
+        display: none;
+
+    }
+
 
 }
 
@@ -40,12 +46,30 @@
         position: relative;
         border-radius: 5px;
 
+        @media screen and (max-width: 375px){
+
+            width: 100%;
+            display: block;
+            height: 100%;
+        }
+
+        ul{
+
+            @media screen and (max-width: 375px){
+
+                margin-top: 390px;
+                width: 100%;
+
+            }
+        }
+
         .menu-type{
 
             list-style: none;
             width: 100%;
             background-color: #1F8691;
             margin: 20px;
+
 
             .type-span{
 
@@ -65,6 +89,14 @@
                 margin-top: 20px;
                 margin-left: 10px;
 
+                 @media screen and (max-width: 375px){
+
+                    width: 100%;
+                    margin: auto;
+                    position: relative;
+                    left: -20px;
+                }
+
                 .dish-card{
 
                     height: 150px;
@@ -78,11 +110,23 @@
                         box-shadow: 5px 10px 18px #14555c;
                     }
 
+                     @media screen and (max-width: 375px){
+
+                        width: 100%;
+                        margin: auto;
+                    }
+
                     .dish-card-container{
 
                         height: 100%;
                         padding: 10px;
                         display: flex;
+
+                         @media screen and (max-width: 375px){
+
+                            width: 100%;
+                            margin: auto;
+                        }
 
                         .dish-name-price{
 
@@ -144,6 +188,11 @@
             padding: 15px 0;
             border-radius: 5px;
 
+             @media screen and (max-width: 375px){
+
+                margin: auto 0;
+            }
+
             .container-cart-title{
                 width: 100%;
                 border-bottom: 1px solid #1F8691;
@@ -156,6 +205,12 @@
 
                 width: 80%;
                 margin: auto;
+
+                 @media screen and (max-width: 375px){
+
+                    width: 100%;
+                    margin: auto;
+                }
 
                 .cart-list{
 
@@ -279,12 +334,27 @@
     justify-content: center;
     align-items: center;
 
+     @media screen and (max-width: 375px){
+
+        width: 100%;
+        margin: auto;
+        height: 100%;
+        position: relative;
+    }
+
     .cart-checkout{
 
         width: 70%;
         margin: auto;
         background-color: white;
         border-radius: 10px;
+
+        @media screen and (max-width: 375px){
+
+            width: 95%;
+            margin: auto;
+            height: 100%;
+        }
 
         .nav-conferma{
 
@@ -352,6 +422,12 @@
                 align-items: center;
                 justify-content: space-between;
 
+                @media screen and (max-width: 375px){
+
+                    width: 100%;
+                    margin: auto;
+                }
+
                 .cart-list-img{
 
                     height: 100px;
@@ -372,6 +448,10 @@
                     width: 200px;
                     height: 90%;
                     text-align: center;
+                    @media screen and (max-width: 375px){
+
+                        width: 110px;
+                    }
 
                     .button-cart{
 
@@ -383,6 +463,13 @@
                         box-shadow: 2px 5px 5px #14555c;
                         font-size: 25px;
                         font-weight: 600;
+
+                         @media screen and (max-width: 375px){
+
+                            padding: 0 10px;
+                            font-size: 15px;
+
+                        }
                     }
 
                     .dish-quantity{
@@ -467,6 +554,11 @@
     background-color: #1F8691;
     border-radius: 5px;
 
+    @media screen and (max-width: 375px){
+
+        width: 100%;
+    }
+
 
     .success-disclaimer{
         font-size: 40px;
@@ -480,6 +572,12 @@
         align-items: center;
         margin-top: 20px;
         color: #1F8691;
+
+        @media screen and (max-width: 375px){
+
+            text-align: center;
+            margin-top: 10px;
+        }
 
     }
 

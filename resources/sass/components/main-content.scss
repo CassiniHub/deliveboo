@@ -1,12 +1,24 @@
 .show-restaurant{
     background-color: #FABD12;
 
+     @media screen and (max-width: 375px){
+
+        width: 100%;
+        display: block;
+    }
+
     .protected-restaurant-show-top-container{
 
         width: 80%;
         margin: auto;
         background-color: white;
         height: 400px;
+
+         @media screen and (max-width: 375px){
+
+            width: 95%;
+            margin: auto;
+        }
 
         .restaurant-show-info-container{
 
@@ -18,6 +30,14 @@
             align-items: center;
             background-color: #FABD12;
 
+             @media screen and (max-width: 375px){
+
+                width: 100%;
+                display: block;
+                height: 100%;
+                padding-top: 10px;
+            }
+
             .description-left{
 
                 display: flex;
@@ -26,6 +46,14 @@
                 height: 90%;
                 width: 50%;
                 background-color: white;
+
+                 @media screen and (max-width: 375px){
+
+                    width: 100%;
+                    margin: auto;
+                    height: 100%;
+                    padding: 10px auto;
+                }
                 .restaurant-logo-name{
 
                     display: flex;
@@ -68,6 +96,13 @@
                 position: relative;
                 background-color: white;
 
+                 @media screen and (max-width: 375px){
+
+                    width: 100%;
+                    margin: 10px auto;
+                    height: 100%;
+                }
+
                 .card-restaurant{
 
                     display: flex;
@@ -76,7 +111,7 @@
 
                         width: 100%;
                         height: 200px;
-                        
+
                         img{
 
                             width: 100%;
@@ -88,7 +123,7 @@
                     }
 
                     .tempo-consegna{
-                        
+
                         clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 30% 75%, 0 100%, 15% 75%, 0% 75%);
                         position: absolute;
                         top: 150px;
@@ -122,6 +157,12 @@
                         position: absolute;
                         top: 210px;
                         right: 120px;
+
+                         @media screen and (max-width: 375px){
+
+                            top: 230px;
+
+                        }
                     }
 
                 }
