@@ -40,6 +40,12 @@
             font-weight: bold;
             color: #007E8A;
 
+            @media screen and (max-width: 375px){
+
+                display: none;
+
+            }
+
         }
 
         .navbar-button-style{
