@@ -250,11 +250,12 @@
 
                 <div v-if="dishesArray.length > 0" class="payment-link">
 
-                    <form action="{{ route('checkouts.index') }}" method="POST">
+                    <form action="{{ route('checkouts.session') }}" method="POST">
                         @csrf
                         @method('POST')
-                        <input id="ids" name="ids" :value="stringifiedDishesIds" type="text" hidden style="display: none">
-                        <button type="submit">
+                        <input id="ids" name="ids" :value="stringifiedDishesIds" type="text">
+                        <input id="r_id" name="r_id" value="{{ $restaurant -> id }}" type="text">
+                        <button v-on:click="setLocalStorage" type="submit">
                             Vai al pagamento
                         </button>
                     </form>
@@ -327,6 +328,10 @@
                 changeView: function() {
                     this.showCheckout = !this.showCheckout;
                 },
+
+                setLocalStorage: function() {
+                    localStorage.setItem('totSessionPrice', this.getTotPrice);
+                }
             },
 
             computed: {
