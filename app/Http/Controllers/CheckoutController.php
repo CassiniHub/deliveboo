@@ -116,7 +116,6 @@ class CheckoutController extends Controller
         
         if ($result->success) {
             
-            
             $transaction = $result->transaction;
             // header("Location: " . $baseUrl . "transaction.php?id=" . $transaction->id);
 
