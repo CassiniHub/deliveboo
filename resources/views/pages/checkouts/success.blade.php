@@ -21,13 +21,19 @@
             <h4>{{ $order ->delivery_address }}, campanello {{ $order ->doorbell_name }} </h4>
 
             @if ($order ->notes)
-                
+
                 <h4> Note: </h4>
                 <p>{{ $order ->notes }}</p>
-            
+
             @endif
 
             <h4>Saremo da te in circa 30 minuti!</h4>
+
+            <div class="scooter-animation">
+
+
+
+            </div>
 
         </div>
         <div class="success-action">

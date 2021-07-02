@@ -202,7 +202,7 @@
                         color: black;
 
                         .button-cart{
-                            
+
                             cursor: pointer;
                             background-color: #1F8691;
                             color: white;
@@ -456,9 +456,9 @@
 }
 
 .success-container{
-    min-height: 800px;
+    min-height: 850px;
     width: 60%;
-    margin: 20px auto;
+    margin: 10px auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -485,8 +485,8 @@
     .order-recap{
 
         width: 90%;
-        margin: 20px auto;
-        min-height: 400px;
+        margin: 10px auto;
+        min-height: 430px;
         background-color: white;
         border-radius: 5px;
         display: flex;
@@ -494,7 +494,34 @@
         justify-content: center;
         align-items: center;
 
+        h4{
 
+            padding: 10px;
+        }
+
+        p{
+            padding: 0 20px;
+        }
+
+        .scooter-animation{
+
+            width: 150px;
+            height: 180px;
+            background-image: url(storage/images/header/scooter.png);
+            background-position: center;
+            background-size: 100%;
+            background-repeat: no-repeat;
+            animation: scooter 4s infinite;
+            position: relative;
+
+
+        }
+
+        @keyframes scooter {
+
+            0%   { bottom: 100px; left: -450px; top: 0px; opacity: 1;}
+            100% { bottom: 10px; left: 440px; top: 0px; opacity: 1;}
+        }
 
     }
 

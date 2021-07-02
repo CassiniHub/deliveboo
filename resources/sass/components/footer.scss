@@ -8,7 +8,6 @@
 
 .footer-bg{
     background-color: #1F8691;
-
     min-height: 300px;
     width: 100%;
 
@@ -20,6 +19,13 @@
         justify-content: space-between;
         padding: 25px 0;
 
+        @media screen and (max-width: 375px){
+
+            width: 90%;
+            display: block;
+
+        }
+
        .footer-card{
 
             background-color: #FABD12;
@@ -28,6 +34,15 @@
             height: 430px;
             color: #1F8691;
             border-radius: 5px;
+
+             @media screen and (max-width: 375px){
+
+                width: 90%;
+                margin: auto;
+                display: block;
+                margin-bottom: 10px;
+                height: 100%;
+            }
 
             li{
 
@@ -83,10 +98,10 @@
                 &:focus,
                 &:active {
                     color: #2a20b8;
-                }  
-                
+                }
+
             }
-                            
+
             .twitter{
 
             color: white;
@@ -109,12 +124,12 @@
                 &:hover,
                 &:focus,
                 &:active {
-                    
+
                     background: -webkit-linear-gradient(rgb(228, 27, 201), rgb(243, 175, 29));
                     -webkit-background-clip: text;
                     -webkit-text-fill-color: transparent;
                 }
-            
+
             }
             .copyright-footer{
 
@@ -124,3 +139,7 @@
 
 
 }
+
+
+
+
