@@ -1,5 +1,5 @@
 @extends('layouts.dashboard-layout')
- 
+
 @section('sidebar-content')
     <div>
         <a href="{{ route('users.show', Auth::user() ->id) }}">
@@ -13,7 +13,7 @@
     </div>
     <div>
         <a href=" {{ route('restaurants.protectedStatistics', $restaurant ->id) }} ">
-            Statistiche ristorante 
+            Statistiche ristorante
         </a>
     </div>
 @endsection
@@ -21,46 +21,58 @@
 @section('main-content')
 <div id="chart">
 
-    <h1>
-        Statistiche totali {{$restaurant ->name}}
-    </h1>
-    <div class="chart-btns">
-        <div class="main-link" v-on:click="getYearOrders()">
-            <div>Mostra tutti gli anni</div>
+    <div class="statistic-page">
+
+        <h1>
+            Statistiche ristorante {{$restaurant ->name}}:
+        </h1>
+
+        <div class="chart-btns">
+
+            <div class="main-link" v-on:click="getYearOrders()">
+                <div>Mostra tutti gli anni</div>
+            </div>
+
+            <div class="year-restaurant">
+
+                <select v-if="this.years.length>0" name="selYears" id="selYears" v-model="selYear" v-on:change="getMonthOrders">
+                    <option value="" disabled default>Scegli un anno</option>
+                    <option v-for="year in years" :value="year"> @{{year}} </option>
+                </select>
+
+            </div>
+
         </div>
-    
-        <div class="year-restaurant">
-            <select v-if="this.years.length>0" name="selYears" id="selYears" v-model="selYear" v-on:change="getMonthOrders">
-                <option value="" disabled default>Scegli un anno</option>
-                <option v-for="year in years" :value="year"> @{{year}} </option>
-            </select>
+
+        <div class="istogram">
+            <canvas id="myChart" width="600" height="400" color="gold"></canvas>
         </div>
+
+        <h1>
+            Statistiche piatti:
+        </h1>
+        <div class="chart-btns">
+
+                <div class="main-link" v-on:click="showDishesOrdersCharts">
+                    <div>
+                    Numero ordini
+                    </div>
+                </div>
+
+            <div class="second-link" v-on:click="showDishesMoneyCharts">
+                <div>
+                    Entrate
+                </div>
+            </div>
+
+        </div>
+
+        <div class="cake">
+            <canvas id="myChart2" width="600" height="600"></canvas>
+        </div>
+
     </div>
 
-    <div>
-        <canvas id="myChart" width="600" height="400"></canvas>
-    </div>
-    
-    <h1>
-        Statistiche piatti
-    </h1>
-    <div class="chart-btns">
-        <div class="main-link" v-on:click="showDishesOrdersCharts">
-            <div>
-                Numero ordini
-            </div>
-        </div>
-    
-        <div class="second-link" v-on:click="showDishesMoneyCharts">
-            <div>
-                Entrate
-            </div>
-        </div>
-    </div>
-
-    <div>
-        <canvas id="myChart2" width="600" height="600"></canvas>
-    </div>
 </div>
 
 @endsection
@@ -87,7 +99,7 @@
                     showingChart2: null,
                 }
             },
-            mounted() {                    
+            mounted() {
                 this.getYearOrders();
                 this.getDishesOrders();
             },
@@ -105,7 +117,7 @@
                         orders.forEach(order => {
                             let date = order.order_datetime;
                             let thisYear = new Date(date).getFullYear();
-                            
+
                             if (!thisYears.includes(thisYear)) {
                                 thisYears.push(thisYear);
                             }
@@ -142,8 +154,8 @@
                         if(this.showingChart) {
                             this.showingChart.destroy();
                         }
-                        this.createYearChart(); 
-                        
+                        this.createYearChart();
+
                     }).catch(err => {console.log(err);})
                 },
                 getMonthOrders: function() {
@@ -197,7 +209,7 @@
                             if(this.showingChart) {
                                 this.showingChart.destroy();
                             }
-                            this.createMonthChart(); 
+                            this.createMonthChart();
 
                         }).catch(err => console.log(err));
                 },
@@ -336,7 +348,7 @@
 
                     axios.get('/api/chart/dishes/' + {{ $restaurant ->id }})
                         .then(res => {
-                            
+
                             let dishes = res.data;
                             let joinDishes = [];
 
@@ -358,7 +370,7 @@
                                     }
                                 }
                             });
-                            
+
                             let names = [];
                             let quantities = [];
                             let money = [];
@@ -369,7 +381,7 @@
                                 money.push(dish.money);
                             });
 
-                            this.dishesNames = names; 
+                            this.dishesNames = names;
                             this.dishesQuantity = quantities;
                             this.dishesMoney =  money;
 
@@ -400,7 +412,7 @@
                                     'rgb(0, 0, 238)',
                                     'rgb(67, 205, 128)',
                                 ],
-                            }], 
+                            }],
                         },
                         options: {
                             maintainAspectRatio: false,
@@ -439,7 +451,7 @@
                                     'rgb(0, 0, 238)',
                                     'rgb(67, 205, 128)',
                                 ],
-                            }], 
+                            }],
                         },
                         options: {
                             maintainAspectRatio: false,
@@ -459,13 +471,13 @@
                     if(this.showingChart2) {
                         this.showingChart2.destroy();
                     }
-                    this.createDishesOrdersChart(); 
+                    this.createDishesOrdersChart();
                 },
                 showDishesMoneyCharts: function() {
                     if(this.showingChart2) {
                         this.showingChart2.destroy();
                     }
-                    this.createDishesMoneyChart(); 
+                    this.createDishesMoneyChart();
                 },
             },
         })
