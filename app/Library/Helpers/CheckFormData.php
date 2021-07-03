@@ -13,6 +13,14 @@ class CheckFormData
         ];
     }
 
+    static function dishesTextFields() {
+        return 
+        [
+            'name',
+            'ingredients',
+        ];
+    }
+
     public function getTextFieldsValues($array, $request) {
         $textFieldsValues = [];
         foreach ($array as $fieldValue) {
