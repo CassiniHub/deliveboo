@@ -26,103 +26,107 @@ class CheckoutController extends Controller
 
     public function setSession(Request $request)
     {
-        $ids_decoded = json_decode($request -> ids);
-
         // Check if dishes ids coming from request are an array of integer or not
-        if (is_array($ids_decoded)) {
-            foreach ($ids_decoded as $id_decoded) {
-                if (!is_int($id_decoded)) {
+        $dishes_ids_decoded = json_decode($request -> ids);
+        if (is_array($dishes_ids_decoded)) {
+            foreach ($dishes_ids_decoded as $dish_id_decoded) {
+                if (!is_int($dish_id_decoded)) {
                     return redirect() -> route('restaurants.index');
                 }
             }
         } else {
             return redirect() -> route('restaurants.index');
         } 
-        $id_restaurant = json_decode($request -> r_id);
 
-        // Check if restaurant id is an integer
-        if (!is_int($id_restaurant)) {
+        // Check if restaurant id coming from the request is an integer or not
+        $restaurant_id = json_decode($request -> r_id);
+        if (!is_int($restaurant_id)) {
             return redirect() -> route('restaurants.index');
         }
 
+        // Set restaurant id and dishes ids as session variables to use in index function
         session([
-            'ids' => $ids_decoded,
-            'id_restaurant' => $id_restaurant
+            'dishes_ids' => $dishes_ids_decoded,
+            'restaurant_id' => $restaurant_id
         ]);
 
         return redirect() -> route('checkouts.index');
     }
 
+    // - - - - - - - - - - - - - - - - - - - - - - - - -
+
     public function index()
     {
-        $id_restaurant = session() -> get('id_restaurant');
-
-        if (!session()->has('ids')) {
+        // Check if the dishes_ids session variables exist
+        // if not, redirect to homepage
+        // Do this to avoid the possibility to encounter errors in case of copy / paste url
+        if (!session() -> has('dishes_ids')) {
             return redirect() -> route('restaurants.index');
         }
-        
-        $ids = session() -> get('ids');
-        $ids_encoded = json_encode($ids);
-        
+
+        $restaurant_id      = session() -> get('restaurant_id');
+        $dishes_ids         = session() -> get('dishes_ids');
+
+        // Calc the cart tot price
         $totPrice = 0;
 
-        foreach ($ids as $id) {
-            $dish = Dish::findOrFail($id);
-            if ($dish -> restaurant_id == $id_restaurant) {
-                
+        // Get every dish from DB using the array of index coming from session variable
+        foreach ($dishes_ids as $dish_id) {
+            $dish = Dish::findOrFail($dish_id);
+            // Check if every dish is from the same restaurant
+            if ($dish -> restaurant_id == $restaurant_id) {
                 $totPrice += $dish -> price;
             } else {
-
                 return redirect() -> route('restaurants.index');
             }
         }
 
-        $restaurant     = Restaurant::findOrFail($id_restaurant);
+        // Add delivery cost
+        $restaurant     = Restaurant::findOrFail($restaurant_id);
         $delivery_cost  = $restaurant -> delivery_cost;
         $totPrice      += $delivery_cost;
 
-        $gateway = new \Braintree\Gateway(BraintreeHelpers::config());
-    
-        $token = $gateway->ClientToken()->generate();
+        // Braintree generate user transaction token to make the payment
+        $gateway            = new \Braintree\Gateway(BraintreeHelpers::config());
+        $token              = $gateway -> ClientToken() -> generate();
+        $dishes_ids_encoded = json_encode($dishes_ids);
+
         return view('pages.checkouts.index', [
             'token'    => $token,
             'totPrice' => $totPrice,
-            'dishes_ids' => $ids_encoded
+            'dishes_ids' => $dishes_ids_encoded
         ]);
     }
 
-    public function transaction (Request $request, $totPrice, $dishes_ids) {
+    // - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    public function transaction (Request $request, $totPrice, $dishes_ids)
+    {
         $dishesIds_decoded = json_decode($dishes_ids);
-        $gateway = new \Braintree\Gateway(BraintreeHelpers::config());
-    
-        $amount = $totPrice;
-        $nonce  = $request  -> payment_method_nonce;
-    
-        $result = $gateway->transaction()->sale([
+        $gateway           = new \Braintree\Gateway(BraintreeHelpers::config());
+        $amount            = $totPrice;
+        $nonce             = $request  -> payment_method_nonce;
+        $result            = $gateway->transaction()->sale([
             'amount' => $amount,
             'paymentMethodNonce' => $nonce,
             'options' => [
                 'submitForSettlement' => true
             ]
         ]);
-        
         if ($result->success) {
-            
             $transaction = $result->transaction;
-            // header("Location: " . $baseUrl . "transaction.php?id=" . $transaction->id);
 
             // create order element in DB
             $validatedData = $request -> validate(MyValidation::validateOrder());
-            $order = Order::make($validatedData);
+            $order         = Order::make($validatedData);
 
-            $order -> tot_price = $totPrice;
-            $order -> status = 1;
-            $order ->order_datetime = now();
+            $order -> tot_price      = $totPrice;
+            $order -> status         = 1;
+            $order -> order_datetime = now();
 
-            $dish = Dish::findOrFail($dishesIds_decoded[0]);
+            $dish       = Dish::findOrFail($dishesIds_decoded[0]);
             $restaurant = Restaurant::findOrFail($dish ->restaurant_id);
-            $order ->restaurant() ->associate($restaurant);
-
+            $order ->restaurant() -> associate($restaurant);
             $order -> save();
 
             foreach ($dishesIds_decoded as $id) {
@@ -130,30 +134,25 @@ class CheckoutController extends Controller
             }
 
             // send mail
-            $mail = $order ->email;
+            $mail = $order -> email;
             Mail::to($mail)
                 ->send(new OrderConfirm($order, $restaurant));
 
             return redirect() -> route('checkouts.success', $order ->id);
         } else {
-
-            $dish = Dish::findOrFail($dishesIds_decoded[0]);
+            $dish       = Dish::findOrFail($dishesIds_decoded[0]);
             $restaurant = Restaurant::findOrFail($dish ->restaurant_id);
 
             // send mail
-            $mail = $request ->email;
+            $mail = $request -> email;
             Mail::to($mail)
                 ->send(new OrderFailed($restaurant));
             
             // Create error string to display
             $errorString = "";
-
-            foreach($result->errors->deepAll() as $error) {
+            foreach($result -> errors -> deepAll() as $error) {
                 $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
             }
-    
-            // $_SESSION["errors"] = $errorString;
-            // header("Location: " . $baseUrl . "index.php");
 
             return redirect() -> route('checkouts.failed') -> withErrors('An error occurred with the message' . $result -> message);
         }
@@ -169,7 +168,6 @@ class CheckoutController extends Controller
     }
 
     public function failed() {
-
         return view('pages.checkouts.failed');
     }
 
@@ -179,71 +177,5 @@ class CheckoutController extends Controller
         session() -> save();
 
         return route('hoempage');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
