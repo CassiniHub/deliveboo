@@ -24,6 +24,7 @@ class CheckoutController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    // Make security checks and set the dishes ids and restaurant id as sessions variables
     public function setSession(Request $request)
     {
         // Check if dishes ids coming from request are an array of integer or not
@@ -55,6 +56,7 @@ class CheckoutController extends Controller
 
     // - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    // Checkout form page
     public function index()
     {
         // Check if the dishes_ids session variables exist
@@ -64,8 +66,8 @@ class CheckoutController extends Controller
             return redirect() -> route('restaurants.index');
         }
 
-        $restaurant_id      = session() -> get('restaurant_id');
-        $dishes_ids         = session() -> get('dishes_ids');
+        $restaurant_id = session() -> get('restaurant_id');
+        $dishes_ids    = session() -> get('dishes_ids');
 
         // Calc the cart tot price
         $totPrice = 0;
@@ -100,9 +102,12 @@ class CheckoutController extends Controller
 
     // - - - - - - - - - - - - - - - - - - - - - - - - -
     
+    // Make the transaction and redirect to the right summary order view
+    // @param {$totPrice} totPrice cart coming from index
+    // @param {$dishes_ids} dishes ids coming from index instead of session to speed up the code
+    //                      ids used to create order to insert into DB
     public function transaction (Request $request, $totPrice, $dishes_ids)
     {
-        $dishesIds_decoded = json_decode($dishes_ids);
         $gateway           = new \Braintree\Gateway(BraintreeHelpers::config());
         $amount            = $totPrice;
         $nonce             = $request  -> payment_method_nonce;
@@ -113,10 +118,15 @@ class CheckoutController extends Controller
                 'submitForSettlement' => true
             ]
         ]);
-        if ($result->success) {
-            $transaction = $result->transaction;
 
-            // create order element in DB
+        // Decodes ids to use to create order and send mails at the end of the transaction
+        $dishes_ids_decoded = json_decode($dishes_ids);
+
+        if ($result->success) {
+            // Check the line - Probably useless
+            // $transaction = $result->transaction;
+
+            // create order row in DB
             $validatedData = $request -> validate(MyValidation::validateOrder());
             $order         = Order::make($validatedData);
 
@@ -124,26 +134,28 @@ class CheckoutController extends Controller
             $order -> status         = 1;
             $order -> order_datetime = now();
 
-            $dish       = Dish::findOrFail($dishesIds_decoded[0]);
-            $restaurant = Restaurant::findOrFail($dish ->restaurant_id);
-            $order ->restaurant() -> associate($restaurant);
+            // Get the the of the given dish id
+            // Get the linked restaurant and associate to the order
+            $dish              = Dish::findOrFail($dishes_ids_decoded[0]);
+            $restaurant        = Restaurant::findOrFail($dish ->restaurant_id);
+            $order -> restaurant() -> associate($restaurant);
             $order -> save();
 
-            foreach ($dishesIds_decoded as $id) {
+            foreach ($dishes_ids_decoded as $id) {
                 $order -> dishes() -> attach($id);
             }
 
-            // send mail
+            // Send order success mail
             $mail = $order -> email;
             Mail::to($mail)
                 ->send(new OrderConfirm($order, $restaurant));
 
             return redirect() -> route('checkouts.success', $order ->id);
         } else {
-            $dish       = Dish::findOrFail($dishesIds_decoded[0]);
+            $dish       = Dish::findOrFail($dishes_ids_decoded[0]);
             $restaurant = Restaurant::findOrFail($dish ->restaurant_id);
 
-            // send mail
+            // Send order failed mail
             $mail = $request -> email;
             Mail::to($mail)
                 ->send(new OrderFailed($restaurant));
@@ -158,6 +170,11 @@ class CheckoutController extends Controller
         }
     }
 
+    // - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    // After trasaction goes well to return the summary 
+    // success order page and restore session data
+    // @param {id} Id used to get all order information showed on the summary view
     public function success($id) {
         $order = Order::findOrFail($id);
         session() -> forget('ids');
@@ -167,10 +184,12 @@ class CheckoutController extends Controller
         return view('pages.checkouts.success', compact('order'));
     }
 
+    // View returned after transaction goes bad
     public function failed() {
         return view('pages.checkouts.failed');
     }
 
+    // Restore session value after transaction goes bad
     public function restoreSession() {
         session() -> forget('ids');
         session() -> forget('id_restaurant');
