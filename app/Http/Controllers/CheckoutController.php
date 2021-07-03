@@ -7,9 +7,12 @@ use App\Order;
 use App\Restaurant;
 
 use App\Library\Helpers\MyValidation;
+use App\Library\Helpers\BraintreeHelpers;
+
+use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderConfirm;
 use App\Mail\OrderFailed;
-use Illuminate\Support\Facades\Mail;
+
 use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
@@ -25,7 +28,7 @@ class CheckoutController extends Controller
     {
         $ids_decoded = json_decode($request -> ids);
 
-        // Check that is an array of integer
+        // Check if dishes ids coming from request are an array of integer or not
         if (is_array($ids_decoded)) {
             foreach ($ids_decoded as $id_decoded) {
                 if (!is_int($id_decoded)) {
@@ -34,8 +37,7 @@ class CheckoutController extends Controller
             }
         } else {
             return redirect() -> route('restaurants.index');
-        }
-
+        } 
         $id_restaurant = json_decode($request -> r_id);
 
         // Check if restaurant id is an integer
@@ -79,12 +81,7 @@ class CheckoutController extends Controller
         $delivery_cost  = $restaurant -> delivery_cost;
         $totPrice      += $delivery_cost;
 
-        $gateway = new \Braintree\Gateway([
-            'environment' => config('services.braintree.environment'),
-            'merchantId'  => config('services.braintree.merchantId'),
-            'publicKey'   => config('services.braintree.publicKey'),
-            'privateKey'  => config('services.braintree.privateKey')
-        ]);
+        $gateway = new \Braintree\Gateway(BraintreeHelpers::config());
     
         $token = $gateway->ClientToken()->generate();
         return view('pages.checkouts.index', [
@@ -96,12 +93,7 @@ class CheckoutController extends Controller
 
     public function transaction (Request $request, $totPrice, $dishes_ids) {
         $dishesIds_decoded = json_decode($dishes_ids);
-        $gateway = new \Braintree\Gateway([
-            'environment' => config('services.braintree.environment'),
-            'merchantId'  => config('services.braintree.merchantId'),
-            'publicKey'   => config('services.braintree.publicKey'),
-            'privateKey'  => config('services.braintree.privateKey')
-        ]);
+        $gateway = new \Braintree\Gateway(BraintreeHelpers::config());
     
         $amount = $totPrice;
         $nonce  = $request  -> payment_method_nonce;
