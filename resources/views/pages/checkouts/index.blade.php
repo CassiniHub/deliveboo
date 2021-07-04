@@ -41,19 +41,11 @@
             <div class="flex-center position-ref full-height">
 
                 <div class="payment-header">
-                    @if (Route::has('login'))
-                        <div class="top-right links">
-                            @auth
-                                <a href="{{ url('/') }}">Torna alla Home</a>
-                            @else
-                                <a href="{{ route('login') }}">Login</a>
-
-                                @if (Route::has('register'))
-                                    <a href="{{ route('register') }}">Register</a>
-                                @endif
-                            @endauth
-                        </div>
-                    @endif
+                    <div class="top-right links">
+                        <form onsubmit="return confirm('Se torni indietro perderai i dati del tuo carrello');" action="{{ url('/') }}" method="get">
+                            <button type="submit">Annulla e vai alla Home</button>
+                        </form>
+                    </div>
                 </div>
 
                 <div class="content">
