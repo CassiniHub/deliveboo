@@ -163,7 +163,7 @@ class Seeders {
                 'address' => 'via Madonna di Fatima 67',
                 'email' => 'letretorri@mail.com',
                 'telephone' => '3289091765',
-                'description' => 'Pizza classi e gourmet pronte a gustare ogni palato.',
+                'description' => 'Pizza classica e gourmet pronte a gustare ogni palato.',
                 'img_cover' => 'pizza01.jpeg',
                 'logo' => 'tre-torri.jpg',
                 'allow_cash' => 1,
