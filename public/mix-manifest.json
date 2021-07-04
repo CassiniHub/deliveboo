@@ -1,8 +1,9 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
     "/js/carousel.js": "/js/carousel.js",
+    "/js/checkout.js": "/js/checkout.js",
     "/js/dashboard.js": "/js/dashboard.js",
     "/js/popper.js": "/js/popper.js",
-    "/js/showcart.js": "/js/showcart.js"
+    "/js/showcart.js": "/js/showcart.js",
+    "/css/app.css": "/css/app.css"
 }

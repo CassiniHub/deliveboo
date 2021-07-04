@@ -104,16 +104,9 @@
                         </div>
                     </div>
 
-                    <div class="dish-info-img">
+                    <div class="dish-info-container">
 
                         <div class="dish-info">
-
-                            <div class="price">
-
-                                <b>Prezzo: € {{ $dish ->price }}</b>
-
-                            </div>
-
                             <div class="type">
 
                                 <b>Tipo di piatto: {{ $dish ->type }}</b>
@@ -128,11 +121,12 @@
                                     {{ $dish ->ingredients }}
                                 </div>
                             </div>
-                        </div>
-                        <div class="dish-img-info">
 
-                            <img src="{{ $dish ->img }}" alt="">
+                            <div class="price">
 
+                                <b>Prezzo: € {{ $dish ->price }}</b>
+
+                            </div>
                         </div>
                     </div>
 
