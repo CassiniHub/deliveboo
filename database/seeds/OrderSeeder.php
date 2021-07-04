@@ -4,6 +4,7 @@ use App\Order;
 use App\Restaurant;
 use App\Dish;
 use Illuminate\Database\Seeder;
+Use App\Library\Helpers\Seeders;
 
 class OrderSeeder extends Seeder
 {

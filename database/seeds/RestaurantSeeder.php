@@ -5,6 +5,7 @@ use App\User;
 use App\Category;
 
 use Illuminate\Database\Seeder;
+Use App\Library\Helpers\Seeders;
 
 class RestaurantSeeder extends Seeder
 {
@@ -15,6 +16,7 @@ class RestaurantSeeder extends Seeder
      */
     public function run()
     {
+
         factory(Restaurant::class, 20) -> make()
             -> each(function($restaurant) {
                 $user = User::inRandomOrder() -> first();
