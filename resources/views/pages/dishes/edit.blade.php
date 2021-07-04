@@ -25,7 +25,7 @@
                     <div class="card-header">Modifica piatto</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('dishes.update', $dish) }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('dishes.update', $dish) }}">
                             @method('PUT')
                             @csrf
                             
@@ -54,15 +54,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="img" class="col-md-4 col-form-label text-md-right">Img</label>
-
-                                <div class="col-md-6">
-                                    <input id="img" type="file" class="form-control-file"  name="img" accept=".png, .jpg, .jpeg">
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="form-check" class="col-md-4 col-form-label text-md-right"></label>
+                                <label for="form-check" class="col-md-4 col-form-label text-md-right">Visibile</label>
 
                                 <div class="form-check my-2 mx-5">
                                     <input class="form-check-input" type="radio" name="is_visible" id="is_visible" value="1" {{ $dish -> is_visible == 1 ? 'checked' : ''}}>

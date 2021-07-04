@@ -13,7 +13,7 @@ class Dish extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'name', 'ingredients', 'price', 'discount', 'img', 'type', 'is_visible'
+        'name', 'ingredients', 'price', 'type', 'is_visible'
     ];
 
     public function restaurant() {

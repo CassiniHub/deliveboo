@@ -81,18 +81,7 @@ class DishController extends Controller
         
         $validateData = $request -> validate(MyValidation::validateDish());
         $dish         = Dish::make($validateData);
-        
-        $restaurant = Restaurant::findOrFail($id);
-
-        if ($request -> file('img')) {
-            $image      = new Images;
-            $imgNewName = $image -> getImgName($request, 'img');
-            $folderPath = '/images/dishes';
-            $storedImg  = ($request -> file('img'))
-            -> storeAs($folderPath, $imgNewName, 'public');
-            $dish -> img = $imgNewName;
-        }
-        
+        $restaurant = Restaurant::findOrFail($id);        
         $dish -> restaurant() -> associate($restaurant);
         $dish -> save();
 
@@ -154,22 +143,6 @@ class DishController extends Controller
         }
 
         $validateData = $request -> validate(MyValidation::validateDish());
-
-        if ($request -> file('img')) {
-
-            $delete   = new Images;
-            $toDelete = $dish -> img;
-            $delete -> deleteDishImg($toDelete);
-
-            $image      = new Images;
-            $imgNewName = $image -> getImgName($request, 'img');
-            $folderPath = '/images/dishes';
-            $storedImg  = ($request -> file('img'))
-                -> storeAs($folderPath, $imgNewName, 'public');
-
-            $dish -> img = $imgNewName;
-        }
-
         $dish -> update($validateData);
 
         return redirect() -> route('restaurants.protectedShow', $dish -> restaurant_id);
