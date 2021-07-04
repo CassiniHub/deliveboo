@@ -43,7 +43,7 @@
                 <div class="payment-header">
                     <div class="top-right links">
                         <form onsubmit="return confirm('Se torni indietro perderai i dati del tuo carrello');" action="{{ url('/') }}" method="get">
-                            <button type="submit">Annulla e vai alla Home</button>
+                            <button class="cancel-pay-btn" type="submit">Annulla e vai alla Home</button>
                         </form>
                     </div>
                 </div>
