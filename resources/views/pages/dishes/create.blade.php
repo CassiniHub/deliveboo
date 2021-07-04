@@ -41,7 +41,7 @@
                             <label for="ingredients" class="col-md-4 col-form-label text-md-right">Ingredients</label>
 
                             <div class="col-md-6">
-                                <textarea id="ingredients" type="text" class="form-control" minlength="2" name="ingredients" placeholder="Inserisci gli ingredienti separati da una virgola"  required></textarea>
+                                <textarea id="ingredients" type="text" class="form-control" minlength="2" name="ingredients" placeholder="Inserisci gli ingredienti separati da una virgola"></textarea>
                             </div>
                         </div>
 

@@ -7,10 +7,11 @@ use App\Restaurant;
 
 use Illuminate\Http\Request;
 Use App\Library\Helpers\MyValidation;
+Use App\Library\Helpers\CheckFormData;
 
+use File;
 Use App\Library\Helpers\Images;
 use Illuminate\Support\Facades\Storage;
-use File;
 
 class DishController extends Controller
 {
@@ -57,17 +58,8 @@ class DishController extends Controller
 
     public function storeDish(Request $request, $id) {
 
-        // check textarea
-        $dangerChars = ['{', '}', '>', '<', '[', ']', '=', '+', '&', '$', '#'];
-        $checkStr = $request ->ingredients;
-        foreach ($dangerChars as $char) {
-            if (strpos($checkStr, $char)){
-                return back() ->withErrors('La lista di ingredienti non può contenere i seguenti caratteri: { } > < [ ] = + & $ #');
-            }
-        }
-
         // test dish type
-        $acceptedTypes = ['contorni', 'insalate', 'primi', 'secondi', 'pizze', 'panini', 'dolci']; 
+        $acceptedTypes = ['Contorni', 'Insalate', 'Primi', 'Secondi', 'Pizze', 'Panini', 'Dolci']; 
         $selType = $request ->type;
         $found = false;
         foreach ($acceptedTypes as $type) {
@@ -77,6 +69,14 @@ class DishController extends Controller
         }
         if (!$found || !$selType) {
             return back() ->withErrors('Devi selezionare una tipologia tra quelle proposte');
+        }
+
+        // Check if in a text input field the user is using a special banned char
+        $special_char_check = new CheckFormData;
+        $fields_to_check    = CheckFormData::dishesTextFields();
+        $text_fields_values = $special_char_check -> getTextFieldsValues($fields_to_check, $request);
+        if ($special_char_check -> checkSpecialChar($text_fields_values)) {
+            return $special_char_check -> checkSpecialChar($text_fields_values);
         }
 
         $validateData = $request -> validate(MyValidation::validateDish());
@@ -132,17 +132,16 @@ class DishController extends Controller
      */
     public function update(Request $request, Dish $dish)
     {
-        // check textarea
-        $dangerChars = ['{', '}', '>', '<', '[', ']', '=', '+', '&', '$', '#'];
-        $checkStr = $request ->ingredients;
-        foreach ($dangerChars as $char) {
-            if (strpos($checkStr, $char)){
-                return back() ->withErrors('La lista di ingredienti non può contenere i seguenti caratteri: { } > < [ ] = + & $ #');
-            }
+        // Check if in a text input field the user is using a special banned char
+        $special_char_check = new CheckFormData;
+        $fields_to_check    = CheckFormData::dishesTextFields();
+        $text_fields_values = $special_char_check -> getTextFieldsValues($fields_to_check, $request);
+        if ($special_char_check -> checkSpecialChar($text_fields_values)) {
+            return $special_char_check -> checkSpecialChar($text_fields_values);
         }
 
         // test dish type
-        $acceptedTypes = ['contorni', 'insalate', 'primi', 'secondi', 'pizze', 'panini', 'dolci']; 
+        $acceptedTypes = ['Contorni', 'Insalate', 'Primi', 'Secondi', 'Pizze', 'Panini', 'Dolci']; 
         $selType = $request ->type;
         $found = false;
         foreach ($acceptedTypes as $type) {
