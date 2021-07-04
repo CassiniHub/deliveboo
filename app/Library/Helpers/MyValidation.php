@@ -22,7 +22,7 @@ class MyValidation {
     static function validateDish() {
         return [
             'name'        => 'required|string|min:2|max:255',
-            'ingredients' => 'required|string|min:2',
+            'ingredients' => 'nullable|string|min:2',
             'price'       => 'required|numeric|min:0.01',
             'type'        => 'required|string',
             'is_visible'     => 'required|boolean'

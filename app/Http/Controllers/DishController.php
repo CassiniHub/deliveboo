@@ -59,7 +59,7 @@ class DishController extends Controller
     public function storeDish(Request $request, $id) {
 
         // test dish type
-        $acceptedTypes = ['contorni', 'insalate', 'primi', 'secondi', 'pizze', 'panini', 'dolci']; 
+        $acceptedTypes = ['Contorni', 'Insalate', 'Primi', 'Secondi', 'Pizze', 'Panini', 'Dolci']; 
         $selType = $request ->type;
         $found = false;
         foreach ($acceptedTypes as $type) {
@@ -141,7 +141,7 @@ class DishController extends Controller
         }
 
         // test dish type
-        $acceptedTypes = ['contorni', 'insalate', 'primi', 'secondi', 'pizze', 'panini', 'dolci']; 
+        $acceptedTypes = ['Contorni', 'Insalate', 'Primi', 'Secondi', 'Pizze', 'Panini', 'Dolci']; 
         $selType = $request ->type;
         $found = false;
         foreach ($acceptedTypes as $type) {
