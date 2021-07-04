@@ -41,7 +41,7 @@
                                 <label for="ingredients" class="col-md-4 col-form-label text-md-right">Ingredients</label>
 
                                 <div class="col-md-6">
-                                    <textarea id="ingredients" name="ingredients" type="text" class="form-control" maxlength="255" required>{{ $dish -> ingredients }}</textarea>
+                                    <textarea id="ingredients" name="ingredients" type="text" class="form-control" maxlength="255">{{ $dish -> ingredients }}</textarea>
                                 </div>
                             </div>
 
@@ -58,7 +58,6 @@
 
                                 <div class="col-md-6">
                                     <input id="img" type="file" class="form-control-file"  name="img" accept=".png, .jpg, .jpeg">
-                                    <img src="/storage/images/dishes/{{ $dish -> img }}" alt="" style="width:100px;">
                                 </div>
                             </div>
 

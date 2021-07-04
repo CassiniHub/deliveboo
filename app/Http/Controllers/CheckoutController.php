@@ -8,6 +8,7 @@ use App\Restaurant;
 
 use App\Library\Helpers\MyValidation;
 use App\Library\Helpers\BraintreeHelpers;
+Use App\Library\Helpers\CheckFormData;
 
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderConfirm;
@@ -108,6 +109,12 @@ class CheckoutController extends Controller
     //                      ids used to create order to insert into DB
     public function transaction (Request $request, $totPrice, $dishes_ids)
     {
+
+        $telephone_check = new CheckFormData;
+        if ($telephone_check -> checkPhoneNumber($request)) {
+            return $telephone_check -> checkPhoneNumber($request);
+        }
+
         $gateway           = new \Braintree\Gateway(BraintreeHelpers::config());
         $amount            = $totPrice;
         $nonce             = $request  -> payment_method_nonce;

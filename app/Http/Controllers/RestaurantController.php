@@ -9,13 +9,19 @@ use App\Order;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 Use App\Library\Helpers\MyValidation;
+Use App\Library\Helpers\CheckFormData;
+
+use File;
 Use App\Library\Helpers\Images;
 use Illuminate\Support\Facades\Storage;
+
 use App\Mail\RestaurantCreated;
 use App\Mail\RestaurantRemoved;
 use Illuminate\Support\Facades\Mail;
-use File;
+
+
 
 
 
@@ -33,7 +39,7 @@ class RestaurantController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $restaurants = Restaurant::all();
+        $restaurants = Restaurant::with('categories') ->get();
 
         return view('pages.restaurants.index', compact(
             'categories',
@@ -61,14 +67,10 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
-        // check telephone
-        $telephone = $request ->telephone;
-        $telephone_num = intval($telephone);
-        $telephone_str = strval($telephone_num);
-        
-        if (!$telephone_str == $telephone) {
-            
-            return back() ->withErrors('Il numero di telefono inserito non è valido');
+        // check phone number
+        $telephone_check = new CheckFormData;
+        if ($telephone_check -> checkPhoneNumber($request)) {
+            return $telephone_check -> checkPhoneNumber($request);
         }
         
         // check categories array
@@ -85,13 +87,12 @@ class RestaurantController extends Controller
             }
         }
 
-        // check textarea
-        $dangerChars = ['{', '}', '>', '<', '[', ']', '=', '+', '&', '$', '#'];
-        $checkStr = $request ->description;
-        foreach ($dangerChars as $char) {
-            if (strpos($checkStr, $char)){
-                return back() ->withErrors('La descrizione non può contenere i seguenti caratteri: { } > < [ ] = + & $ #');
-            }
+        // Check if in a text input field the user is using a special banned char
+        $special_char_check = new CheckFormData;
+        $fields_to_check    = CheckFormData::restaurantsTextFields();
+        $text_fields_values = $special_char_check -> getTextFieldsValues($fields_to_check, $request);
+        if ($special_char_check -> checkSpecialChar($text_fields_values)) {
+            return $special_char_check -> checkSpecialChar($text_fields_values);
         }
 
         $validateData = $request ->validate(MyValidation::validateRestaurant());
@@ -100,7 +101,7 @@ class RestaurantController extends Controller
         
         if ($request ->file('img_cover')) {
             $image = new Images;
-            $coverImgNewName = $image->getImgName($request - 'img_cover');
+            $coverImgNewName = $image->getImgName($request, 'img_cover');
             $folderPath = '/images/restaurants/cover';
             $storedImg = ($request ->file('img_cover')) 
                 ->storeAs($folderPath, $coverImgNewName, 'public');
@@ -187,15 +188,10 @@ class RestaurantController extends Controller
      */
     public function update(Request $request, Restaurant $restaurant)
     {
-
-        // check telephone
-        $telephone = $request ->telephone;
-        $telephone_num = intval($telephone);
-        $telephone_str = strval($telephone_num);
-        
-        if (!$telephone_str == $telephone) {
-            
-            return back() ->withErrors('Il numero di telefono inserito non è valido');
+        // check phone number
+        $telephone_check = new CheckFormData;
+        if ($telephone_check -> checkPhoneNumber($request)) {
+            return $telephone_check -> checkPhoneNumber($request);
         }
         
         // check categories array
@@ -210,6 +206,14 @@ class RestaurantController extends Controller
                     return back() ->withErrors('Devi selezionare almeno una cateogoria per il tuo ristorante');
                 }
             }
+        }
+        
+        // Check if in a text input field the user is using a special banned char
+        $special_char_check = new CheckFormData;
+        $fields_to_check    = CheckFormData::restaurantsTextFields();
+        $text_fields_values = $special_char_check -> getTextFieldsValues($fields_to_check, $request);
+        if ($special_char_check -> checkSpecialChar($text_fields_values)) {
+            return $special_char_check -> checkSpecialChar($text_fields_values);
         }
 
         $validateData = $request -> validate(MyValidation::validateRestaurant());

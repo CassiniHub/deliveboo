@@ -86,15 +86,16 @@
             el: '#chart',
             data: function() {
                 return {
-                    totOrdersYear: [],
-                    totMoneyYear: [],
-                    totOrdersMonth: [],
-                    totMoneyMonth: [],
-                    dishesNames: [],
-                    dishesQuantity: [],
-                    dishesMoney: [],
-                    years: [],
-                    selYear: null,
+                    totOrdersYear: [], //numero totale ordini per anno
+                    totMoneyYear: [], //numero totale entrate per anno
+                    totOrdersMonth: [], //numero totale ordini per mese all'anno
+                    totMoneyMonth: [],  // numero totale entrate per mese all'anno
+                    dishesNamesForMoney: [], //nomi piatti ordinato per entrate
+                    dishesNamesForQuantity: [], //nomi piatti ordinati per numero ordini
+                    dishesQuantity: [], //quantita ordini per singolo piatto
+                    dishesMoney: [], //entrate per singolo piatto
+                    years: [], //array dinamico anni attivita ristorante
+                    selYear: null, // anno selezionato
                     showingChart: null,
                     showingChart2: null,
                 }
@@ -370,19 +371,27 @@
                                     }
                                 }
                             });
+                            
 
-                            let names = [];
-                            let quantities = [];
                             let money = [];
-                            let limit = 6;
-
+                            let namesForMoney = [];
+                            this.sortArrayByMoney(joinDishes);
                             joinDishes.forEach(dish => {
-                                names.push(dish.dish.name);
-                                quantities.push(dish.nof_dishes);
+                                namesForMoney.push(dish.dish.name);
                                 money.push(dish.money);
                             });
+
+                            let quantities = [];
+                            let namesForQuantities = [];
+                            this.sortArrayByQuantity(joinDishes)
+                            joinDishes.forEach(dish => {
+                                namesForQuantities.push(dish.dish.name);
+                                quantities.push(dish.nof_dishes);
+                            });
                             
-                            this.dishesNames = this.cutArray(names, limit);
+                            let limit = 6;
+                            this.dishesNamesForMoney = this.cutArray(namesForMoney, limit);
+                            this.dishesNamesForQuantity = this.cutArray(namesForQuantities, limit);
                             this.dishesQuantity = this.cutArray(quantities, limit);
                             this.dishesMoney =  this.cutArray(money, limit);
 
@@ -397,15 +406,33 @@
                     }else{
                         return array;
                     }
+                },
+                sortArrayByMoney: function(arr) {
+                    arr.sort(function(a,b) {
+                        let keyA = a.money;
+                        let keyB = b.money;
 
+                        if (keyA < keyB) return 1;
+                        if (keyA > keyB) return -1;
+                        return 0;
+                    })
+                },
+                sortArrayByQuantity: function(arr) {
+                    arr.sort(function(a,b) {
+                        let keyA = a.nof_dishes;
+                        let keyB = b.nof_dishes;
 
+                        if (keyA < keyB) return 1;
+                        if (keyA > keyB) return -1;
+                        return 0;
+                    })
                 },
                 createDishesOrdersChart: function() {
                     const ctx = document.getElementById('myChart2');
                     let myChart2 = new Chart(ctx, {
                             type: 'polarArea',
                         data: {
-                            labels: this.dishesNames,
+                            labels: this.dishesNamesForQuantity,
                             datasets: [{
                                 label: 'Piatti',
                                 data: this.dishesQuantity,
@@ -416,12 +443,12 @@
                                     'rgb(201, 203, 207)',
                                     'rgb(54, 162, 235)',
                                     'rgb(224, 231, 34)',
-                                    'rgb(44, 95, 45)',
-                                    'rgb(242, 170, 76)',
-                                    'rgb(50, 205, 50)',
-                                    'rgb(238, 0, 0)',
-                                    'rgb(0, 0, 238)',
-                                    'rgb(67, 205, 128)',
+                                    // 'rgb(44, 95, 45)',
+                                    // 'rgb(242, 170, 76)',
+                                    // 'rgb(50, 205, 50)',
+                                    // 'rgb(238, 0, 0)',
+                                    // 'rgb(0, 0, 238)',
+                                    // 'rgb(67, 205, 128)',
                                 ],
                             }],
                         },
@@ -444,7 +471,7 @@
                     let myChart2 = new Chart(ctx, {
                             type: 'polarArea',
                         data: {
-                            labels: this.dishesNames,
+                            labels: this.dishesNamesForMoney,
                             datasets: [{
                                 label: 'Piatti',
                                 data: this.dishesMoney,
@@ -455,12 +482,12 @@
                                     'rgb(201, 203, 207)',
                                     'rgb(54, 162, 235)',
                                     'rgb(224, 231, 34)',
-                                    'rgb(44, 95, 45)',
-                                    'rgb(242, 170, 76)',
-                                    'rgb(50, 205, 50)',
-                                    'rgb(238, 0, 0)',
-                                    'rgb(0, 0, 238)',
-                                    'rgb(67, 205, 128)',
+                                    // 'rgb(44, 95, 45)',
+                                    // 'rgb(242, 170, 76)',
+                                    // 'rgb(50, 205, 50)',
+                                    // 'rgb(238, 0, 0)',
+                                    // 'rgb(0, 0, 238)',
+                                    // 'rgb(67, 205, 128)',
                                 ],
                             }],
                         },

@@ -188,9 +188,9 @@
                             this.showedRestaurants = res.data;
                         })
                         .catch(err => console.log(err));
-                } else {
+                }else {
 
-                    this.showedRestaurants = null;
+                    this.showedRestaurants = this.restaurants;
                 }
 
                 console.log(this.showedRestaurants);
