@@ -114,10 +114,10 @@
 
                         <div class="form-group d-flex col-md-8 offset-md-2">
                             <label for="category_id[]">Tipi di cucina</label>
-                            <div class="d-flex mb-3 mx-3">
-                                <div>
+                            <div class="d-flex mb-3">
+                                <div class="checkbox-style">
                                     @foreach ($categories as $category)
-                                        <input type="Checkbox" name="category_id[]" value="{{ $category -> id }}">{{ $category -> name }} <br>
+                                        <input type="Checkbox" name="category_id[]" value="{{ $category -> id }}"> <span class="categorypad">{{ $category -> name }}</span><br>
                                     @endforeach
                                 </div>
                             </div>

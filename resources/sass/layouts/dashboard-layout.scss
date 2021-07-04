@@ -195,6 +195,7 @@
 
                             display: flex;
                             align-items: center;
+                            text-transform: capitalize;
 
                             h4{
                                 position: relative;
@@ -247,12 +248,14 @@
 
                                 padding: 10px 0;
                                 padding-left: 20px;
+                                text-transform: capitalize;
                             }
 
                             .ingredients{
 
                                 padding: 20px;
                                 border-radius: 0 0 0 5px;
+                                text-transform: capitalize;
 
                                 @media screen and (max-width: 375px){
 
@@ -504,10 +507,26 @@
                         text-align: center;
                     }
 
-                    .title{
+                    .dishes{
+
+                        text-transform: capitalize;
+
+                        .title{
+
+                            font-weight: bold;
+                            font-size: 1.1em;
+
+                        }
+
+                        .dishes-order-name-list{
+
+                            text-transform: capitalize;
+                        }
+                    }
+
+                    .notes{
 
                         font-weight: bold;
-                        font-size: 1.1em;
                     }
 
                     .ready-button{
@@ -562,6 +581,11 @@
                         font-size: 1.1em;
 
                     }
+
+                    .dishes-order-name-list{
+
+                        text-transform: capitalize;
+                    }
                 }
 
             }
@@ -573,17 +597,32 @@
 
 .card-body{
 
+
+
     input{
 
-        &:valid{
+/*         &:valid{
 
             border: 2px solid green;
-        }
+        } */
 
         &:invalid{
 
             border: 2px solid red;
         }
+    }
+
+    .checkbox-style{
+
+        width: 200px;
+        text-align: left;
+        margin-left: 30px;
+
+        .categorypad{
+
+            padding-left: 5px;
+        }
+
     }
 }
 

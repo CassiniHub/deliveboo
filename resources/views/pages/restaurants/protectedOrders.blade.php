@@ -51,7 +51,7 @@
                 @if ($order ->status == 1)
                     <li class=" order-card1">
                         <div class="timestamp">
-                          <strong>Ordine effettuato alle: {{ $order ->order_datetime}}</strong>
+                          <strong>{{ $order ->order_datetime}}</strong>
                         </div>
                         <div class="dishes">
                             <div class="title">
@@ -94,7 +94,7 @@
 
                     <li class=" order-card2">
                         <div class="timestamp">
-                          Ordine effettuato alle: {{ $order ->order_datetime}}
+                          {{ $order ->order_datetime}}
                         </div>
                         <div class="price">
                             <div class="title">
@@ -106,12 +106,18 @@
                             <div class="title">
                                 Piatti ordinati:
                             </div>
-                            @foreach ($order ->dishes as $dish)
+
+                            <div class="dishes-order-name-list">
+
+                                @foreach ($order ->dishes as $dish)
                                     {{ $dish ->name }}
                                 @if ($loop ->index < $loop ->count - 1)
                                     -
                                 @endif
-                            @endforeach
+                                @endforeach
+
+                            </div>
+
                         </div>
                         <div class="notes">
                             <div class="title">
