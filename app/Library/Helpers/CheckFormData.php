@@ -40,5 +40,16 @@ class CheckFormData
             }
         }
     }
+
+    public function checkPhoneNumber($request) {
+        $telephone = $request -> telephone;
+        $telephone_num = intval($telephone);
+        $telephone_str = strval($telephone_num);
+        
+        if ($telephone_str != $telephone) {
+            
+            return back() ->withErrors('Il numero di telefono inserito non è valido');
+        }
+    }
 }
 

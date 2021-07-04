@@ -10,7 +10,7 @@ class MyValidation {
             'name'          => 'required|string|min:2|max:255',
             'address'       => 'required|string|min:6|max:255',
             'email'         => 'required|string|max:128|email',
-            'telephone'     => 'required|string|max:32',
+            'telephone'     => 'required|string|min:9|max:11',
             'description'   => 'nullable|string',
             'allow_cash'    => 'required|boolean',
             'delivery_cost' => 'required|numeric',
@@ -25,7 +25,7 @@ class MyValidation {
             'ingredients' => 'nullable|string|min:2',
             'price'       => 'required|numeric|min:0.01',
             'type'        => 'required|string',
-            'is_visible'     => 'required|boolean'
+            'is_visible'  => 'required|boolean'
         ];
     }
 
@@ -41,7 +41,7 @@ class MyValidation {
             'notes'            => 'nullable|string',
             'delivery_address' => 'required|string',
             'email'            => 'required|string|max:128|email',
-            'telephone'        => 'required|string|max:32',
+            'telephone'        => 'required|string|min:9|max:11',
             'doorbell_name'    => 'required|string',
         ];
     }

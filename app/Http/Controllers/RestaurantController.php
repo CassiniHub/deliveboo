@@ -67,15 +67,10 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
-        
-        // check telephone
-        $telephone = $request ->telephone;
-        $telephone_num = intval($telephone);
-        $telephone_str = strval($telephone_num);
-        
-        if (!$telephone_str == $telephone) {
-            
-            return back() ->withErrors('Il numero di telefono inserito non è valido');
+        // check phone number
+        $telephone_check = new CheckFormData;
+        if ($telephone_check -> checkPhoneNumber($request)) {
+            return $telephone_check -> checkPhoneNumber($request);
         }
         
         // check categories array
@@ -193,14 +188,10 @@ class RestaurantController extends Controller
      */
     public function update(Request $request, Restaurant $restaurant)
     {
-        // check telephone
-        $telephone     = $request ->telephone;
-        $telephone_num = intval($telephone);
-        $telephone_str = strval($telephone_num);
-        
-        if (!$telephone_str == $telephone) {
-            
-            return back() ->withErrors('Il numero di telefono inserito non è valido');
+        // check phone number
+        $telephone_check = new CheckFormData;
+        if ($telephone_check -> checkPhoneNumber($request)) {
+            return $telephone_check -> checkPhoneNumber($request);
         }
         
         // check categories array
