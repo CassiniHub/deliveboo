@@ -2,6 +2,12 @@
 
 @section('sidebar-content')
 
+    <div class="title">
+        <h1 class="company-name">
+            {{ Auth::user() ->company_name }}
+        </h1>
+    </div>
+
     <h4>
         Le tue attività
     </h4>

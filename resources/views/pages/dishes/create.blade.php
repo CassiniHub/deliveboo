@@ -25,7 +25,7 @@
                 <div class="card-header">New Dish</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('dishes.storeDish', $restaurant ->id) }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('dishes.storeDish', $restaurant ->id) }}">
                         @method('POST')
                         @csrf
 
@@ -50,14 +50,6 @@
 
                             <div class="col-md-6">
                                 <input id="price" type="number" value='0.00' step=".01" min="0.01" class="form-control"  name="price"  required>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="img" class="col-md-4 col-form-label text-md-right">Img</label>
-
-                            <div class="col-md-6">
-                                <input id="img" type="file" class="form-control-file"  name="img" >
                             </div>
                         </div>
 

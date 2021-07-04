@@ -25,7 +25,7 @@
                     <div class="card-header">Modifica piatto</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('dishes.update', $dish) }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('dishes.update', $dish) }}">
                             @method('PUT')
                             @csrf
                             
@@ -54,15 +54,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="img" class="col-md-4 col-form-label text-md-right">Img</label>
-
-                                <div class="col-md-6">
-                                    <input id="img" type="file" class="form-control-file"  name="img" accept=".png, .jpg, .jpeg">
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="form-check" class="col-md-4 col-form-label text-md-right"></label>
+                                <label for="form-check" class="col-md-4 col-form-label text-md-right">Visibile</label>
 
                                 <div class="form-check my-2 mx-5">
                                     <input class="form-check-input" type="radio" name="is_visible" id="is_visible" value="1" {{ $dish -> is_visible == 1 ? 'checked' : ''}}>
@@ -83,37 +75,37 @@
                                 <div class="d-flex mb-3 mx-3">
                                     <div>
                                         <input type="radio" name="type" value="Primi" 
-                                        @if ($dish ->type == 'primi')
+                                        @if ($dish ->type == 'Primi')
                                             checked
                                         @endif>
                                          Primo <br>
                                         <input type="radio" name="type" value="Secondi"
-                                        @if ($dish ->type == 'secondi')
+                                        @if ($dish ->type == 'Secondi')
                                             checked
                                         @endif>
                                          Secondo <br>
                                         <input type="radio" name="type" value="Contorni"
-                                        @if ($dish ->type == 'contorni')
+                                        @if ($dish ->type == 'Contorni')
                                             checked
                                         @endif>
                                          Contorno <br>
                                         <input type="radio" name="type" value="Dolci"
-                                        @if ($dish ->type == 'dolci')
+                                        @if ($dish ->type == 'Dolci')
                                             checked
                                         @endif>
                                          Dolce <br>
                                         <input type="radio" name="type" value="Panini"
-                                        @if ($dish ->type == 'panini')
+                                        @if ($dish ->type == 'Panini')
                                             checked
                                         @endif>
                                         Panino <br>
                                         <input type="radio" name="type" value="Pizze"
-                                        @if ($dish ->type == 'pizze')
+                                        @if ($dish ->type == 'Pizze')
                                             checked
                                         @endif>
                                          Pizza <br>
                                         <input type="radio" name="type" value="Insalate"
-                                        @if ($dish ->type == 'insalate')
+                                        @if ($dish ->type == 'Insalate')
                                             checked
                                         @endif>
                                          Insalata <br>
