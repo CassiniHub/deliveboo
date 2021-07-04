@@ -244,9 +244,9 @@
                 <div class="cart">
                     <div class="cart-list" v-for="dish in dishesArray">
 
-                        <div class="cart-list-img">
+                        {{-- <div class="cart-list-img">
                              <img :src="dish.dish.img" alt="">
-                        </div>
+                        </div> --}}
 
                         <div class="cart-dish-name">
                             <b>@{{ dish.dish.name }}</b>
