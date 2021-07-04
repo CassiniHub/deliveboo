@@ -54,7 +54,7 @@
                     @endif
                         ristorante
                 </button>
-            </form>            
+            </form>
         </div>
 
     </div>
@@ -124,9 +124,9 @@
                                 <div>
                                     <b>Ingredienti:</b>
                                 </div>
-                                <p>
+                                <div class="ingredient-list-scroll">
                                     {{ $dish ->ingredients }}
-                                </p>
+                                </div>
                             </div>
                         </div>
                         <div class="dish-img-info">
