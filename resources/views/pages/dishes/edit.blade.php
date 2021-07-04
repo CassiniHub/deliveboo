@@ -84,6 +84,11 @@
                                             checked
                                         @endif>
                                          Secondo <br>
+                                         <input type="radio" name="type" value="Sushi" 
+                                        @if ($dish ->type == 'Sushi')
+                                            checked
+                                        @endif>
+                                         Sushi <br>
                                         <input type="radio" name="type" value="Contorni"
                                         @if ($dish ->type == 'Contorni')
                                             checked
@@ -99,6 +104,11 @@
                                             checked
                                         @endif>
                                         Panino <br>
+                                        <input type="radio" name="type" value="Hamburger"
+                                        @if ($dish ->type == 'Hamburger')
+                                            checked
+                                        @endif>
+                                        Hamburger <br>
                                         <input type="radio" name="type" value="Pizze"
                                         @if ($dish ->type == 'Pizze')
                                             checked
@@ -109,6 +119,11 @@
                                             checked
                                         @endif>
                                          Insalata <br>
+                                         <input type="radio" name="type" value="Poke"
+                                         @if ($dish ->type == 'Poke')
+                                             checked
+                                         @endif>
+                                          Poke <br>
                                     </div>
                                 </div>
                             </div>
