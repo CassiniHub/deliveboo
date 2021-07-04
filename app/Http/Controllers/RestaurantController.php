@@ -140,7 +140,7 @@ class RestaurantController extends Controller
         $restaurant = Restaurant::findOrFail($id);
         $dishes = $restaurant ->dishes() ->get();
         $getTypes = [];
-        $allTypes = ['contorni', 'insalate', 'primi', 'secondi', 'pizze', 'panini', 'dolci'];
+        $allTypes = ['Contorni', 'Insalate', 'Primi', 'Secondi', 'Pizze', 'Panini', 'Dolci'];
 
         foreach ($dishes as $dish) {
             if(!in_array($dish ->type, $getTypes)){
