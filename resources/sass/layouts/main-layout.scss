@@ -65,7 +65,10 @@
 
         .menu-type{
 
+            list-style: none;
             width: 100%;
+            background-color: #1F8691;
+            margin: 20px;
 
             @media screen and (max-width: 375px){
 
@@ -86,14 +89,15 @@
                 }
             }
 
-                .type-span{
 
-                    font-size: 25px;
-                    font-weight: 600;
-                    color: white;
-                    text-transform: uppercase;
-                }
+            .dishes-list{
 
+                width: 50%;
+                padding: 30px;
+                display: flex;
+                flex-wrap: wrap;
+                margin-top: 20px;
+                margin-left: 10px;
 
                  @media screen and (max-width: 375px){
 
@@ -103,14 +107,16 @@
 
                 .dish-card{
 
-                    width: 50%;
-                    padding: 30px;
-                    display: flex;
-                    flex-wrap: wrap;
-                    margin-top: 20px;
-                    margin-left: 10px;
+                    height: 150px;
+                    transition: box-shadow 0.2s ease-in-out;
+                    margin-right: 20px;
+                    cursor: pointer;
+                    background-color: white;
+                    border-radius: 5px;
+                    &:hover{
 
-                    .dish-card{
+                        box-shadow: 5px 10px 18px #14555c;
+                    }
 
                      @media screen and (max-width: 375px){
 
@@ -120,8 +126,9 @@
 
                     .dish-card-container{
 
-                            box-shadow: 5px 10px 18px #14555c;
-                        }
+                        height: 100%;
+                        padding: 10px;
+                        display: flex;
 
                          @media screen and (max-width: 375px){
 
@@ -131,54 +138,48 @@
 
                         .dish-name-price{
 
-                            height: 100%;
-                            padding: 10px;
                             display: flex;
+                            flex-direction: column;
+                            height: 100%;
+                            width: 70%;
 
-                            .dish-name-price{
+                            .dish-name, .dish-price, .dish-ingr{
 
                                 display: flex;
-                                flex-direction: column;
-                                height: 100%;
-                                width: 70%;
+                                align-items: center;
 
-                                .dish-name, .dish-price, .dish-ingr{
+                            }
+                            .dish-name, .dish-price{
 
-                                    display: flex;
-                                    align-items: center;
+                                min-height: 25%;
+                            }
+                            .dish-ingr{
 
-                                }
-                                .dish-name, .dish-price{
-
-                                    min-height: 25%;
-                                }
-                                .dish-ingr{
-
-                                    min-height: 50%
-
-                                }
+                                min-height: 50%
 
                             }
 
-                            .dish-img{
+                        }
 
-                                width: 30%;
-                                height: 80px;
-                                margin: auto;
+                        .dish-img{
 
-                                img{
+                            width: 30%;
+                            height: 80px;
+                            margin: auto;
 
-                                    width: 100%;
-                                    height: 100%;
-                                    object-position: center;
-                                }
+                            img{
+
+                                width: 100%;
+                                height: 100%;
+                                object-position: center;
                             }
                         }
                     }
                 }
             }
-
         }
+
+
 
         .container-cart{
 
@@ -186,7 +187,7 @@
             margin-right: 40px;
             margin-bottom: 30px;
             height: 50%;
-            width: 75%;
+            width: 100%;
             background: white;
             box-shadow: 5px 10px 18px #14555c;
             display: flex;
