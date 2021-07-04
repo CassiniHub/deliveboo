@@ -17,7 +17,7 @@ class CreateDishesTable extends Migration
             $table -> id();
 
             $table -> string('name');
-            $table -> string('ingredients');
+            $table -> string('ingredients') ->nullable();
             $table -> decimal('price');
             $table -> string('type', 64);
             $table -> boolean('is_visible') -> default(true);
