@@ -15,11 +15,17 @@ class DishSeeder extends Seeder
      */
     public function run()
     {
-        factory(Dish::class, 150) -> make()
-            -> each(function($dish) {
-                $restaurant = Restaurant::inRandomOrder() -> first();
-                $dish -> restaurant() -> associate($restaurant);
-                $dish -> save();
-            });
+        $dishes = Seeders::dishesSeeds();
+        $dishesArray = [];
+
+        foreach ($dishes as $dish) {
+            $dishesArray[] = Dish::make($dish);
+        }
+
+        foreach ($dishesArray as $dish) {
+            $restaurant = Restaurant::inRandomOrder() -> first();
+            $dish -> restaurant() -> associate($restaurant);
+            $dish -> save();
+        }
     }
 }

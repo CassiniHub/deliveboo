@@ -102,17 +102,19 @@ class Seeders {
                 'logo' => 'anne-marie.jpeg',
                 'allow_cash' => 0,
                 'delivery_cost' => 7.00,
+                'is_visible' => 1,
             ],
             [
                 'name' => 'Vanilla\'s',
                 'address' => 'via tedeschi 90',
                 'email' => 'vanillas@mail.com',
-                'telephone' => 3457154266,
+                'telephone' => '3457154266',
                 'description' => 'La miglior esperienza dolce che ci sia!',
                 'img_cover' => 'dessert02.jpeg',
                 'logo' => 'vanillas.jpg',
                 'allow_cash' => 0,
                 'delivery_cost' => 6.00,
+                'is_visible' => 1,
             ],
             [
                 'name' => 'Maximus Healthy Food',
@@ -124,6 +126,7 @@ class Seeders {
                 'logo' => 'maximus.jpg',
                 'allow_cash' => 1,
                 'delivery_cost' => 10.00,
+                'is_visible' => 1,
             ],
             [
                 'name' => 'I Monaci',
@@ -135,6 +138,7 @@ class Seeders {
                 'logo' => 'monaci.jpg',
                 'allow_cash' => 1,
                 'delivery_cost' => 5.00,
+                'is_visible' => 1,
             ],
             [
                 'name' => 'Vecchie Storie',
@@ -146,6 +150,7 @@ class Seeders {
                 'logo' => 'vecchie-storie.jpg',
                 'allow_cash' => 1,
                 'delivery_cost' => 5.00,
+                'is_visible' => 1,
             ],
             [
                 'name' => 'Ristorante San Marco',
@@ -157,6 +162,7 @@ class Seeders {
                 'logo' => 'san-marco.png',
                 'allow_cash' => 1,
                 'delivery_cost' => 5.00,
+                'is_visible' => 1,
             ],
             [
                 'name' => 'Le Tre Torri',
@@ -168,6 +174,7 @@ class Seeders {
                 'logo' => 'tre-torri.jpg',
                 'allow_cash' => 1,
                 'delivery_cost' => 0.00,
+                'is_visible' => 1,
             ],
             [
                 'name' => 'La locanda',
@@ -179,6 +186,7 @@ class Seeders {
                 'logo' => 'la-locanda.jpg',
                 'allow_cash' => 1,
                 'delivery_cost' => 0.00,
+                'is_visible' => 1,
             ],
             [
                 'name' => 'Yokoso',
@@ -190,6 +198,7 @@ class Seeders {
                 'logo' => 'yokoso.jpg',
                 'allow_cash' => 0,
                 'delivery_cost' => 7.00,
+                'is_visible' => 1,
             ],
             [
                 'name' => 'Origami',
@@ -201,6 +210,7 @@ class Seeders {
                 'logo' => 'origami.png',
                 'allow_cash' => 0,
                 'delivery_cost' => 5.00,
+                'is_visible' => 1,
             ],
             [
                 'name' => 'Good Food',
@@ -212,6 +222,7 @@ class Seeders {
                 'logo' => 'good-food.jpg',
                 'allow_cash' => 0,
                 'delivery_cost' => 5.00,
+                'is_visible' => 1,
             ],
             [
                 'name' => 'Chuks Burger',
@@ -219,10 +230,11 @@ class Seeders {
                 'email' => 'chucksburger@mail.com',
                 'telephone' => '3456789900',
                 'description' => 'Burger per ogni palato, burger di ogni grandezza.',
-                'img_cover' => 'hamburger02.jpeg',
+                'img_cover' => 'hamburger01.jpeg',
                 'logo' => 'chuks-burger.png',
                 'allow_cash' => 0,
                 'delivery_cost' => 4.00,
+                'is_visible' => 1,
             ],
             [
                 'name' => 'Doner Kebab',
@@ -230,10 +242,11 @@ class Seeders {
                 'email' => 'donerkebab@mail.com',
                 'telephone' => '3453236009',
                 'description' => 'Il kebab alla braci come non lo hai mai provato',
-                'img_cover' => 'hamburger02.jpeg',
+                'img_cover' => 'kebab01.jpg',
                 'logo' => 'doner-kebab.jpg',
                 'allow_cash' => 0,
                 'delivery_cost' => 4.00,
+                'is_visible' => 1,
             ]
         ];
     }

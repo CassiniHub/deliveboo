@@ -17,16 +17,22 @@ class RestaurantSeeder extends Seeder
     public function run()
     {
 
-        factory(Restaurant::class, 20) -> make()
-            -> each(function($restaurant) {
-                $user = User::inRandomOrder() -> first();
-                $restaurant -> user() -> associate($user);
-                $restaurant -> save();
+        $restaurants = Seeders::restaurantsSeeds();
+        $restaruantsArray = [];
 
-                $categories = Category::inRandomOrder() 
-                    -> limit(rand(1, 5))
-                    ->get();
-                $restaurant -> categories() -> attach($categories);
-            });
+        foreach ($restaurants as $restaurant) {
+            $restaruantsArray[] = Restaurant::make($restaurant);
+        }
+
+        foreach ($restaruantsArray as $restaurant) {
+            $user = User::inRandomOrder() -> first();
+            $restaurant -> user() -> associate($user);
+            $restaurant -> save();
+
+            $categories = Category::inRandomOrder() 
+                -> limit(rand(1, 3))
+                ->get();
+            $restaurant -> categories() -> attach($categories);
+        }
     }
 }

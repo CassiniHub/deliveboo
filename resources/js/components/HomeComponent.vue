@@ -66,7 +66,7 @@
 
                 <div class="image-cover">
 
-                    <img :src="restaurant.img_cover" alt="">
+                    <img :src="'storage/images/restaurants/cover/' + `${restaurant.img_cover}`" alt="">
 
                 </div>
                 <div class="name">
@@ -100,7 +100,7 @@
         props: {
             categories: Array,
             route: String,
-            restaurants: Array
+            restaurants: Array,
         },
         data: function() {
 
@@ -133,8 +133,7 @@
             }
         },
         mounted() {
-
-            console.log(this.restaurants);
+            console.log(this.showedRestaurants);
             this.startSlide();
         },
         methods: {

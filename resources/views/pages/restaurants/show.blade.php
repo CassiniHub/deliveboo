@@ -14,7 +14,7 @@
                     <div class="description-left">
                         <div class="restaurant-logo-name">
                             <div class="restaurant-logo">
-                                <img src="{{$restaurant -> logo}}" alt="">
+                                <img src="{{asset('storage/images/restaurants/logo/'.$restaurant->logo) }}" alt="">
                             </div>
                             <div class="restaurant-name">
                                 <h1>{{ $restaurant -> name }}</h1>
@@ -43,7 +43,7 @@
                     <div class="description-right">
                         <div class="card-restaurant">
                             <div class="restaurant-img-cover">
-                                <img src="{{ $restaurant -> img_cover}} " alt="">
+                                <img src="{{asset('storage/images/restaurants/cover/'.$restaurant->img_cover) }}" alt="">
                             </div>
 
                             {{-- <div class="tempo-consegna">
@@ -106,10 +106,6 @@
                                                             {{ $dish -> price }} €
                                                         </div>
                                                     </div>
-
-                                                    {{-- <div class="dish-img">
-                                                        <img src="{{ $dish -> img }}" alt="">
-                                                    </div> --}}
                                                 </div>
                                             </div>
                                         @endif
