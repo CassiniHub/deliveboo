@@ -101,7 +101,7 @@ class RestaurantController extends Controller
         
         if ($request ->file('img_cover')) {
             $image = new Images;
-            $coverImgNewName = $image->getImgName($request - 'img_cover');
+            $coverImgNewName = $image->getImgName($request, 'img_cover');
             $folderPath = '/images/restaurants/cover';
             $storedImg = ($request ->file('img_cover')) 
                 ->storeAs($folderPath, $coverImgNewName, 'public');

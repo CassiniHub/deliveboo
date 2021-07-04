@@ -78,7 +78,7 @@ class DishController extends Controller
         if ($special_char_check -> checkSpecialChar($text_fields_values)) {
             return $special_char_check -> checkSpecialChar($text_fields_values);
         }
-
+        
         $validateData = $request -> validate(MyValidation::validateDish());
         $dish         = Dish::make($validateData);
         
