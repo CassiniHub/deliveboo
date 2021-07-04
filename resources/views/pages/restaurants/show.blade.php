@@ -46,9 +46,9 @@
                                 <img src="{{ $restaurant -> img_cover}} " alt="">
                             </div>
 
-                            <div class="tempo-consegna">
+                            {{-- <div class="tempo-consegna">
                                 <span>CONSEGNA: <br> 30 MIN</span>
-                            </div>
+                            </div> --}}
 
                             <div class="delivery-cost">
                                 <strong>Costo consegna:</strong> {{ $restaurant -> delivery_cost}} €
@@ -107,9 +107,9 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="dish-img">
+                                                    {{-- <div class="dish-img">
                                                         <img src="{{ $dish -> img }}" alt="">
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </div>
                                         @endif
@@ -154,9 +154,9 @@
                             <div class="cart-list" v-for="dish in dishesArray">
 
                                 <div class="dish-details">
-                                    <div class="cart-dish-img">
+                                    {{-- <div class="cart-dish-img">
                                         <img :src="dish.dish.img" alt="">
-                                    </div>
+                                    </div> --}}
 
                                     <div class="cart-dish-name">
                                         <b>@{{dish.dish.name}}</b>

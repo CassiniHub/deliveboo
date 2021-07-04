@@ -31,7 +31,7 @@
             padding: 10px 0;
             border-radius: 5px;
 
-            a{
+            .cancel-pay-btn{
 
                 text-decoration: none;
                 border: 2px solid #FABD12;
@@ -39,6 +39,7 @@
                 border-radius: 5px;
                 color: #007E8E;
                 margin-right: 10px;
+                font-weight: bold;
                 &:hover{
 
                     border: 2px solid #007E8E;
