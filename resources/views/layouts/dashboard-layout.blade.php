@@ -27,12 +27,6 @@
 
         <section id="dashboard-nav">
 
-            <div class="title">
-                <h1 class="company-name">
-                    {{ Auth::user()->company_name }}
-                </h1>
-            </div>
-
             <div class="restaurants">
                 <div class="">
                     @yield('sidebar-content')

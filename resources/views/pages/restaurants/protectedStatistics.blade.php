@@ -1,9 +1,21 @@
 @extends('layouts.dashboard-layout')
 
 @section('sidebar-content')
+
+    <div class="title">
+        <h1 class="company-name">
+            {{ $restaurant ->name }}
+        </h1>
+    </div>
+
     <div>
         <a href="{{ route('users.show', Auth::user() ->id) }}">
             torna ai tuoi ristoranti
+        </a>
+    </div>
+    <div>
+        <a href="{{ route('restaurants.protectedShow', $restaurant ->id) }}">
+            Lista piatti
         </a>
     </div>
     <div>
