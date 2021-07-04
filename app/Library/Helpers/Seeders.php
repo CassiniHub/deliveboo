@@ -223,6 +223,17 @@ class Seeders {
                 'logo' => 'chuks-burger.png',
                 'allow_cash' => 0,
                 'delivery_cost' => 4.00,
+            ],
+            [
+                'name' => 'Doner Kebab',
+                'address' => 'via raspadori 31',
+                'email' => 'donerkebab@mail.com',
+                'telephone' => '3453236009',
+                'description' => 'Il kebab alla braci come non lo hai mai provato',
+                'img_cover' => 'hamburger02.jpeg',
+                'logo' => 'doner-kebab.jpg',
+                'allow_cash' => 0,
+                'delivery_cost' => 4.00,
             ]
         ];
     }
