@@ -17,24 +17,22 @@
 
 </head>
 <body>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
     <div id="payment">
         <div class="payment-container">
 
             @if (session('success_message'))
                 <div>
                     {{ session('success_message') }}
-                </div>
-            @endif
-
-            @if (count($errors) > 0)
-                <div>
-                    <ul>
-                        @foreach ($errors -> all() as $error)
-                            <li>
-                                {{ $error }}
-                            </li>
-                        @endforeach
-                    </ul>
                 </div>
             @endif
 

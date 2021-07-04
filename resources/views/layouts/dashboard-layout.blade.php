@@ -29,7 +29,7 @@
 
             <div class="title">
                 <h1 class="company-name">
-                  Bentornato {{ Auth::user()->company_name }}
+                    {{ Auth::user()->company_name }}
                 </h1>
             </div>
 
