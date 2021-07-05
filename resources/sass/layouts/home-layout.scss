@@ -28,7 +28,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 50%;
+        width: 1180px;
 
          @media screen and (max-width: 375px){
 
@@ -43,42 +43,41 @@
 .restaurants-container{
     width: 100%;
     padding: 50px 0px;
-    margin: auto;
-    display: flex;
-    flex-wrap: wrap;
     background-color: #FABD12;
 
 
     .restaurant-card{
-        width: 400px;
-        flex-shrink: 0;
-        margin: 20px auto;
-        background-color: white;
+        display: flex;
+        flex-direction: column;
         border-radius: 5px;
+        width: 650px;
+        position: relative;
+        background-color: white;
+        margin: 30px auto;
 
-        @media screen and (max-width: 375px){
+            @media screen and (max-width: 375px){
 
-            width: 95%;
-        }
+                width: 100%;
+                margin: 30px auto;
+                height: 100%;
+            }
 
         a{
             text-decoration: none;
 
         }
 
-       /*  &>div{
-            margin-bottom: 10px;
-        } */
-
         .image-cover{
 
-            margin-bottom: 10px;
+            width: 100%;
+            height: 200px;
 
             img{
 
                 width: 100%;
                 height: 100%;
-                opacity: 1;
+                object-fit: cover;
+                object-position: center;
                 border-radius: 5px 5px 0 0;
             }
         }
@@ -114,6 +113,10 @@
 
 .no-restaurants{
 
+    background-color: #FABD12;
+    color: white;
+    font-size: 30px;
+    font-weight: 600;
     height: 300px;
     display: flex;
     justify-content: center;

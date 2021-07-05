@@ -19,7 +19,7 @@
     <ul>
         @foreach ($restaurants as $restaurant)
         <li>
-            <a href="{{ route('restaurants.protectedShow', $restaurant ->id) }}">
+            <a class="sidebar-restaurant-link" href="{{ route('restaurants.protectedShow', $restaurant ->id) }}">
                 {{ $restaurant ->name }} 
             </a>
             @if ($restaurant ->is_visible == 0)
