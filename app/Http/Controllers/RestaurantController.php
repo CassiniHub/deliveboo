@@ -219,19 +219,12 @@ class RestaurantController extends Controller
         $validateData = $request -> validate(MyValidation::validateRestaurant());
         $categories = $request ->get('category_id');
 
-        if ($restaurant ->img_cover) {
+        if ($request ->file('img_cover')) {
+            // delete old img
             $delete = new Images;
             $toDelete = $restaurant ->img_cover;
             $delete ->deleteRestaurantCover($toDelete);
-        }
 
-        if ($restaurant ->logo) {
-            $delete = new Images;
-            $toDelete = $restaurant ->logo;
-            $delete ->deleteRestaurantLogo($toDelete);
-        }
-
-        if ($request ->file('img_cover')) {
             $image = new Images;
             $coverImgNewName = $image->getImgName($request, 'img_cover');
             $folderPath = '/images/restaurants/cover';
@@ -241,6 +234,11 @@ class RestaurantController extends Controller
         }
 
         if ($request ->file('logo')) {
+            // delete old image
+            $delete = new Images;
+            $toDelete = $restaurant ->logo;
+            $delete ->deleteRestaurantLogo($toDelete);
+
             $image = new Images;
             $logoimgNewName = $image->getImgName($request, 'logo');
             $folderPath = '/images/restaurants/logo';
