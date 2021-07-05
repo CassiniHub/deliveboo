@@ -84,7 +84,7 @@
             <div class="element-container">
                 <div class="restaurant-menu-cointainer">
 
-                    <ul>
+                    <ul class="restaurant-ul-container">
                         @foreach ($types as $type)
                             <li class="menu-type">
                                 <span class="type-span">{{ $type }}</span>

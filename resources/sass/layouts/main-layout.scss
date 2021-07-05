@@ -53,7 +53,9 @@
             height: 100%;
         }
 
-        ul{
+        .restaurant-ul-container{
+
+            width: 70%;
 
             @media screen and (max-width: 375px){
 
