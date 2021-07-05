@@ -22,7 +22,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Modifica piatto</div>
+                    <div class="card-header">{{ $dish ->name }}</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('dishes.update', $dish) }}">
@@ -30,7 +30,7 @@
                             @csrf
                             
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">Nome</label>
 
                                 <div class="col-md-6">
                                     <input id="name" name="name" type="text" class="form-control" autofocus value="{{ $dish -> name }}" maxlength="255"  required>
@@ -38,7 +38,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="ingredients" class="col-md-4 col-form-label text-md-right">Ingredients</label>
+                                <label for="ingredients" class="col-md-4 col-form-label text-md-right">Ingredienti</label>
 
                                 <div class="col-md-6">
                                     <textarea id="ingredients" name="ingredients" type="text" class="form-control" maxlength="255">{{ $dish -> ingredients }}</textarea>
@@ -46,7 +46,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="price" class="col-md-4 col-form-label text-md-right">Price</label>
+                                <label for="price" class="col-md-4 col-form-label text-md-right">Prezzo</label>
 
                                 <div class="col-md-6">
                                     <input id="price"  value='{{ $dish -> price }}' step=".01" name="price" type="number" class="form-control" value="{{ $dish -> price}}" step=".10" min="0" max="999999" required>
@@ -54,12 +54,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="form-check" class="col-md-4 col-form-label text-md-right">Visibile</label>
+                                <label for="form-check" class="col-md-4 col-form-label text-md-right">Visibilità</label>
 
                                 <div class="form-check my-2 mx-5">
                                     <input class="form-check-input" type="radio" name="is_visible" id="is_visible" value="1" {{ $dish -> is_visible == 1 ? 'checked' : ''}}>
                                     <label class="form-check-label">
-                                    Yes
+                                    Si
                                     </label>
                                 </div>
                                 <div class="form-check my-2">
@@ -131,7 +131,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        Edit
+                                        Modifica piatto
                                     </button>
                                 </div>
                             </div>

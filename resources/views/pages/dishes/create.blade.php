@@ -23,7 +23,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    New Dish
+                    Crea nuovo piatto
                     <a class="btn btn-primary mx-3" v-on:click="populateForm1">Piatto 1</a>
                     <a class="btn btn-primary mx-3" v-on:click="populateForm2">Piatto 2</a>
                     <a class="btn btn-primary mx-3" v-on:click="populateForm3">Piatto 3</a>
@@ -35,7 +35,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Nome</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control"  name="name" minlength="2" maxlength="255" :value="testName" required autofocus>
@@ -43,7 +43,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="ingredients" class="col-md-4 col-form-label text-md-right">Ingredients</label>
+                            <label for="ingredients" class="col-md-4 col-form-label text-md-right">Ingredienti</label>
 
                             <div class="col-md-6">
                                 <textarea id="ingredients" type="text" class="form-control" minlength="2" name="ingredients" placeholder="Inserisci gli ingredienti separati da una virgola">@{{testDesc}}</textarea>
@@ -51,7 +51,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="price" class="col-md-4 col-form-label text-md-right">Price</label>
+                            <label for="price" class="col-md-4 col-form-label text-md-right">Prezzo</label>
 
                             <div class="col-md-6">
                                 <input id="price" type="number" value='0.00' step=".01" min="0.01" class="form-control"  name="price" :value="testPrice" required>
@@ -59,12 +59,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="form-check" class="col-md-4 col-form-label text-md-right">Visible</label>
+                            <label for="form-check" class="col-md-4 col-form-label text-md-right">Visibilità</label>
 
                             <div class="form-check my-2 mx-5">
                                 <input class="form-check-input" type="radio" name="is_visible" id="is_visible" value="1" checked>
                                 <label class="form-check-label">
-                                  Yes
+                                  Si
                                 </label>
                             </div>
                             <div class="form-check my-2">
@@ -78,7 +78,7 @@
                         <div class="form-group d-flex col-md-8 offset-md-2">
                             <label for="type">Tipo di piatto</label>
                             <div class="d-flex mb-3 mx-3">
-                                <div>
+                                <div class="input-radio-dish">
                                     <input type="radio" name="type" value="Primi"> Primo <br>
                                     <input type="radio" name="type" value="Secondi"> Secondo <br>
                                     <input type="radio" name="type" value="Sushi"> Sushi <br>
@@ -96,7 +96,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Add
+                                    Aggiungi piatto
                                 </button>
                             </div>
                         </div>
