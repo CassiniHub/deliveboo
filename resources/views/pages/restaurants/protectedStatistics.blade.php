@@ -67,7 +67,7 @@
 
                 <div class="main-link" v-on:click="showDishesOrdersCharts">
                     <div>
-                    Numero ordini
+                    I più venduti
                     </div>
                 </div>
 
@@ -383,7 +383,7 @@
                                     }
                                 }
                             });
-                            
+
 
                             let money = [];
                             let namesForMoney = [];
@@ -400,7 +400,7 @@
                                 namesForQuantities.push(dish.dish.name);
                                 quantities.push(dish.nof_dishes);
                             });
-                            
+
                             let limit = 6;
                             this.dishesNamesForMoney = this.cutArray(namesForMoney, limit);
                             this.dishesNamesForQuantity = this.cutArray(namesForQuantities, limit);
