@@ -104,5 +104,10 @@
             </div>
         </div>
     </div>
+    <div class="text-center my-5">
+        <a class="navbar-brand" href="{{ url('/') }}">
+            Torna alla home
+        </a>
+    </div>
 </div>
 @endsection

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header">{{ __('Login') }} </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -68,6 +68,11 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="text-center my-5">
+        <a class="navbar-brand" href="{{ url('/') }}">
+            Torna alla home
+        </a>
     </div>
 </div>
 @endsection
