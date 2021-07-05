@@ -86,10 +86,11 @@
         </div>
     </div>
 
+
     <div v-else class="no-restaurants">
-        <h3>
+        <span>
             Nessun ristorante corrispondente
-        </h3>
+        </span>
     </div>
 
 </div>

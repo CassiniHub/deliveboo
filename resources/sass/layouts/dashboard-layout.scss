@@ -12,28 +12,31 @@
 
         width: 15%;
         height: 100%;
-        padding: 0 30px;
+        padding: 0 20px;
         display: flex;
         flex-direction: column;
         background-color: #FABD12;
         font-size: 15px;
         font-weight: 600;
+        text-transform: capitalize;
+
+        .sidebar-restaurant-link{
+            margin: 20px 0;
+        }
 
         a{
 
             text-decoration: none;
-            border: 1px solid #FABD12;
-            padding: 5px 10px;
-            margin: 10px 0;
+            padding: 2px 5px;
             border-radius: 5px;
-            color: #007E8E;
-            margin-right: 10px;
+            margin: 10px 0;
+            color: white;
+            background-color: #1F8691;
 
                 &:hover{
 
-                    border: 2px solid #007E8E;
+                    background-color: #1F8691;
                     color: white;
-                    margin: 10px 0;
                 }
         }
 
@@ -56,7 +59,8 @@
         @media screen and (max-width: 375px){
 
             width: 100%;
-            height: auto;
+            height: 667px;
+
 
         }
     }

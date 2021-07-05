@@ -5,6 +5,11 @@
     /* padding: 20px 0; */
     background-color: #1F8691;
 
+         @media screen and (max-width: 375px){
+
+            height: 580px;
+        }
+
     .container-jumbotron{
         position: relative;
         height: 100%;
