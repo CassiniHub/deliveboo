@@ -12,12 +12,13 @@
 
         width: 15%;
         height: 100%;
-        padding: 0 30px;
+        padding: 0 20px;
         display: flex;
         flex-direction: column;
         background-color: #FABD12;
         font-size: 15px;
         font-weight: 600;
+        text-transform: capitalize;
 
         .sidebar-restaurant-link{
             margin: 20px 0;
@@ -58,7 +59,8 @@
         @media screen and (max-width: 375px){
 
             width: 100%;
-            height: auto;
+            height: 667px;
+
 
         }
     }
