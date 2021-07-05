@@ -152,12 +152,12 @@
         },
         methods: {
             populateForm: function() {
-                this.testName = 'ristorante di prova';
-                this.testAddress = 'Indirizzo di prova';
-                this.testEmail = 'emailprova@mail.com';
+                this.testName = 'Pizzeria Arcimboldi';
+                this.testAddress = 'via duca di cornovaglia 21';
+                this.testEmail = 'arcimboldi@mail.com';
                 this.testPhone = '3453322345';
-                this.testCost = 1.50;
-                this.testDesc = 'Breve descrizione di prova';
+                this.testCost = 4.50;
+                this.testDesc = 'La pizza tradizionale italiana direttamente a casa tua.';
             }
         }
     })

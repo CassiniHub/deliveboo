@@ -119,19 +119,19 @@
         },
         methods: {
             populateForm1: function() {
-                this.testName = 'Piatto 1';
+                this.testName = 'Margherita';
                 this.testPrice = 5.50;
-                this.testDesc = 'Breve descrizione di prova piatto 1';
+                this.testDesc = 'Pomodoro, mozzarella, basilico';
             },
             populateForm2: function() {
-                this.testName = 'Piatto 2';
-                this.testPrice = 4.50;
-                this.testDesc = 'Breve descrizione di prova piatto 2';
+                this.testName = 'Kebab Piccolo';
+                this.testPrice = 4.00;
+                this.testDesc = 'Kebab, patatine, verdure miste';
             },
             populateForm3: function() {
-                this.testName = 'Piatto 3';
-                this.testPrice = 1.50;
-                this.testDesc = 'Breve descrizione di prova piatto 3';
+                this.testName = 'Biancaneve';
+                this.testPrice = 5.00;
+                this.testDesc = 'Mozzarella, olio';
             },
         }
     })

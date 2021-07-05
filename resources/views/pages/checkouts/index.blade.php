@@ -18,14 +18,14 @@
 </head>
 <body>
     @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     <div id="payment">
         <div class="payment-container">
@@ -43,6 +43,7 @@
                         <form autocomplete="off" onsubmit="return confirm('Se torni indietro perderai i dati del tuo carrello');" action="{{ url('/') }}" method="get">
                             <button class="cancel-pay-btn" type="submit">Annulla e vai alla Home</button>
                         </form>
+                        <a class="btn btn-primary mx-3" v-on:click="populateForm">test data</a>
                     </div>
                 </div>
 
@@ -50,7 +51,7 @@
                     <form autocomplete="off" method="post" id="payment-form"
                     v-if="confirmPrice == {{$totPrice}}"
                     action="{{ route('checkouts.transaction', [$totPrice, $dishes_ids]) }}">
-                        @csrf
+                    @csrf
                         <section>
 
                             <div class="payment-recap">
@@ -75,7 +76,7 @@
                                                 Note:
                                             </div>
 
-                                            <textarea name="notes" id="notes" cols="30" rows="3">
+                                            <textarea name="notes" id="notes" cols="30" rows="3" :value="testNote">
 
                                             </textarea>
 
@@ -87,21 +88,21 @@
                                         <div class="text-center">
                                             Indirizzo di spedizione:
                                         </div>
-                                        <input name="delivery_address" id="delivery_address" required type="text">
+                                        <input name="delivery_address" id="delivery_address" required type="text" :value="testAddress">
                                     </div>
 
                                     <div class="payment-da">
                                         <div class="text-center">
                                             Nome sul campanello:
                                         </div>
-                                        <input name="doorbell_name" id="doorbell_name" required type="text">
+                                        <input name="doorbell_name" id="doorbell_name" required type="text" :value="testDoorbell">
                                     </div>
 
                                     <div class="payment-da">
                                         <div class="text-center">
                                             email:
                                         </div>
-                                        <input name="email" id="email" required type="text">
+                                        <input name="email" id="email" required type="text" :value="testEmail">
                                     </div>
 
 
@@ -109,7 +110,7 @@
                                         <div class="text-center">
                                             Telefono:
                                         </div>
-                                        <input name="telephone" id="telephone" required type="text">
+                                        <input name="telephone" id="telephone" required type="text" :value="testPhone">
                                     </div>
                                 </div>
                             </div>
@@ -130,24 +131,33 @@
     </div>
 
     <script>
-        new Vue ({
+        new Vue({
             el: '#payment',
 
             data: function () {
                 return {
                     confirmPrice: null,
+                    testNote: '',
+                    testAddress: '',
+                    testDoorbell: '',
+                    testEmail: '',
+                    testPhone: '',
                 }
             },
-
+            methods: {
+                populateForm: function() {
+                    this.testNote = 'Secondo portocinto a destra, secondo piano';
+                    this.testAddress = 'via Giacomo Leopardi 41';
+                    this.testDoorbell = 'Gaudenti';
+                    this.testEmail = 'gaudenti@mail.com';
+                    this.testPhone = '3459258963';
+                }
+            },
             mounted() {
                 if(localStorage.getItem('totSessionPrice') == {{ $totPrice }}) {
                     this.confirmPrice = {{ $totPrice }};
                 }
-            },
-
-            methods: {
-
-            }
+            },            
         });
     </script>
     <script src="https://js.braintreegateway.com/web/dropin/1.30.1/js/dropin.min.js"></script>
