@@ -1,152 +1,206 @@
 #home-header{
     background-color: white;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    .navbar-brand{
+    
+
+    .home-header-container{
         display: flex;
         align-items: center;
+        width: 1180px;
+        height: 70px;
+        margin: 0 auto;
 
-        img{
+            @media screen and (max-width: 375px){
 
-            height: 50px;
+                width: 100%;
+
+            }
+
+        .hamburger-position{
+
+            @media screen and (max-width: 375px){
+
+                margin-left: 110px;
+
+            }            
         }
-        .header-logo-span{
-
-            margin-left: 10px;
-            color: #007E8A;
-            font-weight: bolder;
-            margin-bottom: 10px;
-            height: 100%;
-        }
-    }
-
-    #navbarSupportedContent{
-
-        /* background-color: yellow; */
-        display: flex;
-        align-items: center;
-        height: 100%;
 
 
-        .header-slogan{
-
+        .navbar-brand{
             display: flex;
             align-items: center;
-            justify-content: center;
-            width: 100%;
-            font-family: "Nunito", sans-serif;
-            font-size: 30px;
-            font-weight: bold;
-            color: #007E8A;
 
             @media screen and (max-width: 375px){
 
-                display: none;
-
-            }
-
-        }
-
-        .navbar-button-style{
-
-            border: 2px solid #FABD12;
-            padding: 10px 20px;
-            border-radius: 5px;
-            color: #007E8A;
-            font-weight: bold;
-            margin-right: 10px;
-
-            @media screen and (max-width: 375px){
-
-                width: 100px;
                 margin-left: 10px;
-                margin-bottom: 10px;
-            }
 
-        }
+            }   
 
-        .resp-disp-none{
-
-            @media screen and (max-width: 375px){
-
-                display: none;
-            }
-        }
-
-        .resp-lg-disp-none{
-
-            @media screen and (min-width: 400px){
-
-                display: none;
-            }
-        }
-
-        .resp-head-pop-mtop{
-
-            margin-top: 20px;
-        }
-
-        .navbar-color-style{
-
-            color: #007E8A;
-            font-weight: bold;
-        }
-        .navbar-dropdown-style{
-
-            position: absolute;
-            left: 125px;
-            border: 2px solid #FABD12;
-            margin-top: 10px;
-            height: 260px;
-            width: 400px;
-
-            @media screen and (max-width: 375px){
-
-                left: -361px;
-                top: 0;
-            }
-
-
-        }
-
-        .dropdown-header{
-
-            height: 100px;
-            width: 100%;
-            border-bottom: 1px solid #FABD12;
-            display: flex;
             img{
-                padding-top: 10px;
-                height: 70px;
+                height: 50px;
             }
-            .dropdown-header-title{
+            .header-logo-span{
 
+                margin-left: 10px;
+                color: #1F8691;
+                font-weight: bolder;
+                margin-bottom: 10px;
+                height: 100%;
+            }
+        }
+
+        #navbarSupportedContent{
+            display: flex;
+            align-items: center;
+            height: 100%;
+
+
+            .header-slogan{
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                font-family: "Nunito", sans-serif;
+                font-size: 30px;
+                font-weight: bold;
+                color: #1F8691;
+
+                @media screen and (max-width: 375px){
+
+                    display: none;
+
+                }
+
+            }
+
+            .navbar-button-style{
+
+                border: 2px solid #FABD12;
+                padding: 10px 15px;
+                border-radius: 5px;
+                color: #1F8691;
+                font-weight: bold;
+
+                @media screen and (max-width: 375px){
+
+                    width: 100px;
+                    margin-left: 10px;
+                    margin-bottom: 10px;
+                }
+
+            }
+
+            .navbar-button-login{
+
+                border: 2px solid #FABD12;
+                padding: 10px 15px;
+                border-radius: 5px;
+                color: #1F8691;
+                font-weight: bold;
+
+                @media screen and (max-width: 375px){
+
+                    width: 100px;
+                    margin-left: 10px;
+                    margin-bottom: 10px;
+                }
+
+            }
+
+            .navbar-button-register{
+
+                border: 2px solid #FABD12;
+                padding: 10px 15px;
+                border-radius: 5px;
+                color: #1F8691;
+                font-weight: bold;
+                margin-left: 20px;
+
+                @media screen and (max-width: 375px){
+
+                    width: 100px;
+                    margin-left: 10px;
+                    margin-bottom: 10px;
+                }
+
+            }
+
+
+
+            .resp-disp-none{
+
+                @media screen and (max-width: 375px){
+
+                    display: none;
+                }
+            }
+
+            .resp-lg-disp-none{
+
+                @media screen and (min-width: 400px){
+
+                    display: none;
+                }
+            }
+
+            .resp-head-pop-mtop{
+
+                margin-top: 20px;
+            }
+
+            .navbar-color-style{
+
+                color: #1F8691;
+                font-weight: bold;
+            }
+            .navbar-dropdown-style{
+
+                position: absolute;
+                border: 2px solid #FABD12;
+                margin-top: 10px;
+                height: 306px;
+                width: 275px;
+
+                @media screen and (max-width: 375px){
+
+                    left: -282px;
+                    top: 33px;
+                }
+
+
+            }
+
+            .dropdown-header{
+
+                height: 100px;
+                width: 100%;
+                border-bottom: 1px solid #FABD12;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                font-size: 25px;
-                color: #007E8A;
+                img{
+                    height: 70px;
+                }
+
+            }
+            .dropdown-welcome{
+
+                color: #1F8691;
                 font-weight: bold;
-                width: 100%;
+                border-bottom: 1px solid #FABD12;
             }
 
+            .dropdown-actions{
+
+                display: flex;
+                flex-direction: column-reverse;
+                justify-content: center;
+            }
+
+
+
         }
-        .dropdown-welcome{
-
-            color: #007E8A;
-            font-weight: bold;
-            border-bottom: 1px solid #FABD12;
-        }
-
-        .dropdown-actions{
-
-            display: flex;
-            flex-direction: column-reverse;
-            justify-content: center;
-        }
-
-
 
     }
+    
 }
