@@ -18,11 +18,16 @@
         </ul>
     </div>
 @endif
-<div class="container">
+<div class="container" id="create-form-dish">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">New Dish</div>
+                <div class="card-header">
+                    New Dish
+                    <a class="btn btn-primary mx-3" v-on:click="populateForm1">Piatto 1</a>
+                    <a class="btn btn-primary mx-3" v-on:click="populateForm2">Piatto 2</a>
+                    <a class="btn btn-primary mx-3" v-on:click="populateForm3">Piatto 3</a>
+                </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('dishes.storeDish', $restaurant ->id) }}">
@@ -33,7 +38,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control"  name="name" minlength="2" maxlength="255" required autofocus>
+                                <input id="name" type="text" class="form-control"  name="name" minlength="2" maxlength="255" :value="testName" required autofocus>
                             </div>
                         </div>
 
@@ -41,7 +46,7 @@
                             <label for="ingredients" class="col-md-4 col-form-label text-md-right">Ingredients</label>
 
                             <div class="col-md-6">
-                                <textarea id="ingredients" type="text" class="form-control" minlength="2" name="ingredients" placeholder="Inserisci gli ingredienti separati da una virgola"></textarea>
+                                <textarea id="ingredients" type="text" class="form-control" minlength="2" name="ingredients" placeholder="Inserisci gli ingredienti separati da una virgola">@{{testDesc}}</textarea>
                             </div>
                         </div>
 
@@ -49,7 +54,7 @@
                             <label for="price" class="col-md-4 col-form-label text-md-right">Price</label>
 
                             <div class="col-md-6">
-                                <input id="price" type="number" value='0.00' step=".01" min="0.01" class="form-control"  name="price"  required>
+                                <input id="price" type="number" value='0.00' step=".01" min="0.01" class="form-control"  name="price" :value="testPrice" required>
                             </div>
                         </div>
 
@@ -101,4 +106,34 @@
         </div>
     </div>
 </div>
+
+<script>
+    new Vue({
+        el: '#create-form-dish',
+        data: function() {
+            return {
+                testName: '',
+                testPrice: 0.00,
+                testDesc: '',
+            }
+        },
+        methods: {
+            populateForm1: function() {
+                this.testName = 'Piatto 1';
+                this.testPrice = 5.50;
+                this.testDesc = 'Breve descrizione di prova piatto 1';
+            },
+            populateForm2: function() {
+                this.testName = 'Piatto 2';
+                this.testPrice = 4.50;
+                this.testDesc = 'Breve descrizione di prova piatto 2';
+            },
+            populateForm3: function() {
+                this.testName = 'Piatto 3';
+                this.testPrice = 1.50;
+                this.testDesc = 'Breve descrizione di prova piatto 3';
+            },
+        }
+    })
+</script>
 @endsection
