@@ -1,6 +1,6 @@
 .payment-container{
 
-    background-color: aquamarine;
+    background-color: #0097fc;
     width: 70%;
     margin: auto;
     border-radius: 5px;
@@ -37,12 +37,12 @@
                 border: 2px solid #FABD12;
                 padding: 5px 10px;
                 border-radius: 5px;
-                color: #007E8E;
+                color: #1F8691;
                 margin-right: 10px;
                 font-weight: bold;
                 &:hover{
 
-                    border: 2px solid #007E8E;
+                    border: 2px solid #1F8691;
                     color: #FABD12;
                 }
             }
@@ -126,7 +126,7 @@
 
         .payment-credit-card{
 
-            background-color: aquamarine;
+            background-color: #0097fc;
             min-height: 190px;
             /* padding: 20px; */
             display: flex;
@@ -155,7 +155,7 @@
                 position: relative;
                 top: 10px;
                 transition: all 0.5 ease;
-                background-color: #007E8E;
+                background-color: #1F8691;
 
                 &:hover{
 

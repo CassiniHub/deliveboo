@@ -8,26 +8,31 @@
         </h1>
     </div>
     
-    <div>
-        <a href="{{ route('users.show', Auth::user() ->id) }}">
-            torna ai tuoi ristoranti
-        </a>
+    <div class="sidebar-navigation-link">
+
+        <div>
+            <a href="{{ route('users.show', Auth::user() ->id) }}">
+                torna ai tuoi ristoranti
+            </a>
+        </div>
+        <div>
+            <a href="{{ route('restaurants.protectedShow', $restaurant ->id) }}">
+                Lista piatti
+            </a>
+        </div>
+        <div>
+            <a href=" {{ route('restaurants.protectedOrders', $restaurant ->id) }} ">
+                Storico ordini
+            </a>
+        </div>
+        <div>
+            <a href=" {{ route('restaurants.protectedStatistics', $restaurant ->id) }} ">
+                Statistiche ristorante
+            </a>
+        </div>
+        
     </div>
-    <div>
-        <a href="{{ route('restaurants.protectedShow', $restaurant ->id) }}">
-            Lista piatti
-        </a>
-    </div>
-    <div>
-        <a href=" {{ route('restaurants.protectedOrders', $restaurant ->id) }} ">
-            Storico ordini
-        </a>
-    </div>
-    <div>
-        <a href=" {{ route('restaurants.protectedStatistics', $restaurant ->id) }} ">
-            Statistiche ristorante
-        </a>
-    </div>
+    
 @endsection
 
 @section('main-content')
@@ -35,13 +40,13 @@
 
     <div class="history-page">
 
-        <h1>Storico ordini ristorante {{$restaurant ->name }}: </h1>
+        <span>Storico ordini ristorante {{$restaurant ->name }}: </span>
 
         @foreach ($orders as $order)
             @if ($order ->status == 1)
-                <h2>
+                <span>
                     Ordini in preparazione:
-                </h2>
+                </span>
                 @break
             @endif
         @endforeach
@@ -85,9 +90,9 @@
             @endforeach
         </ul>
 
-        <h2>
-            Oridini evasi:
-        </h2>
+        <span>
+            Ordini evasi:
+        </span>
         <ul class="orders-gone">
             @foreach ($orders as $order)
                 @if ($order ->status != 1)
