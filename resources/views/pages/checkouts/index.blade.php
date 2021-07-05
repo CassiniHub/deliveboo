@@ -40,14 +40,14 @@
 
                 <div class="payment-header">
                     <div class="top-right links">
-                        <form onsubmit="return confirm('Se torni indietro perderai i dati del tuo carrello');" action="{{ url('/') }}" method="get">
+                        <form autocomplete="off" onsubmit="return confirm('Se torni indietro perderai i dati del tuo carrello');" action="{{ url('/') }}" method="get">
                             <button class="cancel-pay-btn" type="submit">Annulla e vai alla Home</button>
                         </form>
                     </div>
                 </div>
 
                 <div class="content">
-                    <form method="post" id="payment-form"
+                    <form autocomplete="off" method="post" id="payment-form"
                     v-if="confirmPrice == {{$totPrice}}"
                     action="{{ route('checkouts.transaction', [$totPrice, $dishes_ids]) }}">
                         @csrf
