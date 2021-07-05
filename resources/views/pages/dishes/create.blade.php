@@ -60,7 +60,7 @@
 
                         <div class="form-group row">
                             <label for="form-check" class="col-md-4 col-form-label text-md-right">Visibilità</label>
-                            
+
                             <div class="form-check my-2 mx-5">
                                 <input class="form-check-input" type="radio" name="is_visible" id="is_visible" value="1" checked>
                                 <label class="form-check-label">
@@ -78,7 +78,7 @@
                         <div class="form-group d-flex col-md-8 offset-md-2">
                             <label for="type">Tipo di piatto</label>
                             <div class="d-flex mb-3 mx-3">
-                                <div>
+                                <div class="input-radio-dish">
                                     <input type="radio" name="type" value="Primi"> Primo <br>
                                     <input type="radio" name="type" value="Secondi"> Secondo <br>
                                     <input type="radio" name="type" value="Sushi"> Sushi <br>
