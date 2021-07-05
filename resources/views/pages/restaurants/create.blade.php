@@ -19,11 +19,11 @@
     </div>
 @endif
 
-<div class="container">
+<div class="container" id="create-form">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">New Restaurant</div>
+                <div class="card-header">New Restaurant <a class="btn btn-primary mx-3" v-on:click="populateForm">test data</a></div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('restaurants.store') }}" enctype="multipart/form-data">
@@ -34,7 +34,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control"  name="name" minlength="2" maxlength="255" required autofocus>
+                                <input id="name" type="text" class="form-control"  name="name" minlength="2" maxlength="255" :value="testName" required autofocus>
                             </div>
                         </div>
 
@@ -42,7 +42,7 @@
                             <label for="address" class="col-md-4 col-form-label text-md-right">Address</label>
 
                             <div class="col-md-6">
-                                <input id="address" type="text" class="form-control"  name="address" minlength="6" maxlength="255" required>
+                                <input id="address" type="text" class="form-control"  name="address" minlength="6" maxlength="255" :value="testAddress" required>
                             </div>
                         </div>
 
@@ -50,7 +50,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">E-mail</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control"  name="email" maxlength="128" required>
+                                <input id="email" type="email" class="form-control"  name="email" maxlength="128" :value="testEmail" required>
                             </div>
                         </div>
 
@@ -58,7 +58,7 @@
                             <label for="telephone" class="col-md-4 col-form-label text-md-right">Phone number</label>
 
                             <div class="col-md-6">
-                                <input id="telephone" type="text" class="form-control"  name="telephone" maxlength="32" required>
+                                <input id="telephone" type="text" class="form-control"  name="telephone" maxlength="32" :value="testPhone" required>
                             </div>
                         </div>
 
@@ -100,7 +100,7 @@
                             <label for="delivery_cost" class="col-md-4 col-form-label text-md-right">Delivery cost</label>
 
                             <div class="col-md-6">
-                                <input id="delivery_cost" type="number" value='' step=".01" min="0" class="form-control"  name="delivery_cost"  required>
+                                <input id="delivery_cost" type="number" value='' step=".01" min="0" class="form-control"  name="delivery_cost" :value="testCost" required>
                             </div>
                         </div>
 
@@ -108,7 +108,7 @@
                             <label for="description" class="col-md-4 col-form-label text-md-right">Description</label>
 
                             <div class="col-md-6">
-                                <textarea name="description" id="description" cols="35" rows="5"></textarea>
+                                <textarea name="description" id="description" cols="35" rows="5">@{{testDesc}}</textarea>
                             </div>
                         </div>
 
@@ -136,5 +136,31 @@
         </div>
     </div>
 </div>
+
+<script>
+    new Vue({
+        el: '#create-form',
+        data: function() {
+            return {
+                testName: '',
+                testAddress: '',
+                testEmail: '',
+                testPhone: '',
+                testCost: 0.00,
+                testDesc: '',
+            }
+        },
+        methods: {
+            populateForm: function() {
+                this.testName = 'ristorante di prova';
+                this.testAddress = 'Indirizzo di prova';
+                this.testEmail = 'emailprova@mail.com';
+                this.testPhone = '3453322345';
+                this.testCost = 1.50;
+                this.testDesc = 'Breve descrizione di prova';
+            }
+        }
+    })
+</script>
 
 @endsection
