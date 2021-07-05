@@ -86,7 +86,7 @@
         </ul>
 
         <h2>
-            Oridini evasi:
+            Ordini evasi:
         </h2>
         <ul class="orders-gone">
             @foreach ($orders as $order)
