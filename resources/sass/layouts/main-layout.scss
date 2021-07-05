@@ -374,11 +374,12 @@
     position: relative;
     width: 100%;
     height: 100%;
-    background: rgb(99 168 195);
+    background-color: #FABD12;
     box-shadow: 5px 10px 18px #14555c;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 40px;
 
      @media screen and (max-width: 375px){
 
@@ -507,20 +508,28 @@
                     .button-cart{
 
                         cursor: pointer;
-                        background-color: rgb(2, 150, 241);
+                        background-color: #1F8691;
                         color: white;
                         padding: 0 20px;
                         border-radius: 5px;
                         box-shadow: 2px 5px 5px #14555c;
                         font-size: 25px;
                         font-weight: 600;
+                        width: 100%;
+                        border: 2px solid white;
 
-                         @media screen and (max-width: 375px){
+                            &:hover{
 
-                            padding: 0 10px;
-                            font-size: 15px;
+                                background-color: white;
+                                color: #1F8691;
+                            }
 
-                        }
+                            @media screen and (max-width: 375px){
+
+                                padding: 0 10px;
+                                font-size: 15px;
+
+                            }
                     }
 
                     .dish-quantity{
@@ -592,15 +601,16 @@
                 color: white;
                 font-weight: bold;
                 cursor: pointer;
-                background-color: rgb(2, 150, 241);
+                background-color: #1F8691;
                 padding: 10px 5px;
                 box-shadow: 2px 5px 5px #14555c;
                 text-align: center;
                 text-decoration: none;
+                border: 2px solid white;
 
                 &:hover{
-
-                    color: #FABD12;
+                    background-color: white;
+                    color: #1F8691;
                 }
             }
         }
@@ -736,6 +746,14 @@
         .success-home-button{
 
             background-color: #1F8691;
+            color: white;
+
+                &:hover{
+
+                    background-color: #FABD12;
+                    color: #1F8691;
+                }
+
         }
 
         .success-ctb-button{
@@ -757,7 +775,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: red;
+    background-color: #FABD12;
     border-radius: 5px;
 
     @media screen and (max-width: 375px){

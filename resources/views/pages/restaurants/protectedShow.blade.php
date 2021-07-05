@@ -8,26 +8,31 @@
         </h1>
     </div>
 
-    <div>
-        <a href="{{ route('users.show', Auth::user() ->id) }}">
-            torna ai tuoi ristoranti
-        </a>
+    <div class="sidebar-navigation-link">  
+                 
+        <div>
+            <a href="{{ route('users.show', Auth::user() ->id) }}">
+                torna ai tuoi ristoranti
+            </a>
+        </div>
+        <div>
+            <a href="{{ route('restaurants.protectedShow', $restaurant ->id) }}">
+                Lista piatti
+            </a>
+        </div>
+        <div>
+            <a href="{{ route('restaurants.protectedOrders', $restaurant ->id) }}">
+                Storico ordini
+            </a>
+        </div>
+        <div>
+            <a href=" {{ route('restaurants.protectedStatistics', $restaurant ->id) }} ">
+                Statistiche ristorante
+            </a>
+        </div>
     </div>
-    <div>
-        <a href="{{ route('restaurants.protectedShow', $restaurant ->id) }}">
-            Lista piatti
-        </a>
-    </div>
-    <div>
-        <a href="{{ route('restaurants.protectedOrders', $restaurant ->id) }}">
-            Storico ordini
-        </a>
-    </div>
-    <div>
-        <a href=" {{ route('restaurants.protectedStatistics', $restaurant ->id) }} ">
-            Statistiche ristorante
-        </a>
-    </div>
+
+
 @endsection
 
 @section('main-content')
