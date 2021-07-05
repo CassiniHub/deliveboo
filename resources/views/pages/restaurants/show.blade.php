@@ -319,8 +319,6 @@
             methods: {
                 getDish: function(dish) {
 
-                    this.dishesIds.push(dish.id);
-
                     if (this.dishesArray.length == 0) {
 
                         this.dishesArray.push({'dish': dish, 'quantity': 1});
@@ -345,18 +343,22 @@
 
                 addDish: function(dish) {
                     dish.quantity ++
-                    this.dishesIds.push(dish.dish.id);
-
                 },
 
                 removeDish: function(dish) {
-                    this.dishesIds.pop(dish.dish.id);
-                    console.log(this.dishesIds);
 
                     if (dish.quantity > 1){
                         dish.quantity --
                     }else{
-                        this.dishesArray.pop(dish);
+
+                        for (let i=0; i<this.dishesArray.length; i++){
+                            if (this.dishesArray[i].dish.name == dish.dish.name) {
+                                this.dishesArray = this.dishesArray.filter(function(value, index, arr){ 
+                                    return value.dish.name != dish.dish.name;
+                                });
+                                console.log(this.dishesIds);
+                            }
+                        }
                     }
                 },
 
@@ -365,8 +367,17 @@
                 },
 
                 setLocalStorage: function() {
+                    this.dishesIds = [];
+                    this.dishesArray.forEach(element => {
+                        let i = 0;
+                        while (i < element.quantity) {
+                            this.dishesIds.push(element.dish.id)
+                            i++
+                        }
+                    });
+
                     localStorage.setItem('totSessionPrice', this.getFinalPrice);
-                }
+                },
             },
 
             computed: {
