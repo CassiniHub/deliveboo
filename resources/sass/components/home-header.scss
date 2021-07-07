@@ -9,7 +9,7 @@
         height: 70px;
         margin: 0 auto;
 
-            @media screen and (max-width: 375px){
+            @media (max-width: 998px) AND (min-width: 768px){
 
                 width: 100%;
 
@@ -17,7 +17,7 @@
 
         .hamburger-position{
 
-            @media screen and (max-width: 375px){
+            @media (max-width: 998px) AND (min-width: 768px){
 
                 margin-left: 110px;
 
@@ -29,7 +29,7 @@
             display: flex;
             align-items: center;
 
-            @media screen and (max-width: 375px){
+            @media (max-width: 998px) AND (min-width: 768px){
 
                 margin-left: 10px;
 
@@ -65,7 +65,7 @@
                 font-weight: bold;
                 color: #1F8691;
 
-                @media screen and (max-width: 375px){
+                @media (max-width: 998px) AND (min-width: 768px){
 
                     display: none;
 
@@ -81,7 +81,7 @@
                 color: #1F8691;
                 font-weight: bold;
 
-                @media screen and (max-width: 375px){
+                @media (max-width: 998px) AND (min-width: 768px){
 
                     width: 100px;
                     margin-left: 10px;
@@ -98,7 +98,7 @@
                 color: #1F8691;
                 font-weight: bold;
 
-                @media screen and (max-width: 375px){
+                @media (max-width: 998px) AND (min-width: 768px){
 
                     width: 100px;
                     margin-left: 10px;
@@ -116,7 +116,7 @@
                 font-weight: bold;
                 margin-left: 20px;
 
-                @media screen and (max-width: 375px){
+                @media (max-width: 998px) AND (min-width: 768px){
 
                     width: 100px;
                     margin-left: 10px;
@@ -129,7 +129,7 @@
 
             .resp-disp-none{
 
-                @media screen and (max-width: 375px){
+                @media (max-width: 998px) AND (min-width: 768px){
 
                     display: none;
                 }
@@ -161,7 +161,7 @@
                 height: 306px;
                 width: 275px;
 
-                @media screen and (max-width: 375px){
+                @media (max-width: 998px) AND (min-width: 768px){
 
                     left: -282px;
                     top: 33px;

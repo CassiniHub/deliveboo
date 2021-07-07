@@ -19,11 +19,12 @@
         justify-content: space-between;
         padding: 25px 0;
 
-        @media screen and (max-width: 375px){
+        @media (max-width: 998px) AND (min-width: 768px){
 
-            width: 90%;
-            display: block;
-
+            .footer-card-container{
+                flex-wrap: nowrap;
+                
+            }
         }
 
        .footer-card{
@@ -35,7 +36,7 @@
             color: #1F8691;
             border-radius: 5px;
 
-             @media screen and (max-width: 375px){
+             @media (max-width: 998px) AND (min-width: 768px){
 
                 width: 90%;
                 margin: auto;
@@ -56,7 +57,7 @@
                         &:hover,
                         &:focus,
                         &:active {
-                        color: white;
+                        color: #FABD12;
                         }
                 }
 
